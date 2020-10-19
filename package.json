@@ -8,7 +8,8 @@
     "build-watch": "webpack -w",
     "start-server": "nodemon --watch server -e js,html server/index.js",
     "db-init": "pg-init graceshopper",
-    "postinstall": "npm run db-init"
+    "postinstall": "npm run db-init",
+    "seed": "node server/db/seed.js"
   },
   "repository": {
     "type": "git",
