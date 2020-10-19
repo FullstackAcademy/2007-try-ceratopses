@@ -6,7 +6,9 @@
   "scripts": {
     "start": "npm run start-server & npm run build-watch",
     "build-watch": "webpack -w",
-    "start-server": "nodemon --watch server -e js,html server/index.js"
+    "start-server": "nodemon --watch server -e js,html server/index.js",
+    "db-init": "pg-init graceshopper",
+    "postinstall": "npm run db-init"
   },
   "repository": {
     "type": "git",
