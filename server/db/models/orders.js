@@ -8,10 +8,12 @@ const Orders = db.define("orders", {
     }),
     allowNull: false,
   },
-  sales_tax: Sequelize.FLOAT,
+  salesTax: Sequelize.FLOAT,
   shipping: Sequelize.FLOAT,
-  grand_total: Sequelize.FLOAT,
-  ordered_at: Sequelize.DATE,
+  grandTotal: Sequelize.FLOAT,
+  orderedAt: Sequelize.DATE,
 });
+
+//either make grandTotal a virtual field that queries orderItems or add a hook so that it gets updated whenever the subtotals in orderItems is updated
 
 module.exports=Orders

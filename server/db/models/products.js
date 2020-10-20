@@ -6,7 +6,7 @@ const Products = db.define("products", {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  photo_url: {
+  photoUrl: {
     type: Sequelize.STRING,
     allowNull: false,
     defaultValue: "https://pbs.twimg.com/media/Co4RvbeXEAAOSbC.jpg",
@@ -28,11 +28,14 @@ const Products = db.define("products", {
     ],
   }),
   tags: Sequelize.STRING,
-  light_requirement: Sequelize.ENUM({
+  lightRequirement: Sequelize.ENUM({
     values: ["full sun", "bright light", "partial shade", "shade"],
   }),
   description: Sequelize.TEXT,
-  inventory: Sequelize.INTEGER,
+  inventory: {
+  type:Sequelize.INTEGER,
+  defaultValue:1
+  }
 });
 
 module.exports = Products;

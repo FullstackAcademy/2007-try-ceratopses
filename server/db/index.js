@@ -1,6 +1,6 @@
 const db = require('./database');
 const Addresses = require('./models/addresses')
-const OrderItems = require('./models/order_items')
+const OrderItems = require('./models/orderItems')
 const Orders = require('./models/orders')
 const Products = require('./models/products')
 const Reviews = require('./models/reviews')

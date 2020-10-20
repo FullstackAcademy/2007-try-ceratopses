@@ -7,4 +7,6 @@ const OrderItems = db.define("orderItems", {
 
 })
 
+//add a hook so that subtotal updates whenever the product price updates UNLESS the order is already submitted
+
 module.exports= OrderItems
