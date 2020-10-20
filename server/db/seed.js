@@ -1,5 +1,4 @@
-const Users = require('./models/users')
-const db = require('./database')
+const {db, Users} = require('./index')
 
 const seed = async() =>{
   try {

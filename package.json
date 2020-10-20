@@ -9,7 +9,7 @@
     "start-server": "nodemon --watch server -e js,html server/index.js",
     "db-init": "pg-init graceshopper",
     "postinstall": "npm run db-init",
-    "seed": "node server/db/seed.js"
+    "seed": "nodemon server/db/seed.js"
   },
   "repository": {
     "type": "git",
