@@ -6,7 +6,7 @@ const Reviews = db.define('reviews', {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
-  fullReviews: {
+  fullReview: {
     type: Sequelize.TEXT,
     allowNull: true,
     validate: {

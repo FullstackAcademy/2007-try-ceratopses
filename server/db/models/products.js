@@ -18,7 +18,7 @@ const Products = db.define("products", {
   category: Sequelize.ENUM({
     values: [
       "accessory",
-      "bouquet",
+      "flower",
       "indoor",
       "tree",
       "bush",
@@ -29,7 +29,7 @@ const Products = db.define("products", {
   }),
   tags: Sequelize.STRING,
   lightRequirement: Sequelize.ENUM({
-    values: ["full sun", "bright light", "partial shade", "shade"],
+    values: ["full sun", "bright light", "partial shade", "shade", "na"],
   }),
   description: Sequelize.TEXT,
   inventory: {

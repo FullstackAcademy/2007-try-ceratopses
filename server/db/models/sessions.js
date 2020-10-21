@@ -6,6 +6,9 @@ const Sessions = db.define("sessions", {
     type: Sequelize.UUID,
     allowNull: false,
   },
+  expiration: {
+    type:Sequelize.DATE,
+    allowNull: false}
 });
 
 module.exports=Sessions
