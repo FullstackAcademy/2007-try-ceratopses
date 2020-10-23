@@ -7,7 +7,7 @@
     "test": "mocha \"**/*.spec.js\"",
     "build": "webpack",
     "build-dev": "webpack -w",
-    "start": "node client/index.js",
+    "start": "node server/index.js",
     "start-dev": "npm run build-dev && nodemon"
   },
   "repository": {
