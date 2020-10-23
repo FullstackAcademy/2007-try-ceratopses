@@ -1,5 +1,6 @@
 const {
   Users,
+  db,
   Sessions,
   Reviews,
   Products,
@@ -280,6 +281,7 @@ const seed = async () => {
   });
 
   try {
+    await db.sync({force:true})
     await Users.bulkCreate(users);
     await Sessions.bulkCreate(sessions);
     await Products.bulkCreate(products);

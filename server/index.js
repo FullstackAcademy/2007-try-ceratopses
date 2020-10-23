@@ -1,8 +1,6 @@
 const express = require('express')
 const volleyball = require('volleyball')
 const path = require('path')
-const seed = require('./db/seed');
-const db = require('./db');
 //const router = require('express').Router();
 const app = express();
 
@@ -34,9 +32,7 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 3000;
 
 const init = async() => {
-
-  await db.sync();
-  await seed();
+  // await syncAndSeed();
   app.listen(PORT, () => {
     console.log('Listening on port ', PORT)
   })
