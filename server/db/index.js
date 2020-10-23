@@ -8,12 +8,27 @@ const Sessions = require('./models/sessions')
 const Users = require('./models/users')
 
 Users.hasMany(Sessions);
+Sessions.belongsTo(Users);
+
 Users.hasMany(Orders);
+Orders.belongsTo(Users);
+
 Users.hasMany(Reviews);
+Reviews.belongsTo(Users);
+
 Users.hasMany(Addresses);
+Addresses.belongsTo(Users)
+
 Addresses.hasMany(Orders);
+Orders.belongsTo(Addresses);
+
 Products.hasMany(Reviews);
+Reviews.belongsTo(Products);
+
 Orders.hasMany(OrderItems);
+OrderItems.belongsTo(Orders);
+
+Products.hasMany(OrderItems);
 OrderItems.belongsTo(Products);
 
 module.exports= {

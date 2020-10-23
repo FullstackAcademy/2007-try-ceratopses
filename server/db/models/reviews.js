@@ -6,6 +6,13 @@ const Reviews = db.define('reviews', {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
+  reviewTitle: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
   fullReview: {
     type: Sequelize.TEXT,
     allowNull: true,

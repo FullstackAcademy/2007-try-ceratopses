@@ -32,6 +32,10 @@ const Addresses = db.define("addresses", {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  phone: {
+    type: Sequelize.STRING,
+    allowNull: false
+  }
 });
 
 module.exports=Addresses

@@ -1,5 +1,4 @@
 const {
-  db,
   Users,
   Sessions,
   Reviews,
@@ -20,18 +19,39 @@ const seed = async () => {
   nonediblePlants = nonediblePlants.map((plant, idx) => {
     return {
       title: plant.common_name,
-      price: faker.random.number({
-        min: 100,
-        max: 3000
-      })/100,
+      price:
+        faker.random.number({
+          min: 100,
+          max: 3000,
+        }) / 100,
       photoUrl: plant.image_url,
-      category: "tree",
+      category:
+        idx % 7 === 0
+          ? "tree"
+          : idx % 6 === 0
+          ? "indoor"
+          : idx % 5
+          ? "flower"
+          : idx % 4 === 0
+          ? "fern"
+          : idx % 3 === 0
+          ? "succulent"
+          : idx % 2 === 0
+          ? "vines"
+          : "accessory",
       tags: `${faker.commerce.productAdjective()},${faker.commerce.productAdjective()}`,
-      lightRequirement: "full sun",
+      lightRequirement:
+        idx % 4 === 0
+          ? "bright light"
+          : idx % 3 === 0
+          ? "partial shade"
+          : idx % 2 === 0
+          ? "shade"
+          : "full sun",
       description: faker.commerce.productDescription(),
       inventory: faker.random.number({
         min: 0,
-        max:20
+        max: 20,
       }),
     };
   });
@@ -41,22 +61,43 @@ const seed = async () => {
   );
   ediblePlants = ediblePlants.data.data;
 
-  ediblePlants = ediblePlants.map( plant => {
+  ediblePlants = ediblePlants.map((plant, idx) => {
     return {
       title: plant.common_name,
-      price: faker.random.number({
-        min: 100,
-        max: 3000
-      })/100,
+      price:
+        faker.random.number({
+          min: 100,
+          max: 3000,
+        }) / 100,
       photoUrl: plant.image_url,
-      category: "tree",
+      category:
+        idx % 7 === 0
+          ? "tree"
+          : idx % 6 === 0
+          ? "indoor"
+          : idx % 5
+          ? "flower"
+          : idx % 4 === 0
+          ? "fern"
+          : idx % 3 === 0
+          ? "succulent"
+          : idx % 2 === 0
+          ? "vines"
+          : "accessory",
       tags: "edible",
-      lightRequirement: "full sun",
+      lightRequirement:
+        idx % 4 === 0
+          ? "bright light"
+          : idx % 3 === 0
+          ? "partial shade"
+          : idx % 2 === 0
+          ? "shade"
+          : "full sun",
       description: faker.commerce.productDescription(),
       inventory: faker.random.number({
         min: 0,
-        max:20
-      })
+        max: 20,
+      }),
     };
   });
 
@@ -94,9 +135,9 @@ const seed = async () => {
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
 
-  const sessions = users.map( (user,idx) => {
-    return { sid: faker.random.uuid(), userId: idx+1, expiration: tomorrow }
-      });
+  const sessions = users.map((user, idx) => {
+    return { sid: faker.random.uuid(), userId: idx + 1, expiration: tomorrow };
+  });
 
   const products = [
     {
@@ -125,8 +166,9 @@ const seed = async () => {
       lightRequirement: "full sun",
       description: "Watch out for the spikes!",
       inventory: 5,
-    }, ...nonediblePlants,
-     ...ediblePlants
+    },
+    ...nonediblePlants,
+    ...ediblePlants,
   ];
 
   const reviews = [
@@ -134,96 +176,110 @@ const seed = async () => {
       userId: 1,
       productId: 2,
       rating: 5,
+      reviewTitle: "I bought this plant",
       fullReview: "I love this plant. It's a good plant",
     },
     {
       userId: 4,
       productId: 3,
       rating: 1,
+      reviewTitle: "I bought this plant",
       fullReview: "Don't like it. Too spiky.",
-    },...ediblePlants.map(plant => {
+    },
+    ...ediblePlants.map((plant) => {
       return {
         userId: faker.random.number({
-          min:1,
-          max: users.length
+          min: 1,
+          max: users.length,
         }),
-        productId:faker.random.number({
-          min:1,
-          max: products.length
+        productId: faker.random.number({
+          min: 1,
+          max: products.length,
         }),
         rating: faker.random.number({
-          min:0,
-          max: 5
+          min: 0,
+          max: 5,
         }),
-        fullReview: "Nice plant but a little standoffish"
-      }
-    })
+        reviewTitle: "I bought this plant",
+        fullReview: "Nice plant but a little standoffish",
+      };
+    }),
   ];
 
-
-
-  const addresses = users.map( (user,idx) => {
-    return{
+  const addresses = users.map((user, idx) => {
+    return {
       preferred: true,
-      userId: idx+1,
+      userId: idx + 1,
       firstName: user.firstName,
       lastName: user.lastName,
-      buildingNumber: Math.floor(Math.random()*300),
+      buildingNumber: Math.floor(Math.random() * 300),
       unitNumber: faker.address.secondaryAddress(),
       street: faker.address.streetName(),
       city: faker.address.city(),
       state: faker.address.stateAbbr(),
       zip: faker.address.zipCode(),
-    }
+      phone: faker.phone.phoneNumber(),
+    };
+  });
+
+  const orderItems = [];
+
+  function makeOrderItem(orderId, productId, quantity) {
+    orderItems.push({
+      orderId: orderId,
+      productId: productId,
+      quantity: quantity,
+      subtotal: products[productId - 1].price * quantity,
+    });
   }
-  )
 
-  const orderItems = []
+  for (let x = 1; x <= users.length; x++) {
+    makeOrderItem(
+      x,
+      faker.random.number({
+        min: 1,
+        max: products.length,
+      }),
+      faker.random.number({
+        min: 1,
+        max: 5,
+      })
+    );
 
-  function makeOrderItem(orderId, productId, quantity){
-    orderItems.push({ orderId: orderId, productId: productId, quantity: quantity, subtotal: products[productId-1].price*quantity })
-  }
-
-  for(let x=1;x<=users.length;x++){
-    makeOrderItem(x, faker.random.number({
-      min: 1,
-      max: products.length
-    }), faker.random.number({
-      min: 1,
-      max: 5
-    }))
-
-    makeOrderItem(x, faker.random.number({
-      min: 1,
-      max: products.length
-    }), faker.random.number({
-      min: 1,
-      max: 5
-    }))
+    makeOrderItem(
+      x,
+      faker.random.number({
+        min: 1,
+        max: products.length,
+      }),
+      faker.random.number({
+        min: 1,
+        max: 5,
+      })
+    );
   }
 
   //create an order for every user, search for the associated items, add their subtotals into a final price to calculate sales tax and grand total
 
-  const orders = users.map( (user, idx) =>{
-    const price = orderItems.filter( items => items.orderId === idx+1).reduce( (acc, cVal) => {
-      return acc+cVal.subtotal
-    },0)
+  const orders = users.map((user, idx) => {
+    const price = orderItems
+      .filter((items) => items.orderId === idx + 1)
+      .reduce((acc, cVal) => {
+        return acc + cVal.subtotal;
+      }, 0);
 
     return {
-      userId: idx+1,
-      addressId: idx+1,
+      userId: idx + 1,
+      addressId: idx + 1,
       status: "created",
-      salesTax: (price*.08875).toFixed(2),
+      salesTax: (price * 0.08875).toFixed(2),
       shipping: 0,
-      grandTotal: (price+(price+.08875)).toFixed(2),
+      grandTotal: (price + (price + 0.08875)).toFixed(2),
       orderedAt: new Date(),
-    }
-
-  })
-
+    };
+  });
 
   try {
-    await db.sync({ force: true });
     await Users.bulkCreate(users);
     await Sessions.bulkCreate(sessions);
     await Products.bulkCreate(products);
@@ -238,4 +294,4 @@ const seed = async () => {
   }
 };
 
-seed();
+module.exports = seed;
