@@ -18,6 +18,13 @@ const seed = async () => {
   nonediblePlants = nonediblePlants.data.data;
 
   nonediblePlants = nonediblePlants.map((plant, idx) => {
+    const categories = [];
+    if (idx % 2 === 0) {
+      categories.push("indoor");
+    } else categories.push("outdoor");
+    if (idx % 3 === 0) categories.push("gifts");
+    if (idx % 4 === 0) categories.push("flowers");
+
     return {
       title: plant.common_name,
       price:
@@ -26,21 +33,8 @@ const seed = async () => {
           max: 3000,
         }) / 100,
       photoUrl: plant.image_url,
-      category:
-        idx % 7 === 0
-          ? "tree"
-          : idx % 6 === 0
-          ? "indoor"
-          : idx % 5
-          ? "flower"
-          : idx % 4 === 0
-          ? "fern"
-          : idx % 3 === 0
-          ? "succulent"
-          : idx % 2 === 0
-          ? "vines"
-          : "accessory",
-      tags: `${faker.commerce.productAdjective()},${faker.commerce.productAdjective()}`,
+      category: categories,
+      tags: ["tag1", "tag2", "tag3"],
       lightRequirement:
         idx % 4 === 0
           ? "bright light"
@@ -63,6 +57,12 @@ const seed = async () => {
   ediblePlants = ediblePlants.data.data;
 
   ediblePlants = ediblePlants.map((plant, idx) => {
+    const categories = ["edible"];
+    if (idx % 2 === 0) {
+      categories.push("indoor");
+    } else categories.push("outdoor");
+    if (idx % 3 === 0) categories.push("gifts");
+
     return {
       title: plant.common_name,
       price:
@@ -71,21 +71,8 @@ const seed = async () => {
           max: 3000,
         }) / 100,
       photoUrl: plant.image_url,
-      category:
-        idx % 7 === 0
-          ? "tree"
-          : idx % 6 === 0
-          ? "indoor"
-          : idx % 5
-          ? "flower"
-          : idx % 4 === 0
-          ? "fern"
-          : idx % 3 === 0
-          ? "succulent"
-          : idx % 2 === 0
-          ? "vines"
-          : "accessory",
-      tags: "edible",
+      category: categories,
+      tags: ["tag1", "tag2"],
       lightRequirement:
         idx % 4 === 0
           ? "bright light"
@@ -144,8 +131,8 @@ const seed = async () => {
     {
       title: "Maple Tree",
       price: 50.43,
-      category: "tree",
-      tags: "tag1,tag2,tag3",
+      category: ["outdoor"],
+      tags: ["tag1", "tag2", "tag3"],
       lightRequirement: "full sun",
       description: "It's a tree. Plant it.",
       inventory: 3,
@@ -153,8 +140,8 @@ const seed = async () => {
     {
       title: "Cut Flowers",
       price: 14.99,
-      category: "flower",
-      tags: "tag1,tag2,tag3",
+      category: ["flowers", "gifts"],
+      tags: ["tag1", "tag2", "tag3"],
       lightRequirement: "na",
       description: "You'll love these flowers. They smell nice.",
       inventory: 15,
@@ -162,8 +149,8 @@ const seed = async () => {
     {
       title: "Cactus",
       price: 5.99,
-      category: "succulent",
-      tags: "drought tolerant,tag2,tag3",
+      category: ["indoor", "gifts"],
+      tags: ["drought tolerant", "tag2", "tag3"],
       lightRequirement: "full sun",
       description: "Watch out for the spikes!",
       inventory: 5,
@@ -281,7 +268,7 @@ const seed = async () => {
   });
 
   try {
-    await db.sync({force:true})
+    await db.sync({ force: true });
     await Users.bulkCreate(users);
     await Sessions.bulkCreate(sessions);
     await Products.bulkCreate(products);
@@ -295,6 +282,5 @@ const seed = async () => {
     console.log("ERROR", error);
   }
 };
-
 
 seed();
