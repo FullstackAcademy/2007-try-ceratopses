@@ -4,11 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "test": "mocha \"**/*.spec.js\"",
     "build": "webpack",
     "build-dev": "webpack -w",
     "start": "node server/index.js",
     "start-dev": "npm run build-dev && nodemon"
+=======
+    "start-seed": "npm run seed & npm run start-server & npm run build-watch",
+    "build-watch": "webpack -w",
+    "start-server": "nodemon --watch server -e js,html server/index.js",
+    "seed": "node server/db/seed.js"
+>>>>>>> 1425a9be16053f71dddde3fc3132e15f0ff76e1a
   },
   "repository": {
     "type": "git",
@@ -19,9 +26,15 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.17.1",
+    "db-create": "^1.2.0",
     "express": "^4.17.1",
+<<<<<<< HEAD
     "morgan": "^1.10.0",
     "pg": "^8.3.3",
+=======
+    "faker": "^5.1.0",
+    "pg": "^8.3.0",
+>>>>>>> 1425a9be16053f71dddde3fc3132e15f0ff76e1a
     "pg-hstore": "^2.3.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -50,11 +63,17 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+<<<<<<< HEAD
     "chai": "^4.2.0",
     "mocha": "^8.1.2",
     "nodemon": "^2.0.4",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
+=======
+    "nodemon": "^1.19.1",
+    "webpack": "^3.12.0",
+    "webpack-cli": "^4.1.0"
+>>>>>>> 1425a9be16053f71dddde3fc3132e15f0ff76e1a
   },
   "bugs": {
     "url": "https://github.com/FullstackAcademy/2007-try-ceratopses/issues"
