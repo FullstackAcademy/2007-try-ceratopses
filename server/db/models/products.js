@@ -15,19 +15,8 @@ const Products = db.define("products", {
     type: Sequelize.FLOAT,
     allowNull: false,
   },
-  category: Sequelize.ENUM({
-    values: [
-      "accessory",
-      "flower",
-      "indoor",
-      "tree",
-      "bush",
-      "fern",
-      "succulent",
-      "vines",
-    ],
-  }),
-  tags: Sequelize.STRING,
+  category: Sequelize.ARRAY(Sequelize.ENUM({values: ["gifts", "indoor", "outdoor", "flowers", "accessories", "edible"]})),
+  tags: Sequelize.ARRAY(Sequelize.STRING),
   lightRequirement: Sequelize.ENUM({
     values: ["full sun", "bright light", "partial shade", "shade", "na"],
   }),
