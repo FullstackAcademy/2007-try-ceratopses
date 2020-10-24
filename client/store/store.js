@@ -133,12 +133,12 @@ const productReducer = (state = {} , action) => {
 };
 
 
-const reducer = combinedReducers({
+const reducer = combineReducers({
     customer: customerReducer,
     categories: categoriesReducer,
     singleCategory: singleCategoryReducer,
     products: productsReducer,
-    product: productReducer
+    singleProduct: productReducer
 });
 
 const store = createStore(reducer, applyMiddleware(thunkMiddleware));

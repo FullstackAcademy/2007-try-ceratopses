@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { HashRouter as Router, Link, Route } from 'react-router-dom'
 import NavBar from './NavBar'
+import Footer from './Footer'
 import Categories from './Categories'
 import { getCategories } from '../store/store' //may change if store is broken out
 

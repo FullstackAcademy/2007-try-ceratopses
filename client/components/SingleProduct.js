@@ -24,7 +24,6 @@ class SingleProduct extends React.Component {
                         <li>{product.price}</li>
                         <li>{product.category}</li>
                         <li>{product.light_requirement}</li>
-                        <li>{product.water_requirement}</li>
                         <li>{product.description}</li>
                         <li>{product.inventory}</li>
                         <li>{product.status}</li>

@@ -34,12 +34,14 @@ class NavBar extends React.Component {
     }
 }
 
-// const mapState = state => (  );
+const mapState = state => { 
+    return { }
+};
 
-// const mapDispatch = (dispatch) => {
-//     return {
+const mapDispatch = (dispatch) => {
+    return {
 
-//     }
-// };
+    }
+};
 
 export default connect(mapState, mapDispatch)(NavBar)
