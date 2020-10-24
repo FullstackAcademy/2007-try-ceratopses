@@ -290,7 +290,7 @@ const seed = async () => {
     await Orders.bulkCreate(orders);
     await OrderItems.bulkCreate(orderItems);
 
-    console.log("seeded users!");
+    console.log("seeded everything!");
   } catch (error) {
     console.log("ERROR", error);
   }
