@@ -16,17 +16,21 @@ class SingleProduct extends React.Component {
     render() {
         const { product } = this.props
         if (product) {
+            let categories = ''
+            if (product.category) {
+                categories = product.category.join(', ')
+            }
             return (
                 <div id='individualProducts'>
                     <img src={product.photo_url}></img>
                     <ul>
-                        <li>{product.title}</li>
-                        <li>{product.price}</li>
-                        <li>{product.category}</li>
-                        <li>{product.light_requirement}</li>
-                        <li>{product.description}</li>
-                        <li>{product.inventory}</li>
-                        <li>{product.status}</li>
+                        <li>Name: {product.title}</li>
+                        <li>Price: {product.price}</li>
+                        <li>Categories:  
+                             {categories}
+                        </li>
+                        <li>Description: {product.description}</li>
+                        <li>Inventory: {product.inventory}</li>
                     </ul>
                 </div>
             )
@@ -40,7 +44,7 @@ class SingleProduct extends React.Component {
     };
 }
 
-const mapState = state => ( { product: state.product } )
+const mapState = state => ( { product: state.singleProduct } )
 
 const mapDispatch = (dispatch) => {
     return {

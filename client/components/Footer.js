@@ -6,7 +6,8 @@ import { HashRouter as Router, Link, Route } from 'react-router-dom'
 const Footer = () => {
     return (
         <div id='footer'>
-            <h3> Footer will go here</h3>
+            <div>This is the footer</div>
+            {/* {footerdetails} */}
         </div>
     )
 }
