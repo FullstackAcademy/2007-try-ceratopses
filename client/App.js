@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { HashRouter as Router, Link, Route } from 'react-router-dom'
-import NavBar from './NavBar'
-import Footer from './Footer'
-import Categories from './Categories'
-import CategoryProducts from './CategoryProducts'
-import SingleProduct from './SingleProduct'
+import NavBar from './components/NavBar'
+import Footer from './components/Footer'
+import Categories from './components/Categories'
+import CategoryProducts from './components/CategoryProducts'
+import SingleProduct from './components/SingleProduct'
 
 
 class App extends React.Component {

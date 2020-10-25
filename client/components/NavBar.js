@@ -15,8 +15,9 @@ class NavBar extends React.Component {
                     <ul id='navbar'>
                         <li><Link to='/'>Home</Link></li>
                         <li><Link to='/products'>All Products</Link></li>
-                        {/* {create dropdown for categories that also sets state to that category} */}
-                        <li><CategoriesDropdown /></li>
+                        {/* {CategoriesDropdown component is working but has few bugs. uncomment it below to its function}
+                        to navigation categories, for now just go to home page */}
+                        {/* <li><CategoriesDropdown /></li> */}
                         <li><Link to='/about-us'>About Us</Link></li> 
                         <li><Link to='/cart'>Cart</Link></li>
                         <li><Link to='/profile'>Profile</Link></li>

@@ -16,13 +16,19 @@ class SingleProduct extends React.Component {
     render() {
         const { product } = this.props
         if (product) {
+            let categories = ''
+            if (product.category) {
+                categories = product.category.join(', ')
+            }
             return (
                 <div id='individualProducts'>
                     <img src={product.photo_url}></img>
                     <ul>
                         <li>Name: {product.title}</li>
                         <li>Price: {product.price}</li>
-                        <li>Categories: {product.category}</li>
+                        <li>Categories:  
+                             {categories}
+                        </li>
                         <li>Description: {product.description}</li>
                         <li>Inventory: {product.inventory}</li>
                     </ul>

@@ -42,9 +42,13 @@ const setCategories = (categories) => {
 export const getCategories = () => {
     return async(dispatch) => {
         const { data } = await axios.get('/api/products')
-        const allCategories = data.map(product => product.category)
-        const categories = [...new Set(allCategories)]
-        dispatch(setCategories(categories))
+        const uniqueCategories = []
+        data.map(product => product.category.forEach(category => {
+            if (!uniqueCategories.includes(category)) {
+                uniqueCategories.push(category)
+            }
+        }))
+        dispatch(setCategories(uniqueCategories))
     }
 }
 
@@ -73,7 +77,7 @@ export const getProducts = (category) => {
         if (category === '') {
             dispatch(setProducts(data))
         } else { 
-            const categoryProducts = data.filter(product => product.category === category)
+            const categoryProducts = data.filter(product => product.category.includes(category))
             dispatch(setProducts(categoryProducts))
         }
     }
