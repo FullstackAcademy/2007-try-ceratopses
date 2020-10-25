@@ -2,11 +2,11 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import { Provider } from 'react-redux'
 import store from './store/store'
-import Home from './components/Home'
+import App from './App'
 
 ReactDom.render(
     <Provider store={ store }>
-        <Home />
+        <App />
     </Provider>,
     document.querySelector('#root')
 )
