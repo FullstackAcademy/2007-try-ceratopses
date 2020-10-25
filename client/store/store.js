@@ -23,7 +23,7 @@ const customerReducer = (state = {}, action) => {
     switch (action.type) {
         case SET_CUSTOMER:
             return action.customer
-        default: 
+        default:
             return state
     }
 };
@@ -41,10 +41,10 @@ const setCategories = (categories) => {
 
 export const getCategories = () => {
     return async(dispatch) => {
-        const { data } = await axios.get('/products')
-        const allCategories = data.map(product => product.category)
-        const categories = new Set(allCategories)
-        dispatch(setCategories(categories))
+        // const { data } = await axios.get('/products')
+        // const allCategories = data.map(product => product.category)
+        // const categories = new Set(allCategories)
+        // dispatch(setCategories(categories))
     }
 }
 
@@ -72,7 +72,7 @@ const singleCategoryReducer = (state = '', action) => {
     switch (action.type) {
         case SET_CATEGORY:
             return action.category
-        default: 
+        default:
             return state
     }
 };
@@ -99,7 +99,7 @@ const productsReducer = (state = [], action) => {
     switch (action.type) {
         case SET_CATEGORY:
             return action.category
-        default: 
+        default:
             return state
     }
 };
@@ -125,7 +125,7 @@ export const getProduct = (productId) => {
 
 const productReducer = (state = {} , action) => {
     switch (action.type) {
-        case SET_PRODUCT: 
+        case SET_PRODUCT:
             return action.product
         default:
             return state

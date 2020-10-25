@@ -1,8 +1,9 @@
 const router = require('express').Router()
 
+
 router.get('/', async(req, res, next) => {
   try {
-    // tbd
+    res.send('Products go here')
   }
   catch (ex) {
     next (ex)

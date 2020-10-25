@@ -11,31 +11,36 @@ class Categories extends React.Component {
     };
 
     render() {
-        const { categories } = this.props
-        if (categories) {
-            return (
-                <div id='categories'>
-                    {
-                        categories.map(category => {
-                            return (
-                                <Link to={`/categories/${category}`}>
-                                    <div key={category}>
-                                        {/* category.image wont exist. create? or use static images? */}
-                                        <img src={category.image}></img>
-                                    </div>
-                                </Link>
-                            )                        
-                        })
-                    }
-                </div>
-            )
-        } else {
-            return (
-                <div>
-                    No Categories
-                </div>
-            )
-        }
+        return (
+            <div id = 'Categories'>
+                <h1> Categories for home page go here - testing component rendering</h1>
+            </div>
+        )
+        // const { categories } = this.props
+        // if (categories) {
+        //     return (
+        //         <div id='categories'>
+        //             {
+        //                 categories.map(category => {
+        //                     return (
+        //                         <Link to={`/categories/${category}`}>
+        //                             <div key={category}>
+        //                                 {/* category.image wont exist. create? or use static images? */}
+        //                                 <img src={category.image}></img>
+        //                             </div>
+        //                         </Link>
+        //                     )
+        //                 })
+        //             }
+        //         </div>
+        //     )
+        // } else {
+        //     return (
+        //         <div>
+        //             No Categories
+        //         </div>
+        //     )
+        // }
     };
 }
 
