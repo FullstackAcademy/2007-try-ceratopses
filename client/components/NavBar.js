@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { HashRouter as Router, Link, Route } from 'react-router-dom'
+import CategoriesDropdown from './Dropdown'
 
 class NavBar extends React.Component {
     constructor() {
@@ -15,7 +16,7 @@ class NavBar extends React.Component {
                         <li><Link to='/'>Home</Link></li>
                         <li><Link to='/products'>All Products</Link></li>
                         {/* {create dropdown for categories that also sets state to that category} */}
-                        <li><Link to='/categories/:category'>Categories</Link></li>
+                        <li><CategoriesDropdown /></li>
                         <li><Link to='/about-us'>About Us</Link></li> 
                         <li><Link to='/cart'>Cart</Link></li>
                         <li><Link to='/profile'>Profile</Link></li>

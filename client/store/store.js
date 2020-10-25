@@ -41,9 +41,9 @@ const setCategories = (categories) => {
 
 export const getCategories = () => {
     return async(dispatch) => {
-        const { data } = await axios.get('/products')
+        const { data } = await axios.get('/api/products')
         const allCategories = data.map(product => product.category)
-        const categories = new Set(allCategories)
+        const categories = [...new Set(allCategories)]
         dispatch(setCategories(categories))
     }
 }
@@ -53,26 +53,6 @@ const categoriesReducer = (state = [], action) => {
         case SET_CATEGORIES:
             return action.categories
         default:
-            return state
-    }
-};
-
-
-//Single Category State
-const SET_CATEGORY = "SET_CATEGORY";
-
-export const setCategory  = (category) => {
-    return {
-        type: SET_CATEGORY,
-        category
-    }
-};
-
-const singleCategoryReducer = (state = '', action) => {
-    switch (action.type) {
-        case SET_CATEGORY:
-            return action.category
-        default: 
             return state
     }
 };
@@ -140,7 +120,6 @@ const productReducer = (state = {} , action) => {
 const reducer = combineReducers({
     customer: customerReducer,
     categories: categoriesReducer,
-    singleCategory: singleCategoryReducer,
     products: productsReducer,
     singleProduct: productReducer
 });

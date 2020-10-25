@@ -10,7 +10,6 @@ class SingleProduct extends React.Component {
     };
 
     componentDidMount(){
-        console.log(this.props)
         this.props.getProduct(this.props.match.params.productId)
     }
 
@@ -22,12 +21,10 @@ class SingleProduct extends React.Component {
                     <img src={product.photo_url}></img>
                     <ul>
                         <li>Name: {product.title}</li>
-                        <li>Proce: {product.price}</li>
+                        <li>Price: {product.price}</li>
                         <li>Categories: {product.category}</li>
-                        <li>Light Requirement: {product.light_requirement}</li>
                         <li>Description: {product.description}</li>
                         <li>Inventory: {product.inventory}</li>
-                        <li>{product.status}</li>
                     </ul>
                 </div>
             )

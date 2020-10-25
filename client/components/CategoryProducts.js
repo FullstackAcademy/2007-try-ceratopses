@@ -5,13 +5,19 @@ import { getProducts } from '../store/store'
 
 
 
+
 class CategoryProducts extends React.Component {
     constructor() {
         super()
     };
 
     componentDidMount() {
-        this.props.getProducts(this.props.category)
+        if (!this.props.match.params.category) {
+            this.props.getProducts('')
+        } else {
+            this.props.getProducts(this.props.match.params.category)
+        }
+        console.log(this.props)
     }
 
     render() {
@@ -52,7 +58,7 @@ const mapState = state => ( { products: state.products, category: state.singleCa
 
 const mapDispatch = (dispatch) => {
     return {
-        getProducts: (category) => dispatch(getProducts(category))
+        getProducts: (category) => dispatch(getProducts(category)),
     }
 }
 
