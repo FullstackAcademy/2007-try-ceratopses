@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { HashRouter as Router, Link, Route } from 'react-router-dom'
+import { getProducts } from '../store/store'
 
 
 
@@ -8,6 +9,10 @@ class CategoryProducts extends React.Component {
     constructor() {
         super()
     };
+
+    componentDidMount() {
+        this.props.getProducts(this.props.category)
+    }
 
     render() {
         const { products } = this.props
@@ -17,16 +22,16 @@ class CategoryProducts extends React.Component {
                     {
                         products.map(product => {
                             return (
-                                <Link to={`/products/${product.id}`}>
-                                    <div key={product.id}>
+                                <div key={product.id}>
+                                    <Link to={`/products/${product.id}`}>
                                         <img src={product.photo_url}></img>
                                         <ul>
                                             <li>Name: {product.name}</li>
                                             <li>Price: {product.price}</li>
                                             {/* add to cart button + quantity field */}
                                         </ul>
-                                    </div>
-                                </Link>
+                                    </Link>    
+                                </div>  
                             )                        
                         })
                     }
@@ -42,6 +47,14 @@ class CategoryProducts extends React.Component {
     };
 }
 
-const mapState = state => ( { products: state.products } )
+const mapState = state => ( { products: state.products, category: state.singleCategory } )
 
-export default connect(mapState)(CategoryProducts);
+
+const mapDispatch = (dispatch) => {
+    return {
+        getProducts: (category) => dispatch(getProducts(category))
+    }
+}
+
+
+export default connect(mapState, mapDispatch)(CategoryProducts);

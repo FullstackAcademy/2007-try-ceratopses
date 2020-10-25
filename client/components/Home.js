@@ -5,6 +5,8 @@ import NavBar from './NavBar'
 import Footer from './Footer'
 import Categories from './Categories'
 import { getCategories } from '../store/store' //may change if store is broken out
+import CategoryProducts from './CategoryProducts'
+import SingleProduct from './SingleProduct'
 
 class App extends React.Component {
     constructor() {
@@ -17,11 +19,20 @@ class App extends React.Component {
 
     render() {
         return (
-            <div id='home'>
-                <NavBar />
-                <Categories />
-                <Footer />
-            </div>
+            <Router>
+                <div id='home'>
+                    <NavBar />
+                    <Categories />
+                    <Footer />
+                </div>
+                <Route path='/' exact />
+                <Route path='/categories/:category' exact /> 
+                <Route path='/products/' exact component={CategoryProducts}/> 
+                <Route path='/products/:productId' component = { SingleProduct }/> 
+                <Route path='/profile' exact />
+                <Route path='/sign-in' exact />
+                <Route path='/register' exact />
+            </Router>
         )
     };
 }

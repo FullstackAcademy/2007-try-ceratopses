@@ -13,6 +13,7 @@ class NavBar extends React.Component {
                 <div>
                     <ul id='navbar'>
                         <li><Link to='/'>Home</Link></li>
+                        <li><Link to='/products'>All Products</Link></li>
                         {/* {create dropdown for categories that also sets state to that category} */}
                         <li><Link to='/categories/:category'>Categories</Link></li>
                         <li><Link to='/about-us'>About Us</Link></li> 
@@ -21,13 +22,6 @@ class NavBar extends React.Component {
                         <li><Link to='/sign-in'>Sign In</Link></li>
                         <li><Link to='/register'>Register</Link></li>
                     </ul>
-                    <Route path='/' exact />
-                    {/* the below two routes may need to be outside of navbar component */}
-                    <Route path='/categories/:category' exact /> 
-                    <Route path='/products/:productId' exact /> 
-                    <Route path='/profile' exact />
-                    <Route path='/sign-in' exact />
-                    <Route path='/register' exact />
                 </div>
             </Router>
         )

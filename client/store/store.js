@@ -89,16 +89,20 @@ const setProducts  = (products) => {
 
 export const getProducts = (category) => {
     return async(dispatch) => {
-        const { data } = await axios.get('/products')
-        const categoryProducts = data.filter(product => product.category === category)
-        dispatch(setProducts(categoryProducts))
+        const { data } = await axios.get('/api/products')
+        if (category === '') {
+            dispatch(setProducts(data))
+        } else { 
+            const categoryProducts = data.filter(product => product.category === category)
+            dispatch(setProducts(categoryProducts))
+        }
     }
 }
 
 const productsReducer = (state = [], action) => {
     switch (action.type) {
-        case SET_CATEGORY:
-            return action.category
+        case SET_PRODUCTS:
+            return action.products
         default: 
             return state
     }
@@ -118,7 +122,7 @@ const setProduct = (product) => {
 
 export const getProduct = (productId) => {
     return async(dispatch) => {
-        const { data } = await axios.get(`/products/${productId}`)
+        const { data } = await axios.get(`/api/products/${productId}`)
         dispatch(setProduct(data))
     }
 }
