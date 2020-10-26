@@ -20,6 +20,7 @@ import {
   FormButton,
   NavLinkDown,
 } from './NavbarElements';
+import CategoriesDropdown from '../Dropdown';
 
 const Navbar = ({ toggle }) => {
   const [scrollNav, setScrollNav] = useState(false);

@@ -28,9 +28,9 @@ const SignIn = () => {
               <FormInput type="password" required />
               <FormButton type="submit">Log In</FormButton>
               <FormText>Forgot Password?</FormText>
-              <FormLinkP to="/">Get a new password here</FormLinkP>
+              <FormLinkP to="#">Get a new password here</FormLinkP>
               <FormText>No Account Yet?</FormText>
-              <FormLinkP to="/">Sign up here</FormLinkP>
+              <FormLinkP to="/signup">Sign up here</FormLinkP>
             </Form>
           </FormContent>
         </FormWrap>

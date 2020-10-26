@@ -14,7 +14,7 @@ import CartPage from './pages/cart';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Sidebar from './components/Sidebar';
-import Categories from './components/Categories';
+// import Categories from './components/Categories';
 import CategoryProducts from './components/CategoryProducts';
 import SingleProduct from './components/SingleProduct';
 
@@ -76,4 +76,5 @@ function App() {
   );
 }
 
-export default App;
+// export default App;
+export default connect(null)(App);

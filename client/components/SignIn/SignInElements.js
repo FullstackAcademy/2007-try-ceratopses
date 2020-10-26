@@ -110,7 +110,7 @@ export const FormText = styled.text`
   font-size: 14px;
 `;
 
-export const FormLinkP = styled.p`
+export const FormLinkP = styled(Link)`
   color: #fff;
   text-align: center;
   font-size: 14px;
