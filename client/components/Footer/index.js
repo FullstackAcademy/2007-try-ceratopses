@@ -1,10 +1,13 @@
 import React from 'react';
+import { GiFlowerPot } from 'react-icons/gi';
+import { animateScroll as scroll } from 'react-scroll';
 import {
   FaFacebookSquare,
   FaInstagramSquare,
   FaTwitterSquare,
   FaYoutubeSquare,
 } from 'react-icons/fa';
+
 import {
   FooterContainer,
   FooterLink,
@@ -17,8 +20,14 @@ import {
   SocialIcons,
   SocialMediaWrap,
   SocialMedia,
+  SocialLogo,
   WebsiteRights,
+  FooterLinkP,
 } from './FooterElements';
+
+const toggleHome = () => {
+  scroll.scrollToTop();
+};
 
 const Footer = () => {
   return (
@@ -26,17 +35,16 @@ const Footer = () => {
       <FooterWrap>
         <FooterLinksContainer>
           <FooterLinksWrapper>
-            <FooterLinkItems>
+            <FooterLinkItems id="about-us">
               <FooterLinkTitle>About Us</FooterLinkTitle>
-              <FooterLink to="/about-us"></FooterLink>
               <FooterLink to="/">Company Info</FooterLink>
               <FooterLink to="/">Testimonials</FooterLink>
             </FooterLinkItems>
             <FooterLinkItems>
               <FooterLinkTitle>Contact Us</FooterLinkTitle>
-              <FooterLink to="/">Address</FooterLink>
-              <FooterLink to="/">Phone</FooterLink>
-              <FooterLink to="/">Email</FooterLink>
+              <FooterLinkP to="/">Address</FooterLinkP>
+              <FooterLinkP to="/">Phone</FooterLinkP>
+              <FooterLinkP to="/">Email</FooterLinkP>
             </FooterLinkItems>
             <FooterLinkItems>
               <FooterLinkTitle>Follow Us</FooterLinkTitle>
@@ -76,6 +84,11 @@ const Footer = () => {
           </FooterLinksWrapper>
         </FooterLinksContainer>
         <SocialMediaWrap>
+          <SocialLogo to="/" onClick={toggleHome}>
+            <GiFlowerPot />
+            Florita
+          </SocialLogo>
+
           <WebsiteRights>
             Designed by <i>Try Ceratopses Team - </i> Copyright &copy;
             {new Date().getFullYear()} Florita. All rights reserved.

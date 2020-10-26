@@ -9,11 +9,11 @@ import {
   HeroBtnWrapper,
 } from './HeroElements';
 import Video from '../../videos/video.mp4';
-import { Button } from '../ButtonElement';
+import { Button } from '../ButtonElements';
 
 const HeroSection = () => {
   return (
-    <HeroContainer>
+    <HeroContainer id="home">
       <HeroBg>
         <VideoBg autoPlay loop muted src={Video} type="video/mp4" />
       </HeroBg>
@@ -24,7 +24,7 @@ const HeroSection = () => {
           next purchase
         </HeroP>
         <HeroBtnWrapper>
-          <Button to="signup" primary="true" dark="true">
+          <Button to="/signup" primary="true" dark="true" id="signup">
             Get Started
           </Button>
         </HeroBtnWrapper>
