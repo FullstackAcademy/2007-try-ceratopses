@@ -22,7 +22,7 @@ class SingleProduct extends React.Component {
             }
             return (
                 <div id='individualProducts'>
-                    <img src={product.photoUrl} style={{objectFit:"cover", width:"400px", height:"400px"}}></img>
+                    <img src={product.photoUrl} className="singleProductImg"></img>
                     <ul>
                         <li>Name: {product.title}</li>
                         <li>Price: ${product.price}</li>

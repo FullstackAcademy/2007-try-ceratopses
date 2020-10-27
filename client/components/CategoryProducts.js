@@ -29,7 +29,7 @@ class CategoryProducts extends React.Component {
                             return (
                                 <div key={product.id}>
                                     <Link to={`/products/${product.id}`}>
-                                        <img src={product.photoUrl} style={{objectFit:"cover", width:"200px", height:"200px"}}></img>
+                                        <img src={product.photoUrl} className="productListImg"></img>
                                         <ul>
                                             <li>Name: {product.title}</li>
                                             <li>Price: ${product.price}</li>
