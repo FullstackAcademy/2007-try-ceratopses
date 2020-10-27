@@ -30,9 +30,10 @@ class CategoryProducts extends React.Component {
                                 <div key={product.id} id="singleProduct">
                                     <img src={product.photoUrl}></img>
                                     <Link to={`/products/${product.id}`}>
+                                        <img src={product.photoUrl} className="productListImg"></img>
                                         <ul>
                                             <li>Name: {product.title}</li>
-                                            <li>Price: {product.price}</li>
+                                            <li>Price: ${product.price}</li>
                                             {/* add to cart button + quantity field */}
                                         </ul>
                                     </Link>

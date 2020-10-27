@@ -22,11 +22,11 @@ class SingleProduct extends React.Component {
             }
             return (
                 <div id='individualProducts'>
-                    <img src={product.photo_url}></img>
+                    <img src={product.photoUrl} className="singleProductImg"></img>
                     <ul>
                         <li>Name: {product.title}</li>
-                        <li>Price: {product.price}</li>
-                        <li>Categories:  
+                        <li>Price: ${product.price}</li>
+                        <li>Categories:
                              {categories}
                         </li>
                         <li>Description: {product.description}</li>
