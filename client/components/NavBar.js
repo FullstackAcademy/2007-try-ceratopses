@@ -21,7 +21,7 @@ class NavBar extends React.Component {
                             <li><Link to='/about-us'>About Us</Link></li>
                             <li><Link to='/cart'>Cart</Link></li>
                             <li><Link to='/profile'>Profile</Link></li>
-                            <li><Link to='/sign-in'>Sign In</Link></li>
+                            <li><Link to='/signIn'>Sign In</Link></li>
                             <li><Link to='/register'>Register</Link></li>
                         </ul>
                         </Router>

@@ -12,4 +12,18 @@ router.get('/', async(req, res, next) => { // api/orders
   }
 })
 
+router.get('/:orderId', async(req, res, next) => {
+  try {
+    res.send(await Orders.findOne({
+      where: {
+        id: req.params.orderId
+      },
+      include: [Users, Addresses, OrderItems]
+    }));
+  }
+  catch (ex) {
+    next (ex)
+  }
+})
+
 module.exports = router;

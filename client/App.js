@@ -6,6 +6,8 @@ import Footer from './components/Footer'
 import Categories from './components/Categories'
 import CategoryProducts from './components/CategoryProducts'
 import SingleProduct from './components/SingleProduct'
+import SignIn from './components/SignIn'
+import Register from './components/Register'
 
 
 class App extends React.Component {
@@ -19,12 +21,12 @@ class App extends React.Component {
                 <div id='home'>
                     <NavBar />
                     <Route path='/' exact component={ Categories } />
-                    <Route path='/categories/:category' exact component={ CategoryProducts }/> 
-                    <Route path='/products/' exact component={ CategoryProducts }/> 
-                    <Route path='/products/:productId' component = { SingleProduct }/> 
+                    <Route path='/categories/:category' exact component={ CategoryProducts }/>
+                    <Route path='/products/' exact component={ CategoryProducts }/>
+                    <Route path='/products/:productId' component = { SingleProduct }/>
                     <Route path='/profile' exact />
-                    <Route path='/sign-in' exact />
-                    <Route path='/register' exact />                    
+                    <Route path='/signIn' exact component={SignIn} />
+                    <Route path='/register' exact component={Register} />
                     <Footer />
                 </div>
 
