@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { HashRouter as Router, Link, Route } from 'react-router-dom';
-import { getCategories } from '../store/store'; //may change if store is broken out
+import { getCategories } from '../../store/store.js'; //may change if store is broken out
 
 class Categories extends React.Component {
   constructor(props) {
