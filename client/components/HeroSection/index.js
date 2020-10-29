@@ -2,20 +2,20 @@ import React from 'react';
 import {
   HeroBg,
   HeroContainer,
-  VideoBg,
+  // VideoBg,
   HeroContent,
   HeroH1,
   HeroP,
   HeroBtnWrapper,
 } from './HeroElements';
-import Video from '../../videos/video.mp4';
+// import Video from '../../videos/video.mp4';
 import { Button } from '../ButtonElement';
 
 const HeroSection = () => {
   return (
     <HeroContainer id="home">
       <HeroBg>
-        <VideoBg autoPlay loop muted src={Video} type="video/mp4" />
+        {/* <VideoBg autoPlay loop muted src={Video} type="video/mp4" /> */}
       </HeroBg>
       <HeroContent>
         <HeroH1>Fresh Flowers in Bloom</HeroH1>
