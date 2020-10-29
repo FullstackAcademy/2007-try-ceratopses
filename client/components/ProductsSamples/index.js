@@ -1,14 +1,16 @@
 import React from 'react';
-// import image6 from '../../images/flowers6.jpg';
-// import image2 from '../../images/flowers2.jpg';
-// import image3 from '../../images/flowers3.jpg';
-// import image4 from '../../images/flowers4.jpg';
+
 import {
   ProductSamplesContainer,
   ProductSamplesWrapper,
   ProductSamplesMedia,
-  // ProductSamplesImage,
+  ProductSamplesImage,
 } from './ProductsSamplesIElements';
+
+const image2Url = '../../images/flowers2.jpg';
+// const image3Url = "../../images/flowers3.jpg";
+const image4Url = '../../images/flowers4.jpg';
+// const image5Url = "../../images/flowers5.jpg";
 
 const ProductSamples = () => {
   return (
@@ -16,10 +18,10 @@ const ProductSamples = () => {
       <ProductSamplesContainer>
         <ProductSamplesWrapper>
           <ProductSamplesMedia>
-            {/* <ProductSamplesImage src={image2} />
-            <ProductSamplesImage src={image4} />
-            <ProductSamplesImage src={image2} />
-            <ProductSamplesImage src={image4} /> */}
+            <ProductSamplesImage src={image2Url} width="200" height="200" />
+            <ProductSamplesImage src={image4Url} width="200" height="200" />
+            <ProductSamplesImage src={image2Url} width="200" height="200" />
+            <ProductSamplesImage src={image4Url} width="200" height="200" />
           </ProductSamplesMedia>
         </ProductSamplesWrapper>
       </ProductSamplesContainer>
