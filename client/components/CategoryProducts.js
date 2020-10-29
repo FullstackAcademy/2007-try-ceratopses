@@ -3,9 +3,6 @@ import { connect } from 'react-redux'
 import { HashRouter as Router, Link, Route } from 'react-router-dom'
 import { getProducts } from '../store/store'
 
-
-
-
 class CategoryProducts extends React.Component {
     constructor() {
         super()
@@ -29,15 +26,15 @@ class CategoryProducts extends React.Component {
                             return (
                                 <div key={product.id}>
                                     <Link to={`/products/${product.id}`}>
-                                        <img src={product.photo_url}></img>
+                                        <img src={product.photoUrl} className="productListImg"></img>
                                         <ul>
-                                            <li>Name: {product.name}</li>
-                                            <li>Price: {product.price}</li>
+                                            <li>Name: {product.title}</li>
+                                            <li>Price: ${product.price}</li>
                                             {/* add to cart button + quantity field */}
                                         </ul>
-                                    </Link>    
-                                </div>  
-                            )                        
+                                    </Link>
+                                </div>
+                            )
                         })
                     }
                 </div>
@@ -63,3 +60,4 @@ const mapDispatch = (dispatch) => {
 
 
 export default connect(mapState, mapDispatch)(CategoryProducts);
+
