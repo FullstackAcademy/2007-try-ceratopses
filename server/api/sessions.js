@@ -26,7 +26,25 @@ router.get('/:username', async(req,res,next) => {
 router.post('/login', async(req, res, next) => { // api/sessions/login
   try {
     console.log('Login request on route: ',req.body);
-    res.sendStatus(200);
+    const {email, password} = req.body
+    let user = await Users.findOne(
+      {
+        where: {
+          email,
+          hashedPassword: password
+        }
+      }
+    )
+
+    if (!user) {
+      res.sendStatus(401)
+    }
+
+    else {
+      console.log('Trying to find user and found this user: ', user)
+      res.send(user);
+    }
+
   }
   catch (ex) {
     next (ex)

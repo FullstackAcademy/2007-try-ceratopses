@@ -944,38 +944,39 @@ function _extends() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
 
 
- //Customer State
+ //User State
 
-const SET_CUSTOMER = "SET_CUSTOMER";
-
-const setCustomer = customer => {
+const UPDATE_USER = "UPDATE_USER";
+const updateUser = user => {
   return {
-    type: SET_CUSTOMER,
-    customer
+    type: UPDATE_USER,
+    user
   };
 };
-
-const getCustomer = () => {
-  return async dispatch => {
-    const {
-      data
-    } = await __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/profile');
-    dispatch(setCustomer(data));
-  };
-};
-/* unused harmony export getCustomer */
+/* unused harmony export updateUser */
 
 
-const customerReducer = (state = {}, action) => {
+const userReducer = (state = [], action) => {
   switch (action.type) {
-    case SET_CUSTOMER:
-      return action.customer;
+    case UPDATE_USER:
+      return action.user;
 
     default:
       return state;
   }
-}; //Categories State
+};
 
+const getUser = (email, password) => {
+  return async dispatch => {
+    const userFound = (await __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/api/sessions/login', {
+      email,
+      password
+    })).data;
+    dispatch(updateUser(userFound));
+  };
+};
+/* harmony export (immutable) */ __webpack_exports__["e"] = getUser;
+ //Categories State
 
 const SET_CATEGORIES = "SET_CATEGORIES";
 
@@ -1082,7 +1083,7 @@ const productReducer = (state = {}, action) => {
 };
 
 const reducer = Object(__WEBPACK_IMPORTED_MODULE_0_redux__["c" /* combineReducers */])({
-  customer: customerReducer,
+  user: userReducer,
   categories: categoriesReducer,
   products: productsReducer,
   singleProduct: productReducer
@@ -37647,8 +37648,9 @@ class SignIn extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
   constructor() {
     super();
     this.state = {
-      username: '',
-      password: ''
+      email: '',
+      password: '',
+      loggedIn: false
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -37658,53 +37660,66 @@ class SignIn extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
     console.log('target is', e.target.name, 'value is', e.target.value);
     this.setState({
       [e.target.name]: e.target.value
-    });
+    }); // this.props.updateForm(e.target.name, e.target.value)
+
     console.log(this.state);
   }
 
-  onSubmit(e) {
+  async onSubmit(e) {
     e.preventDefault();
     console.log('current state in SignIn is: ', this.state);
     const {
-      username,
+      email,
       password
     } = this.state;
-    let response = __WEBPACK_IMPORTED_MODULE_4_axios___default.a.post('/api/sessions/login', {
-      username,
-      password
-    });
-    console.log('response from post req is: ', response);
+    this.props.getUser(email, password);
+    console.log('user in the store is now ', this.props.user); // const {email, password} = this.state
+    // let response = (await axios.post('/api/sessions/login', {
+    //   email,
+    //   password
+    // })).data
+    // console.log('response from post req is: ', response)
   }
 
   componentDidMount() {//
   }
 
   render() {
-    return /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-      id: "signInForm"
-    }, /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h3", null, "Don't have an account? Register ", /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */], {
-      to: "/register"
-    }, "here")), /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("form", null, "Username: ", /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
-      name: "username",
-      type: "textbox",
-      onChange: this.onChange
-    }), /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", null), "Password: ", /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
-      name: "password",
-      type: "password",
-      onChange: this.onChange
-    }), /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", null), /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", {
-      type: "submit",
-      onClick: this.onSubmit
-    }, "Sign In")));
+    const {
+      user
+    } = this.props;
+
+    if (user.email) {
+      return /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h4", null, "Welcome ", this.props.user.email, ", you are logged in");
+    } else {
+      return /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+        id: "signInForm"
+      }, /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, this.props.user.email), /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h3", null, "Don't have an account? Register ", /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */], {
+        to: "/register"
+      }, "here")), /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("form", null, "Email: ", /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+        name: "email",
+        type: "textbox",
+        onChange: this.onChange
+      }), /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", null), "Password: ", /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+        name: "password",
+        type: "password",
+        onChange: this.onChange
+      }), /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", null), /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", {
+        type: "submit",
+        onClick: this.onSubmit
+      }, "Sign In")));
+    }
   }
 
 }
 
-const mapState = state => ({// products: state.products, category: state.singleCategory
+const mapState = state => ({
+  user: state.user
 });
 
 const mapDispatch = dispatch => {
-  return {// getProducts: (category) => dispatch(getProducts(category)),
+  return {
+    getUser: (email, password) => dispatch(Object(__WEBPACK_IMPORTED_MODULE_3__store_store__["e" /* getUser */])(email, password))
   };
 };
 
