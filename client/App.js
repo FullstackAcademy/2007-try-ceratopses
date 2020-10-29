@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 import Categories from './components/Categories'
 import CategoryProducts from './components/CategoryProducts'
 import SingleProduct from './components/SingleProduct'
+import UserManagement from './components/UserManagement'
 
 
 class App extends React.Component {
@@ -19,12 +20,13 @@ class App extends React.Component {
                 <div id='home'>
                     <NavBar />
                     <Route path='/' exact component={ Categories } />
-                    <Route path='/categories/:category' exact component={ CategoryProducts }/> 
-                    <Route path='/products/' exact component={ CategoryProducts }/> 
-                    <Route path='/products/:productId' component = { SingleProduct }/> 
+                    <Route path='/categories/:category' exact component={ CategoryProducts }/>
+                    <Route path='/products/' exact component={ CategoryProducts }/>
+                    <Route path='/products/:productId' component = { SingleProduct }/>
                     <Route path='/profile' exact />
                     <Route path='/sign-in' exact />
-                    <Route path='/register' exact />                    
+                    <Route path='/register' exact />
+                    <Route path='/admin/users' exact component = {UserManagement} />
                     <Footer />
                 </div>
 

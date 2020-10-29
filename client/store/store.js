@@ -23,7 +23,7 @@ const customerReducer = (state = {}, action) => {
     switch (action.type) {
         case SET_CUSTOMER:
             return action.customer
-        default: 
+        default:
             return state
     }
 };
@@ -76,7 +76,7 @@ export const getProducts = (category) => {
         const { data } = await axios.get('/api/products')
         if (category === '') {
             dispatch(setProducts(data))
-        } else { 
+        } else {
             const categoryProducts = data.filter(product => product.category.includes(category))
             dispatch(setProducts(categoryProducts))
         }
@@ -87,7 +87,7 @@ const productsReducer = (state = [], action) => {
     switch (action.type) {
         case SET_PRODUCTS:
             return action.products
-        default: 
+        default:
             return state
     }
 };
@@ -113,19 +113,47 @@ export const getProduct = (productId) => {
 
 const productReducer = (state = {} , action) => {
     switch (action.type) {
-        case SET_PRODUCT: 
+        case SET_PRODUCT:
             return action.product
         default:
             return state
     }
 };
 
+/////// USERS //////
+
+const GET_USERS = "GET_USERS"
+
+const getUsers = (users) => {
+    return {
+        type: GET_USERS,
+        users
+    }
+}
+
+export const fetchUsers = () => {
+    return async(dispatch) => {
+        const {data} = await axios.get(`/api/admin/users`)
+        dispatch(getUsers(data))
+    }
+}
+
+const usersReducer  = (state = [], action) => {
+    switch (action.type){
+        case GET_USERS:
+            return action.users
+        default:
+            return state
+    }
+}
+
 
 const reducer = combineReducers({
     customer: customerReducer,
     categories: categoriesReducer,
     products: productsReducer,
-    singleProduct: productReducer
+    singleProduct: productReducer,
+    users: usersReducer
 });
 
 const store = createStore(reducer, applyMiddleware(thunkMiddleware));

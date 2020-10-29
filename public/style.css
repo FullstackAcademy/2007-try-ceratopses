@@ -1,4 +1,8 @@
 /* Dropdown Button */
+*{
+  box-sizing: border-box;
+}
+
 .dropbtn {
   background-color: #3498db;
   color: white;
@@ -59,4 +63,22 @@
   object-fit: cover;
   width: 400px;
   height: 400px;
+}
+
+.userRow{
+  width:fit-content;
+  background-color: bisque;
+}
+
+.flexContainer{
+  display: flex;
+}
+
+.flexContainer>.rightContainer{
+display: flex;
+flex-direction: column;
+}
+
+.flexContainer>div{
+  margin: 0 .5rem
 }

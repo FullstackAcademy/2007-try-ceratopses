@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
-router.use('/products', require('./products')) // api/products route
-router.use('/admin', require('./admin')) // api/products route
+router.use('/users', require('./users')) // api/admin/users route
+
 
 router.use((req, res, next) => { //api
   const err = new Error('API route not found!')
