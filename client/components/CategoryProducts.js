@@ -3,9 +3,6 @@ import { connect } from 'react-redux'
 import { HashRouter as Router, Link, Route } from 'react-router-dom'
 import { getProducts } from '../store/store'
 
-
-
-
 class CategoryProducts extends React.Component {
     constructor() {
         super()
@@ -63,3 +60,4 @@ const mapDispatch = (dispatch) => {
 
 
 export default connect(mapState, mapDispatch)(CategoryProducts);
+

@@ -57,6 +57,14 @@ export const FooterLinkTitle = styled.h1`
   text-align: center;
 `;
 
+export const FooterLinkP = styled.p`
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  margin: 5px;
+  max-width: 600px;
+`;
+
 export const FooterLink = styled(Link)`
   color: #fff;
   text-decoration: none;
@@ -86,21 +94,23 @@ export const SocialMediaWrap = styled.div`
   }
 `;
 
-// export const SocialLogo = styled(Link)`
-//   color: #fff;
-//   display: flex;
-//   justify-self: start;
-//   align-items: center;
-//   text-decoration: none;
-//   margin-bottom: 16px;
-//   font-size: 1.5rem;
-//   cursor: pointer;
-//   font-weight: bold;
-// `;
+export const SocialLogo = styled(Link)`
+  color: #fff;
+  display: flex;
+  justify-self: flex-start;
+  align-items: center;
+  text-decoration: none;
+  margin-bottom: 16px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  font-style: oblique;
+  font-weight: bold;
+`;
 
 export const WebsiteRights = styled.small`
   color: #fff;
   margin-bottom: 16px;
+  margin-left: 60px;
 
   @media screen and (max-width: 420px) {
     margin: 0;
