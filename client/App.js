@@ -6,7 +6,7 @@ import Footer from './components/Footer'
 import Categories from './components/Categories'
 import CategoryProducts from './components/CategoryProducts'
 import SingleProduct from './components/SingleProduct'
-import UserManagement from './components/UserManagement'
+import Admin from './components/Admin'
 
 
 class App extends React.Component {
@@ -26,7 +26,7 @@ class App extends React.Component {
                     <Route path='/profile' exact />
                     <Route path='/sign-in' exact />
                     <Route path='/register' exact />
-                    <Route path='/admin/users' exact component = {UserManagement} />
+                    <Route path='/admin' component = {Admin} />
                     <Footer />
                 </div>
 

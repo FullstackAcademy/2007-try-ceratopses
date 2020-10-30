@@ -120,7 +120,7 @@ const productReducer = (state = {} , action) => {
     }
 };
 
-/////// USERS //////
+/////// USERS - FOR ADMIN //////
 
 const GET_USERS = "GET_USERS"
 
@@ -147,13 +147,39 @@ const usersReducer  = (state = [], action) => {
     }
 }
 
+////// USER DETAILS - FOR ADMIN ////
+const SET_USER = "SET_USER";
+
+const setUser = (user) => {
+    return {
+        type: SET_USER,
+        user
+    }
+};
+
+export const fetchUser = (userId) => {
+    return async(dispatch) => {
+        const { data } = await axios.get(`/api/admin/users/${userId}`)
+        dispatch(setUser(data))
+    }
+}
+
+const singleUserReducer = (state = {} , action) => {
+    switch (action.type) {
+        case SET_USER:
+            return action.user
+        default:
+            return state
+    }
+};
 
 const reducer = combineReducers({
     customer: customerReducer,
     categories: categoriesReducer,
     products: productsReducer,
     singleProduct: productReducer,
-    users: usersReducer
+    users: usersReducer,
+    singleUser: singleUserReducer
 });
 
 const store = createStore(reducer, applyMiddleware(thunkMiddleware));
