@@ -37,9 +37,8 @@ class CategoryProducts extends React.Component {
           })}
         </div>
       );
-    } else {
-      return <div>No Products</div>;
     }
+      return <div>No Products</div>;
   }
 }
 

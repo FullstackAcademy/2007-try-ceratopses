@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getProduct } from '../store/singleProduct'
 
-
 class SingleProduct extends React.Component {
     constructor() {
         super()
@@ -33,13 +32,8 @@ class SingleProduct extends React.Component {
                     </ul>
                 </div>
             )
-        } else {
-            return (
-                <div>
-                    No Product
-                </div>
-            )
         }
+            return <div>Product Unavailable</div>
     };
 }
 
