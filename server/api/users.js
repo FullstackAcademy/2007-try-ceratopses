@@ -32,4 +32,14 @@ router.get('/:userId', async(req, res, next) => { // single user profile
   }
 })
 
+router.post('/', async(req,res,next) => { // create a user
+  try {
+    const newUser = await Users.create(req.body)
+    res.status(201).send(newUser)
+  }
+  catch (ex) {
+    next (ex)
+  }
+})
+
 module.exports = router;

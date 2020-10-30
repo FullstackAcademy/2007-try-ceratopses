@@ -8,6 +8,8 @@ import CategoryProducts from './components/CategoryProducts'
 import SingleProduct from './components/SingleProduct'
 import SignIn from './components/SignIn'
 import Register from './components/Register'
+import LogOut from './components/LogOut'
+import Profile from './components/Profile'
 
 
 class App extends React.Component {
@@ -24,9 +26,10 @@ class App extends React.Component {
                     <Route path='/categories/:category' exact component={ CategoryProducts }/>
                     <Route path='/products/' exact component={ CategoryProducts }/>
                     <Route path='/products/:productId' component = { SingleProduct }/>
-                    <Route path='/profile' exact />
+                    <Route path='/profile' exact component = {Profile}/>
                     <Route path='/signIn' exact component={SignIn} />
                     <Route path='/register' exact component={Register} />
+                    <Route path='/logout' exact component={LogOut} />
                     <Footer />
                 </div>
 

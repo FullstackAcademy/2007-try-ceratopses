@@ -5,6 +5,8 @@ import axios from 'axios'
 //User State
 
 const UPDATE_USER = "UPDATE_USER";
+const REGISTER_USER = "REGISTER_USER";
+const LOG_OUT = "LOG_OUT"
 
 export const updateUser = (user) => {
     return {
@@ -13,10 +15,28 @@ export const updateUser = (user) => {
     }
 };
 
+export const registerAUser = (user) => {
+    return {
+        type: REGISTER_USER,
+        user
+    }
+};
+
+
+export const logOutUser = () => {
+    return {
+        type: LOG_OUT,
+    }
+};
+
 const userReducer = (state = [], action) => {
     switch (action.type) {
         case UPDATE_USER:
             return action.user
+        case REGISTER_USER:
+            return action.user
+        case LOG_OUT:
+            return state
         default:
             return state
     }
@@ -26,6 +46,13 @@ export const getUser = (email, password) => {
     return async(dispatch) => {
         const userFound = (await axios.post('/api/sessions/login', {email, password})).data
         dispatch(updateUser(userFound))
+    }
+}
+
+export const registerUser = (firstName, lastName, email, hashedPassword) => {
+    return async(dispatch) => {
+        const newUser = (await axios.post('/api/users', {firstName, lastName, email, hashedPassword})).data
+        dispatch(registerAUser(newUser))
     }
 }
 

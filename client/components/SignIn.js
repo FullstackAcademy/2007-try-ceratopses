@@ -2,9 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { HashRouter as Router, Link, Route } from 'react-router-dom'
 import { getUser } from '../store/store'
-import axios from 'axios'
-
-
 
 
 class SignIn extends React.Component {
@@ -34,12 +31,6 @@ class SignIn extends React.Component {
       const {email, password} = this.state
       this.props.getUser(email, password)
       console.log('user in the store is now ', this.props.user)
-      // const {email, password} = this.state
-      // let response = (await axios.post('/api/sessions/login', {
-      //   email,
-      //   password
-      // })).data
-      // console.log('response from post req is: ', response)
     }
 
     componentDidMount() {
