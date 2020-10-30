@@ -6,7 +6,7 @@ class CategoriesDropdown extends React.Component {
   constructor() {
     super();
     this.state = {
-      show: zz,
+      show: ""
     };
     this.showDropdown = this.showDropdown.bind(this);
     this.hideDropdown = this.hideDropdown.bind(this);
