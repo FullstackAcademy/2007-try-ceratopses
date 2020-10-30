@@ -12,6 +12,8 @@ const faker = require("faker");
 const axios = require("axios");
 
 const seed = async () => {
+  try {
+
   let nonediblePlants = await axios.get(
     "https://trefle.io/api/v1/distributions/NWY/plants?token=hS9_xhLSEjXCR3J02RDdV0a19Sig4wvcnLnwLKbEyJM&filter[edible]=false"
   );
@@ -280,6 +282,10 @@ const seed = async () => {
     console.log("seeded everything!");
   } catch (error) {
     console.log("ERROR", error);
+  }
+
+  } catch (error) {
+    console.log(error)
   }
 };
 

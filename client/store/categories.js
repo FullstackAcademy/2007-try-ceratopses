@@ -12,7 +12,8 @@ const setCategories = (categories) => {
 
 export const getCategories = () => {
     return async(dispatch) => {
-        const { data } = await axios.get('/api/products')
+        try {
+            const { data } = await axios.get('/api/products')
         const uniqueCategories = []
         data.map(product => product.category.forEach(category => {
             if (!uniqueCategories.includes(category)) {
@@ -20,6 +21,9 @@ export const getCategories = () => {
             }
         }))
         dispatch(setCategories(uniqueCategories))
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
 
