@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { HashRouter as Router, Link, Route } from 'react-router-dom'
+import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import Footer from './components/Footer'
 import Categories from './components/Categories'
@@ -17,9 +17,10 @@ class App extends React.Component {
 
     render() {
         return (
+            <div id='home'>
+            <NavBar />
             <Router>
-                <div id='home'>
-                    <NavBar />
+            <Switch>
                     <Route path='/' exact component={ Categories } />
                     <Route path='/categories/:category' exact component={ CategoryProducts }/>
                     <Route path='/products/' exact component={ CategoryProducts }/>
@@ -27,10 +28,10 @@ class App extends React.Component {
                     <Route path='/profile' exact />
                     <Route path='/signIn' exact component={SignIn} />
                     <Route path='/register' exact component={Register} />
-                    <Footer />
-                </div>
-
+            </Switch>
             </Router>
+            <Footer />
+            </div>
         )
     };
 }
