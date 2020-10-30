@@ -29,7 +29,7 @@ class Categories extends React.Component {
                                         <img src={category.image}></img>
                                     </Link>
                                 </div>
-                            )                        
+                            )
                         })
                     }
                 </div>
