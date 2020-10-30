@@ -20,29 +20,7 @@ class Profile extends React.Component {
         </div>
       )
 
-        // const { product } = this.props
-        // if (product) {
-        //     return (
-        //         <div id='individualProducts'>
-        //             <img src={product.photo_url}></img>
-        //             <ul>
-        //                 <li>{product.title}</li>
-        //                 <li>{product.price}</li>
-        //                 <li>{product.category}</li>
-        //                 <li>{product.light_requirement}</li>
-        //                 <li>{product.description}</li>
-        //                 <li>{product.inventory}</li>
-        //                 <li>{product.status}</li>
-        //             </ul>
-        //         </div>
-        //     )
-        // } else {
-        //     return (
-        //         <div>
-        //             No Product
-        //         </div>
-        //     )
-        // }
+       
     };
 }
 
