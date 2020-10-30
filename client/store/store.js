@@ -2,31 +2,32 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import axios from 'axios'
 
-//Customer State
-const SET_CUSTOMER = "SET_CUSTOMER";
+//User State
 
-const setCustomer = (customer) => {
+const UPDATE_USER = "UPDATE_USER";
+
+export const updateUser = (user) => {
     return {
-        type: SET_CUSTOMER,
-        customer
+        type: UPDATE_USER,
+        user
     }
 };
 
-export const getCustomer = () => {
-    return async (dispatch) => {
-        const { data } = await axios.get('/profile')
-        dispatch(setCustomer(data))
-    }
-};
-
-const customerReducer = (state = {}, action) => {
+const userReducer = (state = [], action) => {
     switch (action.type) {
-        case SET_CUSTOMER:
-            return action.customer
+        case UPDATE_USER:
+            return action.user
         default:
             return state
     }
 };
+
+export const getUser = (email, password) => {
+    return async(dispatch) => {
+        const userFound = (await axios.post('/api/sessions/login', {email, password})).data
+        dispatch(updateUser(userFound))
+    }
+}
 
 
 //Categories State
@@ -174,7 +175,7 @@ const singleUserReducer = (state = {} , action) => {
 };
 
 const reducer = combineReducers({
-    customer: customerReducer,
+    user: userReducer,
     categories: categoriesReducer,
     products: productsReducer,
     singleProduct: productReducer,

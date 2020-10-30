@@ -1,39 +1,35 @@
-const router = require("express").Router();
-const { Users, Orders,Reviews, Products, Addresses} = require("../db");
-const Op = require("sequelize").Op;
+const router = require('express').Router()
+const {Users, Addresses, Orders} = require('../db/index')
 
-router.get("/", async (req, res, next) => {
+router.get('/', async(req, res, next) => { // api/users
   try {
-    const users = await Users.findAll({
-      where: {
-        guest: {
-          [Op.or]: [false, null],
-        },
-      },
-      include: Orders,
-      attributes: { exclude: ["hashedPassword"] }, //don't expose passwords to the client
-    });
-
-    res.json(users);
-  } catch (error) {
-    next(error);
+    res.send(await Users.findAll());
   }
-});
+  catch (ex) {
+    next (ex)
+  }
+})
 
-router.get("/:userId", async (req, res, next) => {
+router.get('/:userId', async(req, res, next) => { // single user profile
   try {
-    const user = await Users.findOne({
+    const userProfile = await Users.findOne({
       where: {
         id: req.params.userId
-          },
-      include: { all: true, nested: true }, //this includes data from the associated tables but currently goes too deep. ie. it includes product reviews from other users. user > reviews > products > other reviews of that product
-      attributes: { exclude: ["hashedPassword"] }, //don't expose passwords to the client
+      },
+      include: [
+        {
+          model: Addresses
+        },
+        {
+          model: Orders
+        }
+      ]
     });
-
-    res.json(user);
-  } catch (error) {
-    next(error);
+    res.send(userProfile)
   }
-});
+  catch (ex) {
+    next (ex)
+  }
+})
 
 module.exports = router;
