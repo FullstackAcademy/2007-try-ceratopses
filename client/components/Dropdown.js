@@ -7,12 +7,12 @@ class CategoriesDropdown extends React.Component {
     constructor() {
         super()
         this.state = {
-            show: ''
-        } 
+            show: zz
+        }
         this.showDropdown = this.showDropdown.bind(this)
         this.hideDropdown = this.hideDropdown.bind(this)
     }
-    
+
     showDropdown () {
         if(this.state.show === 'show') {
             this.setState({
@@ -49,7 +49,7 @@ class CategoriesDropdown extends React.Component {
                         categories.map(category => {
                             return (
                                 <div key={category} onClick={ () => this.hideDropdown()}>
-                                    <Link to={`/categories/${category}`}>{category}</Link>            
+                                    <Link to={`/categories/${category}`}>{category}</Link>
                                 </div>
                             )
                         })
