@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { HashRouter as Router, Link, Route } from 'react-router-dom';
+import {  Link } from 'react-router-dom';
 import { getProducts } from '../../store/store';
 
 class Products extends React.Component {
