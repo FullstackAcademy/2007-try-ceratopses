@@ -2,7 +2,7 @@ const router = require('express').Router()
 
 router.get('/', async(req, res, next) => {
   try {
-    // tbd
+    res.send('sign in route goes here')
   }
   catch (ex) {
     next (ex)

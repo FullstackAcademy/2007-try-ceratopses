@@ -14,6 +14,8 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use('/api', require('./api')); // api routes
 
 app.use('/products', require('./routes/products'));
+app.use('/categories', require('./routes/categories'));
+app.use('/aboutus', require('./routes/aboutus'));
 app.use('/profile', require('./routes/profile'));
 app.use('/cart', require('./routes/cart'));
 app.use('/signin', require('./routes/signin'));

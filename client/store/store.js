@@ -2,31 +2,32 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import axios from 'axios'
 
-//Customer State
-const SET_CUSTOMER = "SET_CUSTOMER";
+//User State
 
-const setCustomer = (customer) => {
+const UPDATE_USER = "UPDATE_USER";
+
+export const updateUser = (user) => {
     return {
-        type: SET_CUSTOMER,
-        customer
+        type: UPDATE_USER,
+        user
     }
 };
 
-export const getCustomer = () => {
-    return async (dispatch) => {
-        const { data } = await axios.get('/profile')
-        dispatch(setCustomer(data))
-    }
-};
-
-const customerReducer = (state = {}, action) => {
+const userReducer = (state = [], action) => {
     switch (action.type) {
-        case SET_CUSTOMER:
-            return action.customer
-        default: 
+        case UPDATE_USER:
+            return action.user
+        default:
             return state
     }
 };
+
+export const getUser = (email, password) => {
+    return async(dispatch) => {
+        const userFound = (await axios.post('/api/sessions/login', {email, password})).data
+        dispatch(updateUser(userFound))
+    }
+}
 
 
 //Categories State
@@ -76,7 +77,7 @@ export const getProducts = (category) => {
         const { data } = await axios.get('/api/products')
         if (category === '') {
             dispatch(setProducts(data))
-        } else { 
+        } else {
             const categoryProducts = data.filter(product => product.category.includes(category))
             dispatch(setProducts(categoryProducts))
         }
@@ -87,7 +88,7 @@ const productsReducer = (state = [], action) => {
     switch (action.type) {
         case SET_PRODUCTS:
             return action.products
-        default: 
+        default:
             return state
     }
 };
@@ -113,7 +114,7 @@ export const getProduct = (productId) => {
 
 const productReducer = (state = {} , action) => {
     switch (action.type) {
-        case SET_PRODUCT: 
+        case SET_PRODUCT:
             return action.product
         default:
             return state
@@ -122,7 +123,7 @@ const productReducer = (state = {} , action) => {
 
 
 const reducer = combineReducers({
-    customer: customerReducer,
+    user: userReducer,
     categories: categoriesReducer,
     products: productsReducer,
     singleProduct: productReducer

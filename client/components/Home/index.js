@@ -1,6 +1,6 @@
 import React from 'react';
-import HeroSection from '../components/HeroSection';
-import ProductSamples from '../components/ProductsSamples';
+import HeroSection from '../HeroSection';
+import ProductSamples from '../ProductsSamples';
 
 const Home = () => {
   return (
