@@ -37607,9 +37607,7 @@ class CategoryProducts extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Com
         return /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
           key: product.id,
           id: "singleProduct"
-        }, /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", {
-          src: product.photoUrl
-        }), /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */], {
+        }, /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */], {
           to: `/products/${product.id}`
         }, /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", {
           src: product.photoUrl,

@@ -28,7 +28,7 @@ class CategoryProducts extends React.Component {
                         products.map(product => {
                             return (
                                 <div key={product.id} id="singleProduct">
-                                    <img src={product.photoUrl}></img>
+                                 
                                     <Link to={`/products/${product.id}`}>
                                         <img src={product.photoUrl} className="productListImg"></img>
                                         <ul>
