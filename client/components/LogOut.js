@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { logOutUser } from '../store/store'
+import { logOutUser } from '../store/user'
 
 
 class LogOut extends React.Component {
@@ -46,7 +46,7 @@ const mapState = state => (
 
 const mapDispatch = (dispatch) => {
     return {
-      logOutUser: () => dispatch({type: 'LOG_OUT'})
+      logOutUser: () => dispatch({type: "LOG_OUT"})
     }
 }
 

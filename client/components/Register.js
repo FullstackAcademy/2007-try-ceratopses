@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { registerUser } from '../store/store'
-
+import { registerUser } from '../store/user'
 
 
 
@@ -23,15 +22,14 @@ class Register extends React.Component {
       this.setState({
         [e.target.name]: e.target.value
       })
-      // this.props.updateForm(e.target.name, e.target.value)
       console.log(this.state)
     }
 
     async onSubmit (e) {
       e.preventDefault();
       console.log('current state in Registration is: ',this.state)
-      const {firstName, lastName, email, hashedPassword} = this.state
-      this.props.registerUser(firstName, lastName, email, hashedPassword)
+      const {firstName, lastName, email, password} = this.state
+      this.props.registerUser(firstName, lastName, email, password)
       console.log('user in the store is now ', this.props.user)
       // const {email, password} = this.state
       // let response = (await axios.post('/api/sessions/login', {
@@ -64,9 +62,9 @@ class Register extends React.Component {
                         <p></p>
                         Email: <input name = "email" type="textbox" onChange={this.onChange}></input>
                         <p></p>
-                        Password: <input name = "hashedPassword" type="password" onChange={this.onChange}></input>
+                        Password: <input name = "password" type="password" onChange={this.onChange}></input>
                         <p></p>
-                        <button type="submit" onClick={this.onSubmit}>Sign In</button>
+                        <button type="submit" onClick={this.onSubmit}>Register</button>
                 </form>
             </div>
         )
@@ -80,10 +78,9 @@ const mapState = state => (
   }
 )
 
-
 const mapDispatch = (dispatch) => {
     return {
-      registerUser: (firstName, lastName, email, hashedPassword) => dispatch(registerUser(firstName, lastName, email, hashedPassword))
+      registerUser: (firstName, lastName, email, password) => dispatch(registerUser(firstName, lastName, email, password))
     }
 }
 
