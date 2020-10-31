@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { FaBars, FaRegUser } from 'react-icons/fa';
-import { FiShoppingCart } from 'react-icons/fi';
-import { GiFlowerPot } from 'react-icons/gi';
-import { BsSearch } from 'react-icons/bs';
-import { animateScroll as scroll } from 'react-scroll';
-import { IconContext } from 'react-icons/lib';
+import React, { useState, useEffect } from "react";
+import { FaBars, FaRegUser } from "react-icons/fa";
+import { FiShoppingCart } from "react-icons/fi";
+import { GiFlowerPot } from "react-icons/gi";
+import { BsSearch } from "react-icons/bs";
+import { animateScroll as scroll } from "react-scroll";
+import { IconContext } from "react-icons/lib";
 import {
   Nav,
   NavbarContainer,
@@ -19,8 +19,8 @@ import {
   FormInput,
   FormButton,
   NavLinkDown,
-} from './NavbarElements';
-import CategoriesDropdown from '../Dropdown';
+} from "./NavbarElements";
+import CategoriesDropdown from "../Dropdown";
 
 const Navbar = ({ toggle }) => {
   const [scrollNav, setScrollNav] = useState(false);
@@ -34,7 +34,7 @@ const Navbar = ({ toggle }) => {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', changeNav);
+    window.addEventListener("scroll", changeNav);
   }, []);
 
   const toggleHome = () => {
@@ -47,7 +47,7 @@ const Navbar = ({ toggle }) => {
 
   return (
     <>
-      <IconContext.Provider value={{ color: '#fff' }}>
+      <IconContext.Provider value={{ color: "#fff" }}>
         <Nav scrollNav={scrollNav}>
           <NavbarContainer>
             <NavLogo to="/" onClick={toggleHome}>
@@ -91,16 +91,12 @@ const Navbar = ({ toggle }) => {
                   Products
                 </NavLinks>
               </NavItem>
+              {/*  The categories should be a dropdown menu, not a separate page
               <NavItem>
-                <NavLinks
-                  to="/categories"
-                  id="categories"
-                  // spy={true}
-                  // exact="true"
-                >
+                <NavLinks to="/categories" id="categories">
                   Categories
                 </NavLinks>
-              </NavItem>
+              </NavItem> */}
               <NavItem>
                 <NavLinks
                   to="/profile"
