@@ -14,6 +14,13 @@ class UserManagement extends React.Component {
     this.props.fetchUsers();
   }
 
+ componentDidUpdate(prevProps) {
+    //this is needed to make the component rerender when a user is created or deleted. for some reason it won't rerender for the first user deleted, but does work for subsequent deletions.
+    if(this.props.location.pathname!==prevProps.location.pathname){
+    this.props.fetchUsers();
+  }
+  }
+
   render() {
     const { users } = this.props;
     if (users.length !== 0) {

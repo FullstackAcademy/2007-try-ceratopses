@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchUser } from "../store/store"; //may change if store is broken out
+import { fetchUser, deleteUser } from "../store/store"; //may change if store is broken out
 
 class SingleUser extends React.Component {
   constructor(props) {
     super();
+    this.deleteUser = this.deleteUser.bind(this)
   }
 
   componentDidMount() {
@@ -19,9 +20,15 @@ class SingleUser extends React.Component {
     }
   }
 
+  deleteUser(){
+    this.props.deleteUser(this.props.user.id)
+    this.props.history.push('/admin/users')
+  }
+
+  ///these should get split into components
   render() {
     const { firstName, lastName, email, admin, orders, reviews } = this.props.user;
-    console.log(reviews)
+
       return (
         <div id="singleUser" className="flexContainer">
         <div id="editUserPanel">
@@ -39,7 +46,7 @@ class SingleUser extends React.Component {
               <option name="false">No</option>
             </select>
           </form>
-        <button>Delete User</button>
+        <button onClick={()=>this.deleteUser()}>Delete User</button>
         <button>Reset Password</button>
       </div>
       <div id="orderHistory">
@@ -91,6 +98,7 @@ const mapState = (state) => ({ user: state.singleUser });
 const mapDispatch = (dispatch) => {
   return {
     fetchUser: (userId) => dispatch(fetchUser(userId)),
+    deleteUser: (userId) => dispatch(deleteUser(userId))
   };
 };
 
