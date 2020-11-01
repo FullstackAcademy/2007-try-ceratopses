@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
+import logger from 'redux-logger'
 import axios from 'axios'
 
 //User State
@@ -151,18 +152,19 @@ export const deleteUser = (userId) =>{
     return async (dispatch) =>{
         try {
             await axios.delete(`/api/admin/users/${userId}`)
-            _deleteUser(userId)
+            dispatch(_deleteUser(userId))
         } catch (error) {
             console.log(error)
         }
     }
 }
 const usersReducer  = (state = [], action) => {
+
     switch (action.type){
         case GET_USERS:
             return action.users
         case DELETE_USER:
-            return state.filter(user => user.id!==action.userId)
+            return state.filter(user => user.id!=action.userId)
         default:
             return state
     }
@@ -207,6 +209,6 @@ const reducer = combineReducers({
     singleUser: singleUserReducer
 });
 
-const store = createStore(reducer, applyMiddleware(thunkMiddleware));
+const store = createStore(reducer, applyMiddleware(logger,thunkMiddleware));
 
 export default store;

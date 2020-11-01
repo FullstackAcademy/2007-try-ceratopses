@@ -12,8 +12,8 @@ class SingleUser extends React.Component {
     this.props.fetchUser(this.props.match.params.userId)
   }
 
+   //this is needed to make the component rerender when clicking on a new user, since the component doesn't unmount first
   componentDidUpdate(prevProps) {
-    //this is needed to allow the component change when clicking one a new user, since the component doesn't remount
     if(prevProps.match.params.userId!==this.props.match.params.userId)
     {
       this.props.fetchUser(this.props.match.params.userId)
@@ -21,7 +21,7 @@ class SingleUser extends React.Component {
   }
 
   deleteUser(){
-    this.props.deleteUser(this.props.user.id)
+    this.props.deleteUser(this.props.match.params.userId)
     this.props.history.push('/admin/users')
   }
 
