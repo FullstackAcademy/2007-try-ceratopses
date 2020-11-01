@@ -126,6 +126,7 @@ const productReducer = (state = {} , action) => {
 
 const GET_USERS = "GET_USERS"
 const DELETE_USER = "DELETE_USER"
+const ADD_USER = "ADD_USER"
 
 const getUsers = (users) => {
     return {
@@ -138,6 +139,13 @@ const _deleteUser = (userId) => {
     return {
         type: DELETE_USER,
         userId
+    }
+}
+
+const _addUser = (user) => {
+    return {
+        type: ADD_USER,
+        user
     }
 }
 
@@ -158,6 +166,17 @@ export const deleteUser = (userId) =>{
         }
     }
 }
+
+export const addUser = (user) => {
+    return async (dispatch) => {
+        try {
+            const {data} = await axios.post('/api/admin/users/', user)
+          dispatch(_addUser(data))
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
 const usersReducer  = (state = [], action) => {
 
     switch (action.type){
@@ -165,6 +184,8 @@ const usersReducer  = (state = [], action) => {
             return action.users
         case DELETE_USER:
             return state.filter(user => user.id!=action.userId)
+        case ADD_USER:
+            return [...state, action.user ]
         default:
             return state
     }

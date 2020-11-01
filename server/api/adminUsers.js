@@ -20,6 +20,20 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+router.post('/', async(req,res,next) => {
+  console.log("========POSTING=========")
+  console.log("BODY", req.body)
+  const {firstName, lastName, password, email, admin} = req.body
+  try {
+    const newUser = await Users.create({firstName,lastName,email,admin, hashedPassword:password}) //password will need to be run through hashing tool when available
+    res.json(newUser)
+  } catch (error) {
+    console.log(error)
+  }
+
+
+
+})
 router.get("/:userId", async (req, res, next) => {
   try {
     const user = await Users.findOne({

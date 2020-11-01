@@ -13,10 +13,11 @@ const UserRow = ({ user }) => {
         <p>Admin: {user.admin ? "Yes" : "No"}</p>
         <p>
           Open Orders: {
+            user.orders ?
             user.orders.filter(
               (order) =>
                 order.status === "created" || order.status === "processing"
-            ).length
+            ).length : 0
           }
         </p>
       </div>

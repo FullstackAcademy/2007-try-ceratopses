@@ -1,9 +1,10 @@
 import React from "react";
-import {Route} from 'react-router-dom'
+import {Route, Switch, Link} from 'react-router-dom'
 import { connect } from "react-redux";
 import UserRow from "./UserRow"
 import { fetchUsers } from "../store/store"; //may change if store is broken out
 import SingleUser from './SingleUser'
+import AddUser from './AddUser'
 
 class UserManagement extends React.Component {
   constructor(props) {
@@ -21,11 +22,15 @@ class UserManagement extends React.Component {
         <div id="usersPanel" className="flexContainer">
         <div id="usersList">
           <h2>Registered Users</h2>
+          <Link to='/admin/users/add'><button>Add User</button></Link>
           {users.map((user) => {
             return <UserRow key={user.id} user={user} />
           })}
           </div>
+          <Switch>
+          <Route path='/admin/users/add' exact component = {AddUser} />
            <Route path='/admin/users/:userId' exact component = {SingleUser} />
+           </Switch>
         </div>
       );
     } else {
