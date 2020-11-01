@@ -1,5 +1,5 @@
 import axios from "axios";
-import hashPasswordFunc from '../../server/hashPasswordFunc'
+import {saltAndHash} from '../../server/utils/hashPasswordFunc'
 //User State
 
 const UPDATE_USER = "UPDATE_USER";
@@ -30,7 +30,7 @@ export const logOutUser = () => {
 export const getUser = (email, password) => {
     return async(dispatch) => {
       try {
-        password = hashPasswordFunc(password)
+        password = saltAndHash(password)
         const userFound = (await axios.post('/api/sessions/login', {email, password})).data
         dispatch(updateUser(userFound))
       }
@@ -43,7 +43,7 @@ export const getUser = (email, password) => {
 export const registerUser = (firstName, lastName, email, password) => {
     return async(dispatch) => {
       try {
-        password = hashPasswordFunc(password)
+        password = saltAndHash(password)
         const newUser = (await axios.post('/api/users', {firstName, lastName, email, hashedPassword: password})).data
         dispatch(registerAUser(newUser))
       }

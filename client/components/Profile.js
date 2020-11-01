@@ -35,7 +35,7 @@ class Profile extends React.Component {
       else {
         return (
           <div id = 'profile'>
-            <h1> Please <Link to='/signIn'>sign in</Link> or <Link to='/register'>register for an account</Link> to see your profile</h1>
+            <h1> Please <Link to='/signIn'>sign in</Link> or <Link to='/signUp'>register for an account</Link> to see your profile</h1>
           </div>
         )
       }

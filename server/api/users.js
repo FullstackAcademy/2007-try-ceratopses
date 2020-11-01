@@ -38,7 +38,9 @@ router.post('/', async(req,res,next) => { // create a user
     res.status(201).send(newUser)
   }
   catch (ex) {
-    next (ex)
+    res.status(401).send({
+      message: 'Cannot create a user with an already taken username'
+    })
   }
 })
 

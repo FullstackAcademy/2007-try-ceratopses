@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {  Link } from 'react-router-dom';
 import { getProducts } from "../../store/products";
+import NavBar, { Navbar } from '../Navbar/index'
 
 class Products extends React.Component {
   constructor() {
@@ -17,6 +18,7 @@ class Products extends React.Component {
   }
 
     render() {
+      <NavBar></NavBar>
         const { products } = this.props
         if (products) {
             return (
@@ -39,9 +41,7 @@ class Products extends React.Component {
                 </div>
             )
         }
-
       return <div>No Products</div>;
-
   }
 }
 
