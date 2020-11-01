@@ -1,15 +1,25 @@
 import React from "react";
 import { connect } from "react-redux";
+import EditUser from './EditUser'
 import { fetchUser, deleteUser } from "../store/store"; //may change if store is broken out
 
 class SingleUser extends React.Component {
   constructor(props) {
     super();
+    this.state = {firstName:'', lastName:'', email: '', admin:false}
     this.deleteUser = this.deleteUser.bind(this)
+    this.updateProfile= this.updateProfile.bind(this)
+    this.changeState = this.changeState.bind(this)
   }
 
-  componentDidMount() {
-    this.props.fetchUser(this.props.match.params.userId)
+  async componentDidMount() {
+    try {
+      await this.props.fetchUser(this.props.match.params.userId)
+      const {firstName, lastName, email, admin} = this.props.user
+      this.setState({firstName, lastName, email, admin})
+    } catch (error) {
+      console.log(error)
+    }
   }
 
    //this is needed to make the component rerender when clicking on a new user, since the component doesn't unmount first
@@ -25,30 +35,22 @@ class SingleUser extends React.Component {
     this.props.history.push('/admin/users')
   }
 
+  updateProfile(ev){
+    ev.preventDefault();
+    console.log("UPDATE")
+  }
+
+  changeState(ev){
+    this.setState({[ev.target.name]:ev.target.value})
+  }
+
   ///these should get split into components
   render() {
-    const { firstName, lastName, email, admin, orders, reviews } = this.props.user;
+    const {orders, reviews } = this.props.user;
 
       return (
         <div id="singleUser" className="flexContainer">
-        <div id="editUserPanel">
-          <h2>Edit User {firstName} {lastName}</h2>
-          <form>
-            <label htmlFor="firstName">First Name:</label>
-            <input name="firstName"></input>
-            <label htmlFor="lastName">Last Name:</label>
-            <input name="lastName"></input>
-            <label htmlFor="email">E-Mail:</label>
-            <input name="email"></input>
-            <label htmlFor="admin">Grant Admin Rights?</label>
-            <select name="admin">
-              <option name="true">Yes</option>
-              <option name="false">No</option>
-            </select>
-          </form>
-        <button onClick={()=>this.deleteUser()}>Delete User</button>
-        <button>Reset Password</button>
-      </div>
+        <EditUser {...this.state} deleteUser={this.deleteUser} updateProfile ={this.updateProfile} change={this.changeState}/>
       <div id="orderHistory">
         <h2>Order History</h2>
         {!orders ? "No orders" : orders.map(order=>{
