@@ -6,13 +6,10 @@ class CategoriesDropdown extends React.Component {
   constructor() {
     super();
     this.state = {
-      show: "",
-      category: ""
+      show: ""
     };
     this.showDropdown = this.showDropdown.bind(this);
     this.hideDropdown = this.hideDropdown.bind(this);
-    this.updateCategory = this.updateCategory.bind(this);
-    this.handleClick = this.handleClick.bind(this);
   }
 
   showDropdown() {
@@ -33,20 +30,6 @@ class CategoriesDropdown extends React.Component {
     });
   }
 
-  updateCategory(category) {
-    this.setState({
-      category: category,
-    });
-    console.log(this.state)
-  }
-
-  handleClick(ev) {
-    console.log('click', ev.target.innerText)
-    this.hideDropdown();
-    this.updateCategory(ev.target.innerText);
-  }
-
-
   render() {
     const categories = this.props.categories;
     return (
@@ -57,7 +40,7 @@ class CategoriesDropdown extends React.Component {
         <div id="myDropdown" className={`dropdown-content ${this.state.show}`}>
           {categories.map((category) => {
             return (
-              <div key={category} value={category} onClick={(ev) => this.handleClick(ev)}>
+              <div key={category} onClick={() => this.hideDropdown()}>
                 <Link to={`/categories/${category}`}>{category}</Link>
               </div>
             );

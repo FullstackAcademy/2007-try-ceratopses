@@ -16,6 +16,12 @@ class CategoryProducts extends React.Component {
         }
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.match.params.category !== this.props.match.params.category) {
+            this.props.getProducts(this.props.match.params.category)
+        }
+    }
+
     render() {
         const { products } = this.props
         if (products) {
