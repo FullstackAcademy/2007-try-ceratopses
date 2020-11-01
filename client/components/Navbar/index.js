@@ -20,7 +20,7 @@ import {
   FormButton,
   NavLinkDown,
 } from "./NavbarElements";
-import CategoriesDropdown from "../Dropdown";
+import Dropdown from "../Dropdown";
 
 const Navbar = ({ toggle }) => {
   const [scrollNav, setScrollNav] = useState(false);
@@ -91,12 +91,9 @@ const Navbar = ({ toggle }) => {
                   Products
                 </NavLinks>
               </NavItem>
-              {/*  The categories should be a dropdown menu, not a separate page
               <NavItem>
-                <NavLinks to="/categories" id="categories">
-                  Categories
-                </NavLinks>
-              </NavItem> */}
+                <Dropdown />
+              </NavItem>
               <NavItem>
                 <NavLinks
                   to="/profile"
