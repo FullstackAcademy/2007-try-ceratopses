@@ -20,6 +20,7 @@ export const getCategories = () => {
                 uniqueCategories.push(category)
             }
         }))
+        console.log('thunk', uniqueCategories)
         dispatch(setCategories(uniqueCategories))
         } catch (error) {
             console.log(error)

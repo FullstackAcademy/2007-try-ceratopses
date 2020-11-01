@@ -11,7 +11,6 @@ import Footer from './components/Footer';
 import Sidebar from './components/Sidebar';
 import Products from './components/Products';
 import SingleProduct from './components/SingleProduct'
-import CategoryProducts from './components/CategoryProducts'
 
 
 
@@ -32,7 +31,7 @@ function App() {
         <Route path="/signup" component={SignUp} exact />
         <Route path="/products" component={Products} exact />
         <Route path="/products/:productId" component={SingleProduct} />
-        <Route path="/categories/:category" component={CategoryProducts} />
+        <Route path="/categories/:category" component={Products} />
         <Route path="/profile" component={Profile} exact />
         <Route path="/cart" component={Cart} exact />
       </Switch>
