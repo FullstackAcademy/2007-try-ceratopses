@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {  Link } from 'react-router-dom';
-import { getProducts } from '../../store/store';
+import { getProducts } from "../../store/products";
 
 class Products extends React.Component {
   constructor() {

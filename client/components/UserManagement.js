@@ -2,9 +2,9 @@ import React from "react";
 import {Route, Switch, Link} from 'react-router-dom'
 import { connect } from "react-redux";
 import UserRow from "./UserRow"
-import { fetchUsers } from "../store/store"; //may change if store is broken out
-import SingleUser from './SingleUser'
-import AddUser from './AddUser'
+import { fetchUsers } from "../store/users";
+import SingleUser from './SingleUser';
+import AddUser from './AddUser';
 
 class UserManagement extends React.Component {
   constructor(props) {
