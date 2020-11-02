@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Sessions, Users} = require('../db/index')
+const {Sessions, Users, Addresses, Orders} = require('../db/index')
 
 router.get('/', async(req, res, next) => { // api/sessions
   try {
@@ -32,7 +32,15 @@ router.post('/login', async(req, res, next) => { // api/sessions/login
         where: {
           email,
           hashedPassword: password
-        }
+        },
+        include: [
+          {
+            model: Addresses
+          },
+          {
+            model: Orders
+          }
+        ]
       }
     )
 

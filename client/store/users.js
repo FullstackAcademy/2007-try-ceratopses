@@ -1,4 +1,5 @@
 import axios from "axios";
+import {saltAndHash} from '../../server/utils/hashPasswordFunc';
 
 /////// USERS - FOR ADMIN //////
 
@@ -48,6 +49,7 @@ export const deleteUser = (userId) =>{
 export const addUser = (user) => {
     return async (dispatch) => {
         try {
+            user.password=saltAndHash(user.password)
             const {data} = await axios.post('/api/admin/users/', user)
           dispatch(_addUser(data))
         } catch (error) {
