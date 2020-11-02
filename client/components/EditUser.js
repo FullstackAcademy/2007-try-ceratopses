@@ -13,9 +13,9 @@ const EditUser = ({firstName, lastName, email, admin, deleteUser, change, update
             <label htmlFor="email">E-Mail:</label>
             <input name="email" value={email} onChange={change}></input>
             <label htmlFor="admin">Grant Admin Rights?</label>
-            <select name="admin" value={admin} onChange={change}>
-              <option name="true">Yes</option>
-              <option name="false">No</option>
+            <select name="admin"  onChange={change}>
+              <option name="true" selected ={admin ? "selected" : ""}>Yes</option>
+              <option name="false" selected ={admin ? "" : "selected"}>No</option>
             </select>
           </form>
           <button>Reset Password</button>
