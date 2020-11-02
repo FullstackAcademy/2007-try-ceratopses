@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import EditUser from './EditUser'
-import { fetchUser, deleteUser } from "../store/store"; //may change if store is broken out
+import { fetchUser, deleteUser, editUser } from "../store/store"; //may change if store is broken out
 
 class SingleUser extends React.Component {
   constructor(props) {
@@ -23,10 +23,17 @@ class SingleUser extends React.Component {
   }
 
    //this is needed to make the component rerender when clicking on a new user, since the component doesn't unmount first
-  componentDidUpdate(prevProps) {
+  async componentDidUpdate(prevProps) {
     if(prevProps.match.params.userId!==this.props.match.params.userId)
     {
-      this.props.fetchUser(this.props.match.params.userId)
+      try {
+       await this.props.fetchUser(this.props.match.params.userId)
+      const {firstName, lastName, email, admin} = this.props.user
+      this.setState({firstName, lastName, email, admin})
+      } catch (error) {
+        console.log(error)
+      }
+
     }
   }
 
@@ -37,7 +44,7 @@ class SingleUser extends React.Component {
 
   updateProfile(ev){
     ev.preventDefault();
-    console.log("UPDATE")
+    this.props.updateUser(this.props.match.params.userId, this.state)
   }
 
   changeState(ev){
@@ -97,11 +104,11 @@ class SingleUser extends React.Component {
 
 const mapState = (state) => ({ user: state.singleUser });
 
-const mapDispatch = (dispatch) => {
-  return {
+const mapDispatch = (dispatch) => ( {
     fetchUser: (userId) => dispatch(fetchUser(userId)),
-    deleteUser: (userId) => dispatch(deleteUser(userId))
-  };
-};
+    deleteUser: (userId) => dispatch(deleteUser(userId)),
+    updateUser: (userId, userProfile) => dispatch(editUser(userId, userProfile))
+  }
+)
 
 export default connect(mapState, mapDispatch)(SingleUser);

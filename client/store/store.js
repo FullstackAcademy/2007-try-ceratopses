@@ -177,6 +177,18 @@ export const addUser = (user) => {
         }
     }
 }
+
+export const editUser = (userId, userProfile) => {
+    return async (dispatch) => {
+        try {
+          await axios.put(`/api/admin/users/${userId}`, userProfile)
+          dispatch(fetchUsers())
+        } catch (error) {
+         console.log(error)
+        }
+    }
+}
+
 const usersReducer  = (state = [], action) => {
 
     switch (action.type){

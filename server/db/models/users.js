@@ -1,5 +1,4 @@
 const { Sequelize } = require('sequelize');
-const { validate } = require('../database');
 const db = require('../database');
 
 const Users = db.define("users", {
@@ -8,11 +7,29 @@ const Users = db.define("users", {
   email: {
     type: Sequelize.STRING,
     unique:true,
+    allowNull:true,
     validate:{
       isEmail:true,
+      notEmpty:true,
+      nullOnlyForGuests(value){
+        if(value===null && !this.guest) {
+          throw new Error ("Email cannot be null if not a guest")
+        }
+      }
     }
   },
-  hashedPassword: Sequelize.STRING,
+  hashedPassword: {
+    type:Sequelize.STRING,
+    allowNull:true,
+    validate:{
+      notEmpty:true,
+      nullOnlyForGuests(value){
+        if(value===null && !this.guest) {
+          throw new Error ("Password cannot be null if not a guest")
+        }
+      }
+    }
+  },
   guest: {
     type: Sequelize.BOOLEAN,
   },
@@ -20,14 +37,6 @@ const Users = db.define("users", {
     type:Sequelize.BOOLEAN,
     defaultValue:false
   }
-}, {
-  validate:{
-  guestOrRegistered: function(){
-    if(!this.guest && (!this.email || !this.hashedPassword)) {
-      throw new Error ("Email and password cannot be null if not a guest")
-    }
-  }
-}
 })
 
 module.exports= Users

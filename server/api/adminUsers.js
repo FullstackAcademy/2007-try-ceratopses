@@ -21,8 +21,6 @@ router.get("/", async (req, res, next) => {
 });
 
 router.post('/', async(req,res,next) => {
-  console.log("========POSTING=========")
-  console.log("BODY", req.body)
   const {firstName, lastName, password, email, admin} = req.body
   try {
     const newUser = await Users.create({firstName,lastName,email,admin, hashedPassword:password}) //password will need to be run through hashing tool when available
@@ -49,6 +47,21 @@ router.get("/:userId", async (req, res, next) => {
     next(error);
   }
 });
+
+router.put('/:userId', async(req,res,next) => {
+  const {firstName, lastName, email, admin} = req.body
+  try {
+    await Users.update({firstName, lastName, email, admin},{
+      where: {
+        id: req.params.userId
+          }
+        }
+    )
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 router.delete('/:userId', async(req,res,next) => {
   try {
