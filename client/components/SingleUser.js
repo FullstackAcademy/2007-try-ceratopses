@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import EditUser from './EditUser'
-import { fetchUser, deleteUser, editUser } from "../store/users"; //may change if store is broken out
+import { deleteUser, editUser } from "../store/users";
+import { fetchUser } from "../store/singleUser";
 
 class SingleUser extends React.Component {
   constructor(props) {
