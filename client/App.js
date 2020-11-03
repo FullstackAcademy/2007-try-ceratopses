@@ -8,7 +8,8 @@ import Footer from './components/Footer';
 import Sidebar from './components/Sidebar';
 import Products from './components/Products';
 import SingleProduct from './components/SingleProduct';
-import SignIn from './components/SignIn';
+import Admin from './components/Admin';
+import SignIn from './components/SignIn/index';
 import Profile from './components/Profile';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path="/products/:productId" component={SingleProduct} />
         <Route path="/profile" component={Profile} exact />
         <Route path="/cart" component={Cart} exact />
+        <Route path="/admin" component={Admin} />
       </Switch>
       <Footer />
     </Router>
