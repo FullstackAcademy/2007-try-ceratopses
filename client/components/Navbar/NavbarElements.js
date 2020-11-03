@@ -167,6 +167,27 @@ export const NavBtnLink = styled(LinkRouter)`
   }
 `;
 
+export const NavBtnLogOut = styled.button`
+  border-radius: 50px;
+  background: #01bf71;
+  white-space: nowrap;
+  padding: 10px 15px;
+  margin: 0px;
+  color: #010606;
+  font-size: 16px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background: #fff;
+    transition: all 0.2s ease-in-out;
+    color: #010606;
+  }
+`;
+
 export const Form = styled.form`
   ${'' /* max-width: 400px;
   min-height: 5vh;

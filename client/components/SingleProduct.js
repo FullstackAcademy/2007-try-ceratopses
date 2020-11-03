@@ -1,8 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { HashRouter as Router, Link, Route } from 'react-router-dom'
-import { getProduct } from '../store/store' //may change if store is broken out
-
+import { getProduct } from '../store/singleProduct'
 
 class SingleProduct extends React.Component {
     constructor() {
@@ -34,13 +32,8 @@ class SingleProduct extends React.Component {
                     </ul>
                 </div>
             )
-        } else {
-            return (
-                <div>
-                    No Product
-                </div>
-            )
         }
+            return <div>Product Unavailable</div>
     };
 }
 

@@ -13,12 +13,6 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/api', require('./api')); // api routes
 
-app.use('/products', require('./routes/products'));
-app.use('/profile', require('./routes/profile'));
-app.use('/cart', require('./routes/cart'));
-app.use('/signin', require('./routes/signin'));
-app.use('/signup', require('./routes/signup'));
-
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 }); // Send index.html
