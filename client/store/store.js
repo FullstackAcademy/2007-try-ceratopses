@@ -7,6 +7,7 @@ import { productsReducer } from './products';
 import { singleProductReducer } from './singleProduct';
 import { usersReducer } from './users';
 import { singleUserReducer } from './singleUser';
+import { cartReducer } from './cart';
 
 const reducer = combineReducers({
   user: userReducer,
@@ -15,6 +16,7 @@ const reducer = combineReducers({
   singleProduct: singleProductReducer,
   users: usersReducer,
   singleUser: singleUserReducer,
+  cart: cartReducer,
 });
 
 const store = createStore(reducer, applyMiddleware(logger, thunkMiddleware));
