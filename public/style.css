@@ -1,4 +1,8 @@
 /* Dropdown Button */
+*{
+  box-sizing: border-box;
+}
+
 .dropbtn {
   background-color: #3498db;
   color: white;
@@ -59,4 +63,79 @@
   object-fit: cover;
   width: 400px;
   height: 400px;
+}
+
+
+
+/* Styling the NavBar and links for the admin portal */
+
+#adminNavBar{
+  display: flex;
+  justify-content: space-around;
+  background-color: aliceblue;
+}
+
+#adminNavBar>a{
+  font-size: x-large;
+}
+
+.active{
+  text-decoration: underline;
+  color: brown;
+  text-shadow: 1px 1px 1px black;
+}
+
+
+/*Arranging the list of users, a users's details, order history, and review history into a single panel of scrollable lists*/
+.userRow{
+  width:fit-content;
+  background-color: bisque;
+}
+
+.flexContainer{
+  display: flex;
+}
+
+.flexContainer>.rightContainer{
+display: flex;
+flex-direction: column;
+}
+
+.flexContainer>div{
+  margin: 0 .5rem
+}
+
+#usersPanel{
+  height: 70vh
+}
+
+#usersPanel div>h2{
+  text-align: center;
+}
+
+#usersList{
+  overflow: hidden;
+   overflow-y: auto;
+   max-width: fit-content;
+   padding-right: .5rem;
+}
+
+#singleUser{
+  flex:2
+}
+
+#singleUser>div{
+  overflow: hidden;
+  overflow-y: auto;
+  flex:1
+}
+
+#editUserPanel>form{
+  display: flex;
+  flex-direction: column;
+}
+
+.reviewDetails{
+  width:fit-content;
+  background-color: bisque;
 }

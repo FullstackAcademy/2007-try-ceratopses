@@ -11,6 +11,8 @@ const {
 const faker = require("faker");
 const axios = require("axios");
 
+const { saltAndHash } = require('../utils/hashPasswordFunc')
+
 const seed = async () => {
   try {
 
@@ -96,28 +98,28 @@ const seed = async () => {
       firstName: "Test",
       lastName: "Testerson",
       email: "test@test.com",
-      hashedPassword: "12345",
+      hashedPassword: saltAndHash("test"),
       admin: true,
     },
     {
       firstName: "Example",
       lastName: "Exampler",
       email: "test2@test.com",
-      hashedPassword: "12345",
+      hashedPassword: saltAndHash("test"),
       admin: true,
     },
     {
       firstName: "Notan",
       lastName: "Admin",
       email: "test3@test.com",
-      hashedPassword: "12345",
+      hashedPassword: saltAndHash("test"),
       admin: false,
     },
     {
       firstName: "Stillnot",
       lastName: "Anadmin",
       email: "test4@test.com",
-      hashedPassword: "12345",
+      hashedPassword: saltAndHash("test"),
       admin: false,
     },
   ];
