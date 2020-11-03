@@ -23,7 +23,7 @@ router.get("/", async (req, res, next) => {
 router.post('/', async(req,res,next) => {
   const {firstName, lastName, password, email, admin} = req.body
   try {
-    const newUser = await Users.create({firstName,lastName,email,admin, hashedPassword:password}) //password will need to be run through hashing tool when available
+    const newUser = await Users.create({firstName,lastName,email,admin, hashedPassword:password})
     res.json(newUser)
   } catch (error) {
     console.log(error)
