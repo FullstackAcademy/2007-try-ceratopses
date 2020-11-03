@@ -31,7 +31,6 @@ function App() {
         <Route path="/products/:productId" component={SingleProduct} />
         <Route path="/profile" component={Profile} exact />
         <Route path="/cart" component={Cart} exact />
-        <Route path="/cart/:id" component={Cart} exact />
       </Switch>
       <Footer />
     </Router>

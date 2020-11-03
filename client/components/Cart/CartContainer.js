@@ -1,19 +1,30 @@
 import React, { useEffect } from 'react';
 import CartItem from './CartItem';
 import CartNav from './CartNav';
-
-import { connect } from 'react-redux';
-import {
-  CLEAR_CART,
-  GET_TOTALS,
-  // saveCheckout,
-  // savePayment,
-} from '../../store/cartActions.js';
+import { connect, useSelector, useDispatch } from 'react-redux';
+import { CLEAR_CART, GET_TOTALS, addToCart } from '../../store/cartActions.js';
 
 const CartContainer = ({ cartItems = [], total, dispatch }) => {
+  // (props) => {
+  // const cart = useSelector((state) => state.cartItems);
+  // const dispatch = useDispatch();
+  // const { cartItems } = cart;
+
+  // const productId = props.match.params.id;
+  // const quantity = props.location.search
+  //   ? Number(props.location.search.split('=')[1])
+  //   : 1;
+
+  // useEffect(() => {
+  //   if (productId) {
+  //     dispatch(addToCart(productId, quantity));
+  //   }
+  // }, []);
+
   useEffect(() => {
     dispatch({ type: GET_TOTALS });
   }, [cartItems, dispatch]);
+
   if (cartItems.length === 0) {
     return (
       <section className="cart">
@@ -32,13 +43,11 @@ const CartContainer = ({ cartItems = [], total, dispatch }) => {
       <header>
         <h2>Your Shopping Bag</h2>
       </header>
-      {/* cart items */}
       <article>
         {cartItems.map((item) => {
           return <CartItem key={item.id} {...item} />;
         })}
       </article>
-      {/* cart footer */}
       <footer>
         <hr />
         <div className="cart-total">
@@ -52,13 +61,7 @@ const CartContainer = ({ cartItems = [], total, dispatch }) => {
         >
           Clear Cart
         </button>
-        <button
-          // onClick={() => {
-          //   props.history.push('/signin?redirect=checkout');
-          // }}
-          className="checkout-btn"
-          disabled={cartItems.length === 0}
-        >
+        <button className="checkout-btn" disabled={cartItems.length === 0}>
           Proceed to Checkout
         </button>
       </footer>
@@ -70,3 +73,5 @@ const mapStateToProps = (store) => {
   return { cartItems: store.cart, total: store.total };
 };
 export default connect(mapStateToProps)(CartContainer);
+
+// export default CartContainer;

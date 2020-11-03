@@ -1,19 +1,15 @@
 import {
   CART_ADD_ITEM,
   CART_SUBTRACT_ITEM,
-  // CART_SAVE_CHECKOUT,
-  // CART_SAVE_PAYMENT,
   REMOVE,
   GET_TOTALS,
   CLEAR_CART,
 } from '../store/cartActions.js';
-import cartItems from '../../server/db/cartSeed';
+// import cartItems from '../../server/db/cartSeed';
 
 // initial state
 const initialState = {
-  cart: cartItems,
-  checkout: {},
-  payment: {},
+  cart: [],
   total: 0,
   amount: 0,
 };
@@ -21,7 +17,7 @@ const initialState = {
 //Cart Reducer
 export const cartReducer = (state = initialState, action) => {
   const item = action.payload;
-  // console.log({ state, action });
+  console.log({ state, action });
 
   if (action.type === CLEAR_CART) {
     return { ...state, cart: [] };
@@ -74,14 +70,6 @@ export const cartReducer = (state = initialState, action) => {
     total = parseFloat(total.toFixed(2));
     return { ...state, total, amount };
   }
-
-  // if (action.type === CART_SAVE_CHECKOUT) {
-  //   return { ...state, checkout: item };
-  // }
-
-  // if (action.type === CART_SAVE_PAYMENT) {
-  //   return { ...state, payment: item };
-  // }
 
   console.log({ state, action });
   return state;

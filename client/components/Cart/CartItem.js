@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import cartItems from '../../../server/db/cartSeed.js';
 import {
   CART_ADD_ITEM,
   CART_SUBTRACT_ITEM,
@@ -13,7 +12,7 @@ const CartItem = ({
   photoUrl,
   title,
   price,
-  amount,
+  quantity,
   remove,
   increase,
   decrease,
@@ -22,7 +21,7 @@ const CartItem = ({
     <div className="cart-item">
       <img src={photoUrl} alt={title} />
       <div>
-        <Link className="item-title" to={'/products/' + cartItems.title}>
+        <Link className="item-title" to={`/products/${cartItems._id}`}>
           <h4>{title}</h4>
         </Link>
         <h4 className="item-price">${price}</h4>
@@ -36,13 +35,13 @@ const CartItem = ({
         <button className="amount-btn" onClick={() => increase()}>
           +
         </button>
-        <p className="amount">{amount}</p>
+        <p className="amount">{quantity}</p>
         {/* decrease amount */}
         <button
           className="amount-btn"
           onClick={() => decrease()}
           onClick={() => {
-            if (amount === 1) {
+            if (quantity === 1) {
               return remove();
             } else {
               return decrease();
@@ -57,14 +56,14 @@ const CartItem = ({
 };
 
 const mapDispatchToProps = (dispatch, props) => {
-  const { id, amount } = props;
+  const { id, quantity } = props;
   console.log(props);
   return {
     remove: () => dispatch({ type: REMOVE, payload: { id } }),
     // (removeItem(id)),
     increase: () => dispatch({ type: CART_ADD_ITEM, payload: { id } }),
     decrease: () =>
-      dispatch({ type: CART_SUBTRACT_ITEM, payload: { id, amount } }),
+      dispatch({ type: CART_SUBTRACT_ITEM, payload: { id, quantity } }),
   };
 };
 
