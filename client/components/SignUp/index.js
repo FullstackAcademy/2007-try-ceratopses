@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   SignUpContainer,
   FormWrap,
@@ -37,4 +38,14 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+const mapState = (state) => ({
+  // products: state.products, category: state.singleCategory
+});
+
+const mapDispatch = (dispatch) => {
+  return {
+    // getProducts: (category) => dispatch(getProducts(category)),
+  };
+};
+
+export default connect(mapState, mapDispatch)(SignUp);

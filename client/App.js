@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
-
 import Home from './components/Home';
-import SignIn from './components/SignIn';
+import SignIn from './components/SignIn/index';
 import SignUp from './components/SignUp/index';
-import Profile from './components/Profile';
-import Cart from './components/Cart/index';
+import Profile from './components/Profile/index';
+import Cart from './components/Cart';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Sidebar from './components/Sidebar';
 import Products from './components/Products';
-import SingleProduct from './components/SingleProduct'
-
-
+import SingleProduct from './components/SingleProduct';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,10 +30,11 @@ function App() {
         <Route path="/products/:productId" component={SingleProduct} />
         <Route path="/profile" component={Profile} exact />
         <Route path="/cart" component={Cart} exact />
+        <Route path="/cart/:id" component={Cart} exact />
       </Switch>
       <Footer />
     </Router>
   );
 }
 
-export default App
+export default App;
