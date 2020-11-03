@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import { registerUser } from '../../store/user'
 import {
   SignUpContainer,
@@ -58,9 +59,7 @@ class Register extends React.Component {
       const {user} = this.props
       if (user.email) {
         return (
-          <div id='alreadyRegistered'>
-            <h3>You are already logged in</h3>
-          </div>
+          <Redirect to ="/"></Redirect>
         )
       }
       else {
