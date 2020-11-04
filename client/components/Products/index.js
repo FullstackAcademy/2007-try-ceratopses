@@ -26,9 +26,14 @@ class Products extends React.Component {
 
     render() {
         const { products } = this.props
+        const { category } = this.props.match.params
         if (products) {
             return (
-                <div id='categoryProducts'>
+                <div id="ProductsContainer">
+                    <h2 id="productsheader">
+                      {category ? category[0].toUpperCase() + category.slice(1) + ' Products' : 'All Products'}
+                    </h2>
+                    <div id="Products">
                     { products.map(product => {
                        return (
                         <div key={product.id} id="singleProduct">
@@ -44,6 +49,7 @@ class Products extends React.Component {
                             )
                      })
                     }
+                    </div>
                 </div>
             )
         }

@@ -141,3 +141,18 @@ flex-direction: column;
   width:fit-content;
   background-color: bisque;
 }
+
+#ProductsContainer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+#Products{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#singleProduct{
+  width: 20%
+}
