@@ -55,6 +55,7 @@ class SingleUser extends React.Component {
   ///these should get split into components
   render() {
     const {orders, reviews } = this.props.user;
+    console.log(orders)
 
       return (
         <div id="singleUser" className="flexContainer">
@@ -68,10 +69,21 @@ class SingleUser extends React.Component {
             <div key={order.id} className="card">
             <strong>Ordered at: {date}</strong>
             <p>Status: {order.status}</p>
+            {order.orderItems.map(item => {
+              return (
+                <div key={item.id}>
+                  <h5>Item: {item.product.title}</h5>
+                  <p>Quantity: {item.quantity}</p>
+                  <p>Subtotal: ${item.subtotal}</p>
+                </div>
+              )
+            })
+            }
+            <hr />
             <p>Sales tax: ${order.salesTax}</p>
             <p>Shipping: ${order.shipping}</p>
             <p>Grand Total: ${order.grandTotal}</p>
-            <p>Phone number: {address.phone}</p>
+
             <h5>Ship to</h5>
             <p>Building: {address.buildingNumber}</p>
             <p>Street: {address.street}</p>
@@ -79,6 +91,7 @@ class SingleUser extends React.Component {
             <p>City: {address.city}</p>
             <p>State: {address.state}</p>
             <p>Zip: {address.zip}</p>
+            <p>Phone number: {address.phone}</p>
 
             </div>
           )

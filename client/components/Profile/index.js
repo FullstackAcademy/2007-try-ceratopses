@@ -52,15 +52,25 @@ class Profile extends React.Component {
         {!orders ? "No orders" : orders.map(order=>{
           const {address} = order
           const date = new Date(order.orderedAt).toDateString()
-
           return(
             <div key={order.id} className="card">
-              <strong>Ordered at: {date}</strong>
+            <strong>Ordered at: {date}</strong>
             <p>Status: {order.status}</p>
+            {order.orderItems.map(item => {
+              return (
+                <div key={item.id}>
+                  <h5>Item: {item.product.title}</h5>
+                  <p>Quantity: {item.quantity}</p>
+                  <p>Subtotal: ${item.subtotal}</p>
+                </div>
+              )
+            })
+            }
+            <hr />
             <p>Sales tax: ${order.salesTax}</p>
             <p>Shipping: ${order.shipping}</p>
             <p>Grand Total: ${order.grandTotal}</p>
-            <p>Phone number: {address.phone}</p>
+
             <h5>Ship to</h5>
             <p>Building: {address.buildingNumber}</p>
             <p>Street: {address.street}</p>
@@ -68,6 +78,8 @@ class Profile extends React.Component {
             <p>City: {address.city}</p>
             <p>State: {address.state}</p>
             <p>Zip: {address.zip}</p>
+            <p>Phone number: {address.phone}</p>
+
             </div>
           )
         })}
