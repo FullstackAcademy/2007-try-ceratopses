@@ -30,7 +30,7 @@ class Products extends React.Component {
         if (products) {
             return (
                 <div id="ProductsContainer">
-                    <h2 id="productsheader">
+                    <h2 class="productsheader">
                       {category ? category[0].toUpperCase() + category.slice(1) + ' Products' : 'All Products'}
                     </h2>
                     <div id="Products">

@@ -50,7 +50,7 @@ class CategoriesDropdown extends React.Component {
           {categories.map((category) => {
             return (
               <div key={category} onClick={() => this.hideDropdown()}>
-                <Link to={`/categories/${category}`}>{category}</Link>
+                <Link to={`/categories/${category}`}>{category[0].toUpperCase() + category.slice(1)}</Link>
               </div>
             );
           })}
