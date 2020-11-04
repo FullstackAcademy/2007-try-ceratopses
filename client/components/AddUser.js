@@ -12,6 +12,7 @@ constructor(){
 
 changeState(ev){
  this.setState({[ev.target.name]: ev.target.value})
+ console.log(this.state)
 }
 
 submit(ev){

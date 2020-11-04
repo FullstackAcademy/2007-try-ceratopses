@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Users, Addresses, Orders} = require('../db/index')
+const {Users, Addresses, Orders, Reviews} = require('../db/index')
 
 router.get('/', async(req, res, next) => { // api/users
   try {
@@ -16,14 +16,7 @@ router.get('/:userId', async(req, res, next) => { // single user profile
       where: {
         id: req.params.userId
       },
-      include: [
-        {
-          model: Addresses
-        },
-        {
-          model: Orders
-        }
-      ]
+      include: [ Addresses, Orders, Reviews ]
     });
     res.send(userProfile)
   }

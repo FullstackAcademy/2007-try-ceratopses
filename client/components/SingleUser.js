@@ -65,6 +65,7 @@ class SingleUser extends React.Component {
           const {address} = order
           return(
             <div key={order.id} className="orderDetails">
+            <b><p>Order #: {order.id}</p></b>
             <p>Status: {order.status}</p>
             <p>Ordered at: {order.orderedAt}</p>
             <p>Sales tax: ${order.salesTax}</p>
