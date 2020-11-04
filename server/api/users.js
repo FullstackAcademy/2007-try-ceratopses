@@ -44,4 +44,19 @@ router.post('/', async(req,res,next) => { // create a user
   }
 })
 
+router.put('/:userId', async(req,res,next) => {
+  const {firstName, lastName, email, admin} = req.body
+  try {
+    await Users.update({firstName, lastName, email, admin},{
+      where: {
+        id: req.params.userId
+          }
+        }
+    )
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 module.exports = router;

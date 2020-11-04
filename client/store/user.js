@@ -27,6 +27,17 @@ export const logOutUser = () => {
     }
 };
 
+export const editProfile = (userId, userProfile) => {
+  return async (dispatch) => {
+    try {
+      await axios.put(`/api/users/${userId}`, userProfile)
+      dispatch(updateUser(userProfile))
+    } catch (error) {
+     console.log(error)
+    }
+}
+}
+
 export const getUser = (email, password) => {
     return async(dispatch) => {
       try {
@@ -53,14 +64,14 @@ export const registerUser = (firstName, lastName, email, password) => {
     }
 }
 
-export const userReducer = (state = [], action) => {
+export const userReducer = (state = {}, action) => {
   switch (action.type) {
       case UPDATE_USER:
-          return action.user
+          return Object.assign({},state,action.user) //dynamically overwrites any edited fields but leaves the rest unchanged
       case REGISTER_USER:
           return action.user
       case LOG_OUT:
-          return []
+          return {}
       default:
           return state
   }
