@@ -5,6 +5,7 @@ import {saltAndHash} from '../../server/utils/hashPasswordFunc'
 const UPDATE_USER = "UPDATE_USER";
 const REGISTER_USER = "REGISTER_USER";
 const LOG_OUT = "LOG_OUT"
+const DELETE_USER = "DELETE_USER"
 
 export const updateUser = (user) => {
     return {
@@ -26,6 +27,12 @@ export const logOutUser = () => {
         type: LOG_OUT,
     }
 };
+
+const _deleteUser = () => {
+  return {
+    type: DELETE_USER
+  }
+}
 
 export const editProfile = (userId, userProfile) => {
   return async (dispatch) => {
@@ -64,6 +71,18 @@ export const registerUser = (firstName, lastName, email, password) => {
     }
 }
 
+  export const deleteUser = (userId) =>{
+    return async (dispatch) =>{
+        try {
+            await axios.delete(`/api/users/${userId}`)
+            dispatch(_deleteUser(userId))
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+}
+
 export const userReducer = (state = {}, action) => {
   switch (action.type) {
       case UPDATE_USER:
@@ -71,6 +90,8 @@ export const userReducer = (state = {}, action) => {
       case REGISTER_USER:
           return action.user
       case LOG_OUT:
+          return {}
+      case DELETE_USER:
           return {}
       default:
           return state
