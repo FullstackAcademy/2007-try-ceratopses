@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { writeAReview } from '../../store/reviews'
+import { writeAReview } from '../../store/singleProduct'
 import Axios from 'axios';
 
 class Reviews extends React.Component {
@@ -9,7 +9,7 @@ class Reviews extends React.Component {
         this.state = {
           purchasedProduct: false,
           userId: null,
-          productId: null
+          productId: Number(window.location.hash.split("/")[(window.location.hash.split("/").length)-1])
         };
         this.checkIfPurchased = this.checkIfPurchased.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
@@ -20,24 +20,22 @@ class Reviews extends React.Component {
     }
 
     async checkIfPurchased() {
-      // const { reviews } = this.props
-      const { user, product } = this.props
-      const { reviews } = this.props.product
+      const { user } = this.props
+      const { productId } = this.state
       if (user.email) { // user logged in
+        this.setState({
+          userId: user.id
+        })
         let orders = (await Axios.get('/api/orders')).data
-        console.log(orders)
-
         for (let i=0; i<orders.length; i++) {
           let currOrder = orders[i]
           if (currOrder.user.id === user.id) {
             let items = currOrder.orderItems
             for (let j=0; j<items.length; j++) {
               let currItem = items[j]
-              if (currItem.productId === product.id) {
+              if (currItem.productId === productId) {
                 this.setState({
-                  purchasedProduct: true,
-                  userId: user.id,
-                  productId: product.id
+                  purchasedProduct: true
                 })
               }
             }
@@ -55,15 +53,14 @@ class Reviews extends React.Component {
     }
 
     render() {
-      //const { reviews } = this.props
-      const { product, user } = this.props
       const {reviews} = this.props.product
-      // user.orders.forEach(order => order.)
-      if (this.state.purchasedProduct && reviews && reviews.length && reviews.length > 0) {
+
+      if (this.state.purchasedProduct && reviews && reviews.length && reviews.length > 0) { // user purchased this product & reviews on product exist
         return (
           <div id='productReviews'>
             <h3>Reviews for this product</h3>
-            <form>
+              <p></p>
+              <form>
                Title: <textarea id = "reviewTitle" name = "reviewTitle" rows = "1" cols = "50"></textarea>
                <p></p>
                Rating: <select id = "productRating">
@@ -81,6 +78,8 @@ class Reviews extends React.Component {
               <button type="submit" onClick={this.onSubmit}> Add Your Review </button>
             </form>
             <p></p>
+            <h3>Reviews for this product</h3>
+            <p></p>
             {reviews.map(review => {
               return (
                 <div key={review.id}>
@@ -97,10 +96,40 @@ class Reviews extends React.Component {
         )
       }
 
-      else if (reviews && reviews.length && reviews.length > 0) {
+      else if (this.state.purchasedProduct && (!reviews || !reviews.length || reviews.length === 0)) { // user purchased this product but no reviews on product exist
         return (
           <div id='productReviews'>
             <h3>Reviews for this product</h3>
+              <p></p>
+              <form>
+               Title: <textarea id = "reviewTitle" name = "reviewTitle" rows = "1" cols = "50"></textarea>
+               <p></p>
+               Rating: <select id = "productRating">
+                 <option value="1">1</option>
+                 <option value="2">2</option>
+                 <option value="3">3</option>
+                 <option value="4">4</option>
+                 <option value="5">5</option>
+               </select>
+               <p></p>
+              Review: <textarea id = "reviewContent" name = "reviewContent" rows = "3" cols = "50">
+                Your review goes here here
+              </textarea>
+              <p></p>
+              <button type="submit" onClick={this.onSubmit}> Add Your Review </button>
+            </form>
+            <p>
+              <li>There are no reviews for this product</li>
+            </p>
+          </div>
+        )
+      }
+
+      else if (reviews && reviews.length && reviews.length > 0) { // not logged in but reviews for product exist
+        return (
+          <div id='productReviews'>
+            <h3>Reviews for this product</h3>
+            <p></p>
             {reviews.map(review => {
               return (
                 <div key={review.id}>
@@ -113,13 +142,11 @@ class Reviews extends React.Component {
                 </div>
               )
             })}
-            {/* <ul>
-              <li>Review 1: {reviews[0].reviewTitle}</li>
-            </ul> */}
           </div>
         )
       }
-      else {
+
+      else { // not logged in and no review for product exist
         return (
           <div id='productReviews'>
             <h3>Reviews for this product</h3>
@@ -129,7 +156,7 @@ class Reviews extends React.Component {
           </div>
         )
       }
-  };
+  }
 }
 
 const mapState = state => (
