@@ -111,16 +111,10 @@ class Navbar extends React.Component {
                     </NavLinkDown>
                   </NavItem>
                   <NavItem>
-                    <NavLinks to="/products" id="products">
-                      Products
-                    </NavLinks>
+                    <NavBtn>
+                      <Dropdown />
+                    </NavBtn>
                   </NavItem>
-                  {/*  The categories should be a dropdown menu, not a separate page
-                  <NavItem>
-                    <NavLinks to="/categories" id="categories">
-                      Categories
-                    </NavLinks>
-                  </NavItem> */}
                   <NavItem>
                     <NavLinks
                       to="/profile"
@@ -208,16 +202,10 @@ class Navbar extends React.Component {
                     </NavLinkDown>
                   </NavItem>
                   <NavItem>
-                    <NavLinks to="/products" id="products">
-                      Products
-                    </NavLinks>
+                    <NavBtn>
+                      <Dropdown />
+                    </NavBtn>
                   </NavItem>
-                  {/*  The categories should be a dropdown menu, not a separate page
-                  <NavItem>
-                    <NavLinks to="/categories" id="categories">
-                      Categories
-                    </NavLinks>
-                  </NavItem> */}
                   <NavItem>
                     <NavLinks
                       to="/profile"

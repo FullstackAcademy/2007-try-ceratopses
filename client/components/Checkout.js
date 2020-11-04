@@ -13,7 +13,7 @@ class Checkout extends React.Component {
     }
 
     async handleClick() {
-
+        console.log(this.props)
         const stripe = await stripePromise;
         const response = await axios.post('/api/checkout/create-checkout-session', { userId: this.props.user.id });
         console.log(response)

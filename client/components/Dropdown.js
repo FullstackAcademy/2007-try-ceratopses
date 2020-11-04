@@ -28,7 +28,6 @@ class CategoriesDropdown extends React.Component {
         show: "show",
       });
     }
-    console.log('hi')
   }
 
   hideDropdown() {
@@ -39,13 +38,15 @@ class CategoriesDropdown extends React.Component {
 
   render() {
     const categories = this.props.categories;
-    console.log(categories)
     return (
       <div className="dropdown">
         <button onClick={() => this.showDropdown()} className="dropbtn">
-          Dropdown
+          Products
         </button>
         <div id="myDropdown" className={`dropdown-content ${this.state.show}`}> 
+          <div onClick={() => this.hideDropdown()}>
+            <Link to={`/products/`}>All Products</Link>
+          </div>        
           {categories.map((category) => {
             return (
               <div key={category} onClick={() => this.hideDropdown()}>
