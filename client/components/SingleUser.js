@@ -59,19 +59,20 @@ class SingleUser extends React.Component {
       return (
         <div id="singleUser" className="flexContainer">
         <EditUser {...this.state} deleteUser={this.deleteUser} updateProfile ={this.updateProfile} change={this.changeState}/>
-      <div id="orderHistory">
+      <div id="orderHistory" className="scrollable">
         <h2>Order History</h2>
         {!orders ? "No orders" : orders.map(order=>{
           const {address} = order
+          const date = new Date(order.orderedAt).toDateString()
           return(
-            <div key={order.id} className="orderDetails">
+            <div key={order.id} className="card">
+            <strong>Ordered at: {date}</strong>
             <p>Status: {order.status}</p>
-            <p>Ordered at: {order.orderedAt}</p>
             <p>Sales tax: ${order.salesTax}</p>
             <p>Shipping: ${order.shipping}</p>
             <p>Grand Total: ${order.grandTotal}</p>
             <p>Phone number: {address.phone}</p>
-            <strong>Ship to</strong>
+            <h5>Ship to</h5>
             <p>Building: {address.buildingNumber}</p>
             <p>Street: {address.street}</p>
             <p>Unit: {address.unitNumber}</p>
@@ -83,13 +84,14 @@ class SingleUser extends React.Component {
           )
         })}
       </div>
-      <div id="reviewHistory">
+      <div id="reviewHistory" className="scrollable">
         <h2>Review History</h2>
         {!reviews ? "No reviews" : reviews.map(review=>{
+          const date = new Date(review.createdAt).toDateString()
           return(
-            <div key={review.id} className="reviewDetails">
+            <div key={review.id} className="card">
             <h5>Product: {review.product.title}</h5>
-            <p>Reviewed at: {review.createdAt}</p>
+            <p>Reviewed at: {date}</p>
             <p>Rating: {review.rating}</p>
             <p>Title: {review.reviewTitle}</p>
             <p>Text: {review.fullReview}</p>

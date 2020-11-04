@@ -20,7 +20,7 @@ class UserManagement extends React.Component {
     if (users.length !== 0) {
       return (
         <div id="usersPanel" className="flexContainer">
-        <div id="usersList">
+        <div id="usersList" className="scrollable">
           <h2>Registered Users</h2>
           <Link to='/admin/users/add'><button>Add User</button></Link>
           {users.map((user) => {

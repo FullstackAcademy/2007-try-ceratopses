@@ -3,6 +3,10 @@
   box-sizing: border-box;
 }
 
+body{
+  margin:0;
+}
+
 .dropbtn {
   background-color: #3498db;
   color: white;
@@ -87,10 +91,6 @@
 
 
 /*Arranging the list of users, a users's details, order history, and review history into a single panel of scrollable lists*/
-.userRow{
-  width:fit-content;
-  background-color: bisque;
-}
 
 .flexContainer{
   display: flex;
@@ -114,19 +114,16 @@ flex-direction: column;
 }
 
 #usersList{
-  overflow: hidden;
-   overflow-y: auto;
    max-width: fit-content;
    padding-right: .5rem;
 }
 
 #singleUser{
-  flex:2
+  flex:2;
+  height: 70vh
 }
 
 #singleUser>div{
-  overflow: hidden;
-  overflow-y: auto;
   flex:1
 }
 
@@ -135,7 +132,21 @@ flex-direction: column;
   flex-direction: column;
 }
 
-.reviewDetails{
-  width:fit-content;
-  background-color: bisque;
+.scrollable{
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.card{
+  display: block;
+  background-color: aliceblue;
+  font-size: large;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 0 .5rem;
+  margin: 1rem .5rem;
+}
+
+.card:hover{
+  background-color: lightgray;
+  box-shadow: 2px 2px 2px black;
 }
