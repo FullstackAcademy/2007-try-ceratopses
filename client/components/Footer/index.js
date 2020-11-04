@@ -40,11 +40,11 @@ const Footer = () => {
               <FooterLink to="/">Company Info</FooterLink>
               <FooterLink to="/">Testimonials</FooterLink>
             </FooterLinkItems>
-            <FooterLinkItems>
+            <FooterLinkItems id="contact-us">
               <FooterLinkTitle>Contact Us</FooterLinkTitle>
-              <FooterLinkP to="/">Address</FooterLinkP>
-              <FooterLinkP to="/">Phone</FooterLinkP>
-              <FooterLinkP to="/">Email</FooterLinkP>
+              <FooterLinkP to="/">100 Florita Ave, New York, NY 10019</FooterLinkP>
+              <FooterLinkP to="/">(646) 905-0991</FooterLinkP>
+              <FooterLinkP to="/">hello@fullstackacademy.com</FooterLinkP>
             </FooterLinkItems>
             <FooterLinkItems>
               <FooterLinkTitle>Follow Us</FooterLinkTitle>

@@ -32,4 +32,16 @@ router.get('/:userId', async(req, res, next) => { // single user profile
   }
 })
 
+router.post('/', async(req,res,next) => { // create a user
+  try {
+    const newUser = await Users.create(req.body)
+    res.status(201).send(newUser)
+  }
+  catch (ex) {
+    res.status(401).send({
+      message: 'Cannot create a user with an already taken username'
+    })
+  }
+})
+
 module.exports = router;

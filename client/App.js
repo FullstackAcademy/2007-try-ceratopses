@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
-
 import Home from './components/Home';
-import SignIn from './components/SignIn';
 import SignUp from './components/SignUp/index';
-import Profile from './components/Profile';
 import Cart from './components/Cart/index';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/index';
 import Footer from './components/Footer';
 import Sidebar from './components/Sidebar';
 import Products from './components/Products';
 import SingleProduct from './components/SingleProduct'
-
-
+import Admin from './components/Admin'
+import SignIn from './components/SignIn/index'
+import Profile from './components/Profile'
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,19 +19,21 @@ function App() {
     setIsOpen(!isOpen);
   };
 
+//   <Navbar toggle={toggle} />
   return (
     <Router>
       <Sidebar isOpen={isOpen} toggle={toggle} />
-      <Navbar toggle={toggle} />
+      <Navbar></Navbar>
       <Switch>
         <Route path="/" component={Home} exact />
-        <Route path="/signin" component={SignIn} exact />
-        <Route path="/signup" component={SignUp} exact />
+        <Route path="/signIn" component={SignIn} exact />
+        <Route path="/signUp" component={SignUp} exact />
         <Route path="/products" component={Products} exact />
         <Route path="/products/:productId" component={SingleProduct} />
         <Route path="/categories/:category" component={Products} />
         <Route path="/profile" component={Profile} exact />
         <Route path="/cart" component={Cart} exact />
+        <Route path='/admin' component = {Admin} />
       </Switch>
       <Footer />
     </Router>
