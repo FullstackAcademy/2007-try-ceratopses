@@ -147,7 +147,7 @@ flex-direction: column;
 #ProductsContainer{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 #ProductsContainer>h2{
