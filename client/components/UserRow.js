@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const UserRow = ({ user }) => {
   return (
     <Link to={`/admin/users/${user.id}`}>
-      <div className="userRow">
+      <div className="card">
         <h4>User {user.id}</h4>
         <p>
           Name: {user.firstName} {user.lastName}

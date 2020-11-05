@@ -23,6 +23,8 @@ import {
   FormButton,
   NavLinkDown,
 } from "./NavbarElements";
+
+
 import CategoriesDropdown from "../Dropdown";
 import { render } from "react-dom";
 
@@ -35,9 +37,10 @@ class Navbar extends React.Component {
     this.onClick = this.onClick.bind(this)
   }
 
-  async onClick (e) {
+  onClick (e) {
     e.preventDefault();
     this.props.logOutUser()
+    window.location.hash='/signIn'
   }
 
   // componentDidMount() {

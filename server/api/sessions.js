@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Sessions, Users, Addresses, Orders, Reviews} = require('../db/index')
+const {Sessions, Users} = require('../db/index')
 
 router.get('/', async(req, res, next) => { // api/sessions
   try {
@@ -33,7 +33,8 @@ router.post('/login', async(req, res, next) => { // api/sessions/login
           email,
           hashedPassword: password
         },
-        include: [ Addresses, Orders, Reviews]
+        include: { all: true, nested: true }, //this includes data from the associated tables but currently goes too deep. ie. it includes product reviews from other users. user > reviews > products > other reviews of that product
+      attributes: { exclude: ["hashedPassword"] }
       }
     )
 
