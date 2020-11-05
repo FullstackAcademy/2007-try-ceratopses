@@ -150,3 +150,7 @@ flex-direction: column;
   background-color: lightgray;
   box-shadow: 2px 2px 2px black;
 }
+
+#singleOrder{
+  margin: 1rem 0;
+}

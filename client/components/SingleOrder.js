@@ -57,13 +57,14 @@ class SingleOrder extends React.Component {
       return <p>Loading</p>
     }
     else return (
-        <div id="singleOrder" className="card">
+      <div id="singleOrder" className="flexContainer">
+        <div id="orderDetails" className="card scrollable">
         <h2>Order Details</h2>
             <strong>Ordered at: {date}</strong>
             <div>
             <label htmlFor="status">Status: </label>
             <select name="status"  onChange={(ev) => this.changeState(ev)}>
-              {statuses.map(statusOption => <option name={statusOption} selected ={ status===statusOption ? "selected" : ""}>{statusOption}</option>)}
+              {statuses.map(statusOption => <option key={statusOption} name={statusOption} selected ={ status===statusOption ? "selected" : ""}>{statusOption}</option>)}
             </select>
             </div>
             {orderItems.map(item => {
@@ -80,8 +81,9 @@ class SingleOrder extends React.Component {
             <p>Sales tax: ${order.salesTax}</p>
             <p>Shipping: ${order.shipping}</p>
             <p>Grand Total: ${order.grandTotal.toFixed(2)}</p>
-
-            <h5>Ship to</h5>
+            </div>
+            <div id="address" className="card">
+            <h2>Ship to</h2>
             <p>Building: {address.buildingNumber}</p>
             <p>Street: {address.street}</p>
             <p>Unit: {address.unitNumber}</p>
@@ -89,7 +91,7 @@ class SingleOrder extends React.Component {
             <p>State: {address.state}</p>
             <p>Zip: {address.zip}</p>
             <p>Phone number: {address.phone}</p>
-
+            </div>
             </div>
           )
         }
