@@ -18,6 +18,7 @@ router.get('/', (req,res,next) =>{
 
 
 router.use('/users', require('./adminUsers')) // api/admin/users route
+router.use('/orders', require('./adminOrders'))
 
 
 router.use((req, res, next) => { //api

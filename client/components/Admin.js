@@ -1,6 +1,7 @@
 import React from "react";
-import {NavLink, Route, Redirect} from 'react-router-dom'
+import {NavLink, Route, Redirect, Switch} from 'react-router-dom'
 import UserManagement from './UserManagement'
+import OrderManagement from './OrderManagement'
 import axios from 'axios'
 
 class Admin extends React.Component{
@@ -28,10 +29,13 @@ return (
   <div>
     <nav id="adminNavBar">
     <NavLink to='/admin/users'>Users</NavLink>
-    <NavLink to='#'>Orders</NavLink>
+    <NavLink to='/admin/orders'>Orders</NavLink>
     <NavLink to='#'>Products</NavLink>
     </nav>
+    <Switch>
     <Route path='/admin/users' component = {UserManagement} />
+    <Route path='/admin/orders' component = {OrderManagement} />
+    </Switch>
   </div>
 )
   } else return <Redirect to ="/" />
