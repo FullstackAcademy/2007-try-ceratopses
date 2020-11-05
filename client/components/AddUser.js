@@ -16,7 +16,6 @@ changeState(ev){
 
 submit(ev){
   ev.preventDefault()
-  console.log(this.state)
   this.props.addUser(this.state)
 }
 

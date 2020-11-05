@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getProduct } from '../store/singleProduct'
+import Reviews from './Reviews/index'
 
 class SingleProduct extends React.Component {
     constructor() {
@@ -30,6 +31,7 @@ class SingleProduct extends React.Component {
                         <li>Description: {product.description}</li>
                         <li>Inventory: {product.inventory}</li>
                     </ul>
+                    <Reviews />
                 </div>
             )
         }
