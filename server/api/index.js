@@ -7,6 +7,7 @@ router.use('/users', require('./users')) // api/users route
 router.use('/sessions', require('./sessions')) // api/sessions
 router.use('/cart', require('./cart')) // api/cart
 router.use('/checkout', require('./checkout')) // api/checkout
+router.use('/reviews', require('./reviews')) // api/cart
 
 router.use((req, res, next) => { //api
   const err = new Error('API route not found!')

@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Users, Addresses, Orders} = require('../db/index')
+const {Users, Addresses, Orders, Reviews} = require('../db/index')
 
 router.get('/', async(req, res, next) => { // api/users
   try {
@@ -16,14 +16,7 @@ router.get('/:userId', async(req, res, next) => { // single user profile
       where: {
         id: req.params.userId
       },
-      include: [
-        {
-          model: Addresses
-        },
-        {
-          model: Orders
-        }
-      ]
+      include: [ Addresses, Orders, Reviews ]
     });
     res.send(userProfile)
   }
@@ -42,6 +35,32 @@ router.post('/', async(req,res,next) => { // create a user
       message: 'Cannot create a user with an already taken username'
     })
   }
+})
+
+router.put('/:userId', async(req,res,next) => {
+  const {firstName, lastName, email, admin} = req.body
+  try {
+    await Users.update({firstName, lastName, email, admin},{
+      where: {
+        id: req.params.userId
+          }
+        }
+    )
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+router.delete('/:userId', async(req,res,next) => {
+  try {
+    await Users.destroy({where: {id: req.params.userId}})
+    res.sendStatus(200)
+  } catch (error) {
+    console.log(error)
+    res.sendStatus(500)
+  }
+
 })
 
 module.exports = router;

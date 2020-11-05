@@ -34,9 +34,10 @@ class Navbar extends React.Component {
     this.onClick = this.onClick.bind(this)
   }
 
-  async onClick (e) {
+  onClick (e) {
     e.preventDefault();
     this.props.logOutUser()
+    window.location.hash='/signIn'
   }
 
   // componentDidMount() {

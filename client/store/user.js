@@ -5,6 +5,7 @@ import {saltAndHash} from '../../server/utils/hashPasswordFunc'
 const UPDATE_USER = "UPDATE_USER";
 const REGISTER_USER = "REGISTER_USER";
 const LOG_OUT = "LOG_OUT"
+const DELETE_USER = "DELETE_USER"
 
 export const updateUser = (user) => {
     return {
@@ -26,6 +27,23 @@ export const logOutUser = () => {
         type: LOG_OUT,
     }
 };
+
+const _deleteUser = () => {
+  return {
+    type: DELETE_USER
+  }
+}
+
+export const editProfile = (userId, userProfile) => {
+  return async (dispatch) => {
+    try {
+      await axios.put(`/api/users/${userId}`, userProfile)
+      dispatch(updateUser(userProfile))
+    } catch (error) {
+     console.log(error)
+    }
+}
+}
 
 export const getUser = (email, password) => {
     return async(dispatch) => {
@@ -53,14 +71,28 @@ export const registerUser = (firstName, lastName, email, password) => {
     }
 }
 
-export const userReducer = (state = [], action) => {
+  export const deleteUser = (userId) =>{
+    return async (dispatch) =>{
+        try {
+            await axios.delete(`/api/users/${userId}`)
+            dispatch(_deleteUser(userId))
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+}
+
+export const userReducer = (state = {}, action) => {
   switch (action.type) {
       case UPDATE_USER:
-          return action.user
+          return Object.assign({},state,action.user) //dynamically overwrites any edited fields but leaves the rest unchanged
       case REGISTER_USER:
           return action.user
       case LOG_OUT:
-          return []
+          return {}
+      case DELETE_USER:
+          return {}
       default:
           return state
   }

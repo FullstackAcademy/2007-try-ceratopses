@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getProduct } from '../store/singleProduct'
+import Reviews from './Reviews/index'
 
 class SingleProduct extends React.Component {
     constructor() {
@@ -36,6 +37,7 @@ class SingleProduct extends React.Component {
                         {/* //need to add functionality to below */}
                         <button>Add to Cart</button> 
                     </div>
+                    <Reviews />
                 </div>
             )
         }
