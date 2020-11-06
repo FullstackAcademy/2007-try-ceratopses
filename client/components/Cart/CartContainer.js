@@ -77,6 +77,11 @@ const CartContainer = (props) => {
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
+                          {/* {[...Array(item.inventory).keys()].map((el) => (
+                            <option key={el + 1} value={el + 1}>
+                              {el + 1}
+                            </option>
+                          ))} */}
                         </select>
                         <div className="item-price">
                           <h4>${item.price}</h4>

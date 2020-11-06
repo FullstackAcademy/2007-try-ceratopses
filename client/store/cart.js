@@ -4,16 +4,11 @@ import {
   CLEAR_CART,
   // CART_SUBTRACT_ITEM,
 } from '../store/cartActions.js';
-// import Cookie from 'js-cookie';
 
 // initial state
 const initialState = {
   cartItems: [],
 };
-
-// const cartItems = Cookie.getJSON('cartItems') || [];
-
-// const initialState = {};
 
 //Cart Reducer
 const cartReducer = (state = initialState, action) => {

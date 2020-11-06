@@ -1,7 +1,5 @@
 import axios from 'axios';
-import Cookie from 'js-cookie';
 
-// export const FETCH_ORDERS = 'FETCH_ORDERS';
 export const CART_ADD_ITEM = 'CART_ADD_ITEM';
 export const CART_REMOVE_ITEM = 'CART_REMOVE_ITEM';
 export const CLEAR_CART = 'CLEAR_CART';
@@ -11,7 +9,7 @@ export const CLEAR_CART = 'CLEAR_CART';
 //Action Creators & Thunks
 
 //add to cart
-const addToCart = (productId, quantity) => async (dispatch, getState) => {
+const addToCart = (productId, quantity) => async (dispatch) => {
   try {
     const { data } = await axios.get(`/api/products/${productId}`);
     console.log(data);
@@ -26,45 +24,15 @@ const addToCart = (productId, quantity) => async (dispatch, getState) => {
         quantity,
       },
     });
-    const {
-      cart: { cartItems },
-    } = getState();
-    Cookie.set('cartItems', JSON.stringify(cartItems));
   } catch (error) {
     console.log(error);
   }
 };
 
 //remove from cart
-const removeFromCart = (productId) => (dispatch, getState) => {
+const removeFromCart = (productId) => (dispatch) => {
   dispatch({ type: CART_REMOVE_ITEM, payload: productId });
-  const {
-    cart: { cartItems },
-  } = getState();
-
-  Cookie.set('cartItems', JSON.stringify(cartItems));
 };
-
-// fetchCart
-// const fetchOrders = (productId, quantity) => async (dispatch, getState) => {
-//   try {
-//     const { data } = await axios.get(`/api/orderItems/${productId}`);
-//     console.log(data);
-//     dispatch({
-//       type: FETCH_ORDERS,
-//       payload: {
-//         product: data._id,
-//         quantity,
-//       },
-//     });
-//     const {
-//       cart: { cartItems },
-//     } = getState();
-//     Cookie.set('cartItems', JSON.stringify(cartItems));
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
 
 //update cart
 // const updateCart = (productId, quantity) => async (dispatch, getState) => {
@@ -89,4 +57,4 @@ const removeFromCart = (productId) => (dispatch, getState) => {
 // };
 
 export { addToCart, removeFromCart };
-//export { addToCart, updateCart, removeFromCart, fetchOrders };
+//export { addToCart, updateCart, removeFromCart};
