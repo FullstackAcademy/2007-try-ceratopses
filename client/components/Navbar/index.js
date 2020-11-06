@@ -23,8 +23,7 @@ import {
   FormButton,
   NavLinkDown,
 } from './NavbarElements';
-import CategoriesDropdown from '../Dropdown';
-import { render } from 'react-dom';
+import Dropdown from '../Dropdown';
 
 class Navbar extends React.Component {
   constructor() {
@@ -35,9 +34,10 @@ class Navbar extends React.Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  async onClick(e) {
+  onClick(e) {
     e.preventDefault();
     this.props.logOutUser();
+    window.location.hash = '/signIn';
   }
 
   // componentDidMount() {
@@ -97,16 +97,10 @@ class Navbar extends React.Component {
                     </NavLinkDown>
                   </NavItem>
                   <NavItem>
-                    <NavLinks to="/products" id="products">
-                      Products
-                    </NavLinks>
+                    <NavBtn>
+                      <Dropdown />
+                    </NavBtn>
                   </NavItem>
-                  {/*  The categories should be a dropdown menu, not a separate page
-                  <NavItem>
-                    <NavLinks to="/categories" id="categories">
-                      Categories
-                    </NavLinks>
-                  </NavItem> */}
                   <NavItem>
                     <NavLinks to="/profile" id="profile">
                       <FaRegUser />
@@ -170,16 +164,10 @@ class Navbar extends React.Component {
                     </NavLinkDown>
                   </NavItem>
                   <NavItem>
-                    <NavLinks to="/products" id="products">
-                      Products
-                    </NavLinks>
+                    <NavBtn>
+                      <Dropdown />
+                    </NavBtn>
                   </NavItem>
-                  {/*  The categories should be a dropdown menu, not a separate page
-                  <NavItem>
-                    <NavLinks to="/categories" id="categories">
-                      Categories
-                    </NavLinks>
-                  </NavItem> */}
                   <NavItem>
                     <NavLinks to="/profile" id="profile">
                       <FaRegUser />

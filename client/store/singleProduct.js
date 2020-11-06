@@ -21,6 +21,20 @@ export const getProduct = (productId) => {
   };
 };
 
+export const writeAReview = (reviewObj) => {
+  return async(dispatch) => {
+    try {
+      const newReview = (await axios.post('/api/reviews',reviewObj)).data
+      let productId = reviewObj.productId
+      const product = (await axios.get(`/api/products/${productId}`)).data
+      dispatch(setProduct(product));
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 export const singleProductReducer = (state = {}, action) => {
   switch (action.type) {
     case SET_PRODUCT:

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {  Link } from 'react-router-dom';
 import { getProducts } from "../../store/products";
-import NavBar, { Navbar } from '../Navbar/index'
+import NavBar, { Navbar } from '../Navbar/index';
 
 class Products extends React.Component {
   constructor() {
@@ -17,12 +17,24 @@ class Products extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) { 
+    if (this.props.match.path === '/products' && (prevProps.match.path !== this.props.match.path)) {
+      this.props.getProducts('');
+    } else if (prevProps.match.params.category !== this.props.match.params.category) {
+      this.props.getProducts(this.props.match.params.category)
+    }
+  }
+
     render() {
-      <NavBar></NavBar>
         const { products } = this.props
+        const { category } = this.props.match.params
         if (products) {
             return (
-                <div id='categoryProducts'>
+                <div id="ProductsContainer">
+                    <h2 class="productsheader">
+                      {category ? category[0].toUpperCase() + category.slice(1) + ' Products' : 'All Products'}
+                    </h2>
+                    <div id="Products">
                     { products.map(product => {
                        return (
                         <div key={product.id} id="singleProduct">
@@ -38,6 +50,7 @@ class Products extends React.Component {
                             )
                      })
                     }
+                    </div>
                 </div>
             )
         }

@@ -1,6 +1,7 @@
 import React from "react";
 import { HashRouter as Router, Link, Route } from "react-router-dom";
 import { connect } from "react-redux";
+import { getCategories } from "../store/categories";
 
 class CategoriesDropdown extends React.Component {
   constructor() {
@@ -12,7 +13,12 @@ class CategoriesDropdown extends React.Component {
     this.hideDropdown = this.hideDropdown.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getCategories();
+  }
+
   showDropdown() {
+    
     if (this.state.show === "show") {
       this.setState({
         show: "",
@@ -30,26 +36,21 @@ class CategoriesDropdown extends React.Component {
     });
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.categories !== prevProps.categories) {
-      this.setState({
-        show: "",
-      });
-    }
-  }
-
   render() {
     const categories = this.props.categories;
     return (
       <div className="dropdown">
         <button onClick={() => this.showDropdown()} className="dropbtn">
-          Dropdown
+          Products
         </button>
-        <div id="myDropdown" className={`dropdown-content ${this.state.show}`}>
+        <div id="myDropdown" className={`dropdown-content ${this.state.show}`}> 
+          <div onClick={() => this.hideDropdown()}>
+            <Link to={`/products/`}>All Products</Link>
+          </div>        
           {categories.map((category) => {
             return (
               <div key={category} onClick={() => this.hideDropdown()}>
-                <Link to={`/categories/${category}`}>{category}</Link>
+                <Link to={`/categories/${category}`}>{category[0].toUpperCase() + category.slice(1)}</Link>
               </div>
             );
           })}
@@ -61,4 +62,10 @@ class CategoriesDropdown extends React.Component {
 
 const mapState = (state) => ({ categories: state.categories });
 
-export default connect(mapState)(CategoriesDropdown);
+const mapDispatch = (dispatch) => {
+  return {
+    getCategories: () => dispatch(getCategories()),
+  };
+};
+
+export default connect(mapState, mapDispatch)(CategoriesDropdown);

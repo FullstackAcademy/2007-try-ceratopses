@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getProduct } from '../store/singleProduct'
+import Reviews from './Reviews/index'
 
 class SingleProduct extends React.Component {
     constructor() {
@@ -20,16 +21,23 @@ class SingleProduct extends React.Component {
             }
             return (
                 <div id='individualProducts'>
-                    <img src={product.photoUrl} className="singleProductImg"></img>
-                    <ul>
-                        <li>Name: {product.title}</li>
-                        <li>Price: ${product.price}</li>
-                        <li>Categories:
-                             {categories}
-                        </li>
-                        <li>Description: {product.description}</li>
-                        <li>Inventory: {product.inventory}</li>
-                    </ul>
+                    <h2>{product.title}</h2>
+                    <div class='picture'>
+                        <img src={product.photoUrl} className="singleProductImg" ></img>
+                    </div>
+                    <div class='details'>
+                        <ul>
+                            <li>Price: ${product.price}</li>
+                            <li>Categories:
+                                {categories}
+                            </li>
+                            <li>Description: {product.description}</li>
+                            <li>Inventory: {product.inventory}</li>
+                        </ul>
+                        {/* //need to add functionality to below */}
+                        <button>Add to Cart</button> 
+                    </div>
+                    <Reviews />
                 </div>
             )
         }

@@ -209,11 +209,16 @@ Cart Item
   box-sizing: border-box;
 }
 
+body{
+  margin:0;
+}
+
 .dropbtn {
-  background-color: #3498db;
+  background-color: black;
   color: white;
   padding: 16px;
   font-size: 16px;
+  font-family: 'Times New Roman', Times, serif;
   border: none;
   cursor: pointer;
 }
@@ -221,7 +226,8 @@ Cart Item
 /* Dropdown button on hover & focus */
 .dropbtn:hover,
 .dropbtn:focus {
-  background-color: #2980b9;
+  background-color:black;
+  color: #01bf71;
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -267,8 +273,8 @@ Cart Item
 
 .singleProductImg {
   object-fit: cover;
-  width: 400px;
-  height: 400px;
+  width: 250px;
+  height: 250px;
 }
 
 
@@ -293,10 +299,6 @@ Cart Item
 
 
 /*Arranging the list of users, a users's details, order history, and review history into a single panel of scrollable lists*/
-.userRow{
-  width:fit-content;
-  background-color: bisque;
-}
 
 .flexContainer{
   display: flex;
@@ -320,19 +322,16 @@ flex-direction: column;
 }
 
 #usersList{
-  overflow: hidden;
-   overflow-y: auto;
    max-width: fit-content;
    padding-right: .5rem;
 }
 
 #singleUser{
-  flex:2
+  flex:2;
+  height: 70vh
 }
 
 #singleUser>div{
-  overflow: hidden;
-  overflow-y: auto;
   flex:1
 }
 
@@ -341,7 +340,65 @@ flex-direction: column;
   flex-direction: column;
 }
 
-.reviewDetails{
-  width:fit-content;
-  background-color: bisque;
+.scrollable{
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.card{
+  display: block;
+  background-color: aliceblue;
+  font-size: large;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 0 .5rem;
+  margin: 1rem .5rem;
+}
+
+.card:hover{
+  background-color: lightgray;
+  box-shadow: 2px 2px 2px black;
+}
+
+
+/* Styling Products View */
+#ProductsContainer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+#ProductsContainer>h2{
+  width: 100%
+}
+
+#Products{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#singleProduct{
+  width: 20%
+}
+
+/* Styling Single Products View */
+
+#individualProducts{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+#individualProducts>h2{
+  width: 100%;
+  text-align: center;
+}
+
+#individualProducts>.picture{
+  margin-left: 20%;
+  width: 30%;
+}
+
+#individualProducts>.details{
+  margin-right: 20%;
+  width: 30%
 }
