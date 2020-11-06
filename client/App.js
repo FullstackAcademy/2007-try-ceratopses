@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
 import SignUp from './components/SignUp/index';
-import Cart from './components/Cart/index';
+import CartContainer from './components/Cart/CartContainer';
 import Navbar from './components/Navbar/index';
 import Footer from './components/Footer';
 import Sidebar from './components/Sidebar';
@@ -31,7 +31,7 @@ function App() {
         <Route path="/products" component={Products} exact />
         <Route path="/products/:productId" component={SingleProduct} />
         <Route path="/profile" component={Profile} exact />
-        <Route path="/cart" component={Cart} exact />
+        <Route path="/cart/:id?" component={CartContainer} exact />
         <Route path="/admin" component={Admin} />
       </Switch>
       <Footer />

@@ -9,28 +9,28 @@ const cartItems = [
     title: 'Fall Flower',
     price: 5.99,
     photoUrl: image2Url,
-    amount: 1,
+    quantity: 1,
   },
   {
     id: 2,
     title: 'Spring Flower ',
     price: 4.99,
     photoUrl: image3Url,
-    amount: 1,
+    quantity: 1,
   },
   {
     id: 3,
     title: 'Seasonal Plant',
     price: 6.99,
     photoUrl: image4Url,
-    amount: 1,
+    quantity: 1,
   },
   {
     id: 4,
     title: 'Sensational Flower',
     price: 3.99,
     photoUrl: image5Url,
-    amount: 1,
+    quantity: 1,
   },
 ];
 

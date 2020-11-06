@@ -1,36 +1,44 @@
 import React, { useEffect } from 'react';
-import CartItem from './CartItem';
+// import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import CartNav from './CartNav';
-import { connect, useSelector, useDispatch } from 'react-redux';
-import { CLEAR_CART, GET_TOTALS, addToCart } from '../../store/cartActions.js';
+import { useSelector, useDispatch } from 'react-redux';
+import { addToCart, removeFromCart } from '../../store/cartActions.js';
 
-const CartContainer = ({ cartItems = [], total, dispatch }) => {
-  // (props) => {
-  // const cart = useSelector((state) => state.cartItems);
-  // const dispatch = useDispatch();
-  // const { cartItems } = cart;
+const CartContainer = (props) => {
+  console.log(props);
 
-  // const productId = props.match.params.id;
-  // const quantity = props.location.search
-  //   ? Number(props.location.search.split('=')[1])
-  //   : 1;
+  const cart = useSelector((state) => state.cartItems);
 
-  // useEffect(() => {
-  //   if (productId) {
-  //     dispatch(addToCart(productId, quantity));
-  //   }
-  // }, []);
+  const { cartItems } = cart;
+
+  const productId = props.match.params.id;
+  const quantity = props.location.search
+    ? Number(props.location.search.split('=')[1])
+    : 1;
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: GET_TOTALS });
-  }, [cartItems, dispatch]);
+    if (productId) {
+      dispatch(addToCart(productId, quantity));
+    }
+  }, []);
+
+  const removeFromCartHandler = (productId) => {
+    dispatch(removeFromCart(productId));
+  };
+
+  const checkoutHandler = () => {
+    props.history.push('/signin?redirect=checkout');
+  };
 
   if (cartItems.length === 0) {
     return (
       <section className="cart">
         <header>
           <h2>Your Shopping Bag</h2>
-          <h4 className="empty-cart">is currently empty</h4>
+          <h4 className="empty-cart">Cart is currently empty</h4>
         </header>
       </section>
     );
@@ -44,15 +52,58 @@ const CartContainer = ({ cartItems = [], total, dispatch }) => {
         <h2>Your Shopping Bag</h2>
       </header>
       <article>
-        {cartItems.map((item) => {
-          return <CartItem key={item.id} {...item} />;
-        })}
+        <div className="cart-list">
+          <ul className="cart-list-container">
+            {cartItems.map((item) => {
+              <li key={item.id}>
+                <div className="cart-item">
+                  <div className="item-image">
+                    <img src={item.photoUrl} alt="product" />
+                  </div>
+                  <div className="item-title">
+                    <div>
+                      <Link to={`/products/${item.product}`}>
+                        <h4>{item.title}</h4>
+                      </Link>
+                    </div>
+                    <div>
+                      Quantity:
+                      <select
+                        value={item.quantity}
+                        onChange={(e) =>
+                          dispatch(addToCart(item.product, e.target.value))
+                        }
+                      >
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                      </select>
+                      <div className="item-price">
+                        <h4>${item.price}</h4>
+                      </div>
+                      {/* remove button */}
+                      <button
+                        type="button"
+                        className="remove-btn"
+                        onClick={() => removeFromCartHandler(item.product)}
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </li>;
+            })}
+          </ul>
+        </div>
       </article>
       <footer>
         <hr />
         <div className="cart-total">
           <h4>
-            total <span>${total}</span>
+            {/* total <span>${total}</span> */}
+            total ( {cartItems.reduce((x, y) => x + y.quantity, 0)}items) : ${' '}
+            {cartItems.reduce((x, y) => x + y.price * y.quantity, 0)}
           </h4>
         </div>
         <button
@@ -61,7 +112,11 @@ const CartContainer = ({ cartItems = [], total, dispatch }) => {
         >
           Clear Cart
         </button>
-        <button className="checkout-btn" disabled={cartItems.length === 0}>
+        <button
+          onClick={checkoutHandler}
+          className="checkout-btn"
+          disabled={cartItems.length === 0}
+        >
           Proceed to Checkout
         </button>
       </footer>
@@ -69,9 +124,17 @@ const CartContainer = ({ cartItems = [], total, dispatch }) => {
   );
 };
 
-const mapStateToProps = (store) => {
-  return { cartItems: store.cart, total: store.total };
-};
-export default connect(mapStateToProps)(CartContainer);
+// const mapDispatchToProps = (dispatch, props) => {
+//   const { id, quantity } = props;
+//   console.log(props);
+//   return {
+//     remove: () => dispatch(removeFromCart(id)),
+//     increase: () => dispatch({ type: CART_ADD_ITEM, payload: { id } }),
+//     decrease: () =>
+//       dispatch({ type: CART_SUBTRACT_ITEM, payload: { id, quantity } }),
+//   };
+//};
 
-// export default CartContainer;
+//export default connect(null, mapDispatchToProps)(CartContainer);
+
+export default CartContainer;

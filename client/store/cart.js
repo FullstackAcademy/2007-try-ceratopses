@@ -1,78 +1,61 @@
 import {
   CART_ADD_ITEM,
-  CART_SUBTRACT_ITEM,
-  REMOVE,
-  GET_TOTALS,
+  CART_REMOVE_ITEM,
   CLEAR_CART,
+  // CART_SUBTRACT_ITEM,
 } from '../store/cartActions.js';
-// import cartItems from '../../server/db/cartSeed';
 
 // initial state
 const initialState = {
-  cart: [],
-  total: 0,
-  amount: 0,
+  cartItems: [],
 };
 
 //Cart Reducer
-export const cartReducer = (state = initialState, action) => {
+const cartReducer = (state = initialState, action) => {
   const item = action.payload;
   console.log({ state, action });
-
-  if (action.type === CLEAR_CART) {
-    return { ...state, cart: [] };
-  }
-
-  if (action.type === CART_SUBTRACT_ITEM) {
-    let tempCart = state.cart.map((el) => {
-      if (el.id === item.id) {
-        el = { ...el, amount: el.amount - 1 };
+  switch (action.type) {
+    case CART_ADD_ITEM:
+      const product = state.cartItems.find((el) => el.product === item.product);
+      if (product) {
+        return {
+          cartItems: state.cartItems.map((el) =>
+            el.product === existedProduct.product ? item : el
+          ),
+        };
       }
-      return el;
-    });
-    return { ...state, cart: tempCart };
+      return { cartItems: [...state.cartItems, item] };
+
+    case CART_REMOVE_ITEM:
+      return { cartItems: state.cartItems.filter((el) => el.product !== item) };
+
+    case CLEAR_CART:
+      return { cartItems: state.cartItems };
+    // return Object.assign({}, (state.cartItems = []));
+
+    // if (action.type === CART_ADD_ITEM) {
+    // let tempCart = state.cartItems.map((el) => {
+    //   if (el.id === item.id) {
+    //     el = { ...el, quantity: el.quantity + 1 };
+    //   }
+    //   return el;
+    // });
+    // return { ...state, cartItems: tempCart };
+    //}
+
+    // if (action.type === CART_SUBTRACT_ITEM) {
+    // let tempCart = state.cart.map((el) => {
+    //   if (el.id === item.id) {
+    //     el = { ...el, quantity: el.quantity - 1 };
+    //   }
+    //   return el;
+    // });
+    // return { ...state, cart: tempCart };
+    //}
+
+    default:
+      state;
   }
-
-  if (action.type === CART_ADD_ITEM) {
-    let tempCart = state.cart.map((el) => {
-      if (el.id === item.id) {
-        el = { ...el, amount: el.amount + 1 };
-      }
-      return el;
-    });
-    return { ...state, cart: tempCart };
-  }
-
-  if (action.type === REMOVE) {
-    console.log(action.payload.id);
-    return {
-      ...state,
-      cart: state.cart.filter((el) => el.id !== item.id),
-    };
-  }
-
-  if (action.type === GET_TOTALS) {
-    let { total, amount } = state.cart.reduce(
-      (cartTotal, cartItem) => {
-        const { price, amount } = cartItem;
-        const itemTotal = price * amount;
-
-        cartTotal.total += itemTotal;
-        cartTotal.amount += amount;
-
-        return cartTotal;
-      },
-      {
-        total: 0,
-        amount: 0,
-      }
-    );
-    total = parseFloat(total.toFixed(2));
-    return { ...state, total, amount };
-  }
-
-  console.log({ state, action });
-  return state;
 };
 
-export default cartReducer;
+export { cartReducer };

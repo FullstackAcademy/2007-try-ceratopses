@@ -83,16 +83,7 @@ class Navbar extends React.Component {
                 </MobileIcon>
                 <NavMenu>
                   <NavItem>
-                    <NavLinks
-                      to="/"
-                      id="home"
-                      // smooth={true}
-                      // duration={500}
-                      // spy={true}
-                      // exact="true"
-                      // offset={-80}
-                      onClick={this.toggleHome}
-                    >
+                    <NavLinks to="/" id="home" onClick={this.toggleHome}>
                       Home
                     </NavLinks>
                   </NavItem>
@@ -100,11 +91,6 @@ class Navbar extends React.Component {
                     <NavLinkDown
                       to="about-us"
                       id="about-us"
-                      // smooth={true}
-                      // duration={500}
-                      // spy={true}
-                      // exact="true"
-                      // offset={-80}
                       onClick={this.toggleFooter}
                     >
                       About Us
@@ -122,22 +108,14 @@ class Navbar extends React.Component {
                     </NavLinks>
                   </NavItem> */}
                   <NavItem>
-                    <NavLinks
-                      to="/profile"
-                      id="profile"
-                      // spy={true} exact="true"
-                    >
+                    <NavLinks to="/profile" id="profile">
                       <FaRegUser />
                       My Account
                     </NavLinks>
                   </NavItem>
                   <NavItem>
-                    <NavLinks
-                      to="/cart"
-                      // spy={true} exact="true"
-                      id="cart"
-                    >
-                      <FiShoppingCart /> Cart
+                    <NavLinks to="/cart" id="cart">
+                      <FiShoppingBag /> Cart
                     </NavLinks>
                   </NavItem>
                 </NavMenu>
@@ -210,7 +188,7 @@ class Navbar extends React.Component {
                   </NavItem>
                   <NavItem>
                     <NavLinks to="/cart" id="cart">
-                      <FiShoppingCart /> Cart
+                      <FiShoppingBag /> Cart
                     </NavLinks>
                   </NavItem>
                 </NavMenu>
