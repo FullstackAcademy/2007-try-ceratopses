@@ -16,8 +16,10 @@ const cartReducer = (state = initialState, action) => {
   console.log({ state, action });
   switch (action.type) {
     case CART_ADD_ITEM:
-      const product = state.cartItems.find((el) => el.product === item.product);
-      if (product) {
+      const existedProduct = state.cartItems.find(
+        (el) => el.product === item.product
+      );
+      if (existedProduct) {
         return {
           cartItems: state.cartItems.map((el) =>
             el.product === existedProduct.product ? item : el
