@@ -8,6 +8,7 @@ import {
 // initial state
 const initialState = {
   cartItems: [],
+  // quantity: 0,
 };
 
 //Cart Reducer
@@ -32,8 +33,9 @@ const cartReducer = (state = initialState, action) => {
       return { cartItems: state.cartItems.filter((el) => el.product !== item) };
 
     case CLEAR_CART:
-      return { cartItems: state.cartItems };
-    // return Object.assign({}, (state.cartItems = []));
+      // return { cartItems: state.cartItems };
+      // return { ...state, cartItems: [] };
+      return Object.assign({}, (state.cartItems = []));
 
     // if (action.type === CART_ADD_ITEM) {
     // let tempCart = state.cartItems.map((el) => {

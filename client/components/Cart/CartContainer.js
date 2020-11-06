@@ -13,9 +13,12 @@ const CartContainer = (props) => {
   const { cartItems } = cart;
 
   const productId = props.match.params.id;
-  const quantity = props.location.search
-    ? Number(props.location.search.split('=')[1])
-    : 1;
+  console.log(productId);
+  // const quantity = props.location.search
+  //   ? Number(props.location.search.split('=')[1])
+  //   : 1;
+  const quantity = cartItems.reduce((x, y) => x + y.quantity, 0);
+  console.log(quantity);
 
   const dispatch = useDispatch();
 
@@ -55,49 +58,51 @@ const CartContainer = (props) => {
           <div className="cart-list">
             <ul className="cart-list-container">
               {cartItems.map((item) => {
-                <li key={item.id}>
-                  <div className="cart-item">
-                    <div className="item-image">
-                      <img src={item.photoUrl} alt="product" />
-                    </div>
-                    <div className="item-title">
-                      <div>
-                        <Link to={`/products/${item.product}`}>
-                          <h4>{item.title}</h4>
-                        </Link>
+                return (
+                  <li key={item.id}>
+                    <div className="cart-item">
+                      <div className="item-image">
+                        <img src={item.photoUrl} alt="product" />
                       </div>
-                      <div>
-                        Quantity:
-                        <select
-                          value={item.quantity}
-                          onChange={(e) =>
-                            dispatch(addToCart(item.product, e.target.value))
-                          }
-                        >
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          {/* {[...Array(item.inventory).keys()].map((el) => (
+                      <div className="item-title">
+                        <div>
+                          <Link to={`/products/${item.product}`}>
+                            <h4>{item.title}</h4>
+                          </Link>
+                        </div>
+                        <div>
+                          Quantity:
+                          <select
+                            value={item.quantity}
+                            onChange={(e) =>
+                              dispatch(addToCart(item.product, e.target.value))
+                            }
+                          >
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            {/* {[...Array(item.inventory).keys()].map((el) => (
                             <option key={el + 1} value={el + 1}>
                               {el + 1}
                             </option>
                           ))} */}
-                        </select>
-                        <div className="item-price">
-                          <h4>${item.price}</h4>
+                          </select>
+                          <div className="item-price">
+                            <h4>${item.price}</h4>
+                          </div>
+                          {/* remove button */}
+                          <button
+                            type="button"
+                            className="remove-btn"
+                            onClick={() => removeFromCartHandler(item.product)}
+                          >
+                            Remove
+                          </button>
                         </div>
-                        {/* remove button */}
-                        <button
-                          type="button"
-                          className="remove-btn"
-                          onClick={() => removeFromCartHandler(item.product)}
-                        >
-                          Remove
-                        </button>
                       </div>
                     </div>
-                  </div>
-                </li>;
+                  </li>
+                );
               })}
             </ul>
           </div>
@@ -107,7 +112,7 @@ const CartContainer = (props) => {
           <div className="cart-total">
             <h4>
               {/* total <span>${total}</span> */}
-              total ( {cartItems.reduce((x, y) => x + y.quantity, 0)}items) : ${' '}
+              total ( {quantity}items) : ${' '}
               {cartItems.reduce((x, y) => x + y.price * y.quantity, 0)}
             </h4>
           </div>

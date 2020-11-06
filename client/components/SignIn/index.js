@@ -71,7 +71,7 @@ class SignIn extends React.Component {
                     name="email"
                     onChange={this.onChange}
                   />
-                  <FormLabel htmlFor="for">Passwprd:</FormLabel>
+                  <FormLabel htmlFor="for">Password:</FormLabel>
                   <FormInput
                     type="password"
                     name="password"

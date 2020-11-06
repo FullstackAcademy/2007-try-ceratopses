@@ -27,7 +27,6 @@ const CartNav = ({ quantity }) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return { quantity: state.quantity };
 };
 export default connect(mapStateToProps)(CartNav);

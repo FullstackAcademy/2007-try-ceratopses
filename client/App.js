@@ -19,7 +19,7 @@ function App() {
     setIsOpen(!isOpen);
   };
 
-  //   <Navbar toggle={toggle} />
+  <Navbar toggle={toggle} />;
   return (
     <Router>
       <Sidebar isOpen={isOpen} toggle={toggle} />
