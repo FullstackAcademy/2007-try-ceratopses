@@ -111,7 +111,6 @@ const CartContainer = (props) => {
           <hr />
           <div className="cart-total">
             <h4>
-              {/* total <span>${total}</span> */}
               total ( {quantity}items) : ${' '}
               {cartItems.reduce((x, y) => x + y.price * y.quantity, 0)}
             </h4>
