@@ -1,66 +1,71 @@
-import React from 'react'
-import { HashRouter as Router, Link, Route } from 'react-router-dom'
-import { connect } from 'react-redux'
-
+import React from "react";
+import { HashRouter as Router, Link, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import { getCategories } from "../store/categories";
 
 class CategoriesDropdown extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            show: ''
-        } 
-        this.showDropdown = this.showDropdown.bind(this)
-        this.hideDropdown = this.hideDropdown.bind(this)
-    }
+  constructor() {
+    super();
+    this.state = {
+      show: ""
+    };
+    this.showDropdown = this.showDropdown.bind(this);
+    this.hideDropdown = this.hideDropdown.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.getCategories();
+  }
+
+  showDropdown() {
     
-    showDropdown () {
-        if(this.state.show === 'show') {
-            this.setState({
-                show: ''
-            })
-        } else {
-            this.setState({
-                show: 'show'
-            })
-        }
+    if (this.state.show === "show") {
+      this.setState({
+        show: "",
+      });
+    } else {
+      this.setState({
+        show: "show",
+      });
     }
+  }
 
-    hideDropdown () {
-        this.setState({
-            show: ''
-        })
-    }
+  hideDropdown() {
+    this.setState({
+      show: "",
+    });
+  }
 
-    componentDidUpdate(prevProps) {
-        if (this.props.categories !== prevProps.categories) {
-          this.setState({
-            show: ''
-          })
-        }
-    }
-
-    render() {
-        const categories = this.props.categories
-        return (
-            <div className="dropdown">
-                <button onClick={ () => this.showDropdown()} className="dropbtn">Dropdown</button>
-                <div id="myDropdown" className={`dropdown-content ${this.state.show}`}>
-                    {
-                        categories.map(category => {
-                            return (
-                                <div key={category} onClick={ () => this.hideDropdown()}>
-                                    <Link to={`/categories/${category}`}>{category}</Link>            
-                                </div>
-                            )
-                        })
-                    }
-                </div>
-            </div>
-        )
-    }
-
+  render() {
+    const categories = this.props.categories;
+    return (
+      <div className="dropdown">
+        <button onClick={() => this.showDropdown()} className="dropbtn">
+          Products
+        </button>
+        <div id="myDropdown" className={`dropdown-content ${this.state.show}`}> 
+          <div onClick={() => this.hideDropdown()}>
+            <Link to={`/products/`}>All Products</Link>
+          </div>        
+          {categories.map((category) => {
+            return (
+              <div key={category} onClick={() => this.hideDropdown()}>
+                <Link to={`/categories/${category}`}>{category[0].toUpperCase() + category.slice(1)}</Link>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
 }
 
-const mapState = state => ( { categories: state.categories } )
+const mapState = (state) => ({ categories: state.categories });
 
-export default connect (mapState) (CategoriesDropdown)
+const mapDispatch = (dispatch) => {
+  return {
+    getCategories: () => dispatch(getCategories()),
+  };
+};
+
+export default connect(mapState, mapDispatch)(CategoriesDropdown);

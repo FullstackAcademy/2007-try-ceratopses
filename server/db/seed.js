@@ -11,7 +11,11 @@ const {
 const faker = require("faker");
 const axios = require("axios");
 
+const { saltAndHash } = require('../utils/hashPasswordFunc')
+
 const seed = async () => {
+  try {
+
   let nonediblePlants = await axios.get(
     "https://trefle.io/api/v1/distributions/NWY/plants?token=hS9_xhLSEjXCR3J02RDdV0a19Sig4wvcnLnwLKbEyJM&filter[edible]=false"
   );
@@ -94,28 +98,28 @@ const seed = async () => {
       firstName: "Test",
       lastName: "Testerson",
       email: "test@test.com",
-      hashedPassword: "12345",
+      hashedPassword: saltAndHash("test"),
       admin: true,
     },
     {
       firstName: "Example",
       lastName: "Exampler",
       email: "test2@test.com",
-      hashedPassword: "12345",
+      hashedPassword: saltAndHash("test"),
       admin: true,
     },
     {
       firstName: "Notan",
       lastName: "Admin",
       email: "test3@test.com",
-      hashedPassword: "12345",
+      hashedPassword: saltAndHash("test"),
       admin: false,
     },
     {
       firstName: "Stillnot",
       lastName: "Anadmin",
       email: "test4@test.com",
-      hashedPassword: "12345",
+      hashedPassword: saltAndHash("test"),
       admin: false,
     },
   ];
@@ -280,6 +284,10 @@ const seed = async () => {
     console.log("seeded everything!");
   } catch (error) {
     console.log("ERROR", error);
+  }
+
+  } catch (error) {
+    console.log(error)
   }
 };
 

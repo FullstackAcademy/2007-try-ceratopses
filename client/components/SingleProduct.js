@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { HashRouter as Router, Link, Route } from 'react-router-dom'
-import { getProduct } from '../store/store' //may change if store is broken out
-
+import { getProduct } from '../store/singleProduct'
+import Reviews from './Reviews/index'
+import { addToCart } from '../store/cartActions'
 
 class SingleProduct extends React.Component {
     constructor() {
@@ -22,25 +22,27 @@ class SingleProduct extends React.Component {
             }
             return (
                 <div id='individualProducts'>
-                    <img src={product.photoUrl} className="singleProductImg"></img>
-                    <ul>
-                        <li>Name: {product.title}</li>
-                        <li>Price: ${product.price}</li>
-                        <li>Categories:
-                             {categories}
-                        </li>
-                        <li>Description: {product.description}</li>
-                        <li>Inventory: {product.inventory}</li>
-                    </ul>
-                </div>
-            )
-        } else {
-            return (
-                <div>
-                    No Product
+                    <h2>{product.title}</h2>
+                    <div class='picture'>
+                        <img src={product.photoUrl} className="singleProductImg" ></img>
+                    </div>
+                    <div class='details'>
+                        <ul>
+                            <li>Price: ${product.price}</li>
+                            <li>Categories:
+                                {categories}
+                            </li>
+                            <li>Description: {product.description}</li>
+                            <li>Inventory: {product.inventory}</li>
+                        </ul>
+                        {/* //need to add functionality to below */}
+                        <button onClick={() => this.props.addToCart(this.props.match.params.productId, 1)}>Add to Cart</button> 
+                    </div>
+                    <Reviews />
                 </div>
             )
         }
+            return <div>Product Unavailable</div>
     };
 }
 
@@ -48,7 +50,8 @@ const mapState = state => ( { product: state.singleProduct } )
 
 const mapDispatch = (dispatch) => {
     return {
-        getProduct: (productId) => dispatch(getProduct(productId))
+        getProduct: (productId) => dispatch(getProduct(productId)),
+        addToCart: (productId, quantity) => dispatch(addToCart(productId, quantity))
     }
 }
 

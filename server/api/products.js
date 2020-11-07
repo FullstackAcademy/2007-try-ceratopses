@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Products } = require ('../db')
+const { Products, Reviews } = require ('../db/index')
 
 router.get('/', async(req, res, next) => { // api/products
   try {
@@ -16,7 +16,8 @@ router.get('/:productId', async(req, res, next) => { // api/products
     const product = await Products.findOne({
       where: {
         id: req.params.productId
-      }
+      },
+      include: { all: true, nested: true },
     });
     res.send(product)
   }
