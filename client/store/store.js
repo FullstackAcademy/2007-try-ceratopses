@@ -7,6 +7,7 @@ import {productsReducer} from './products'
 import {singleProductReducer} from './singleProduct'
 import {usersReducer} from './users'
 import {singleUserReducer} from './singleUser'
+import {cartReducer} from './userCart'
 
 
 const reducer = combineReducers({
@@ -15,7 +16,8 @@ const reducer = combineReducers({
     products: productsReducer,
     singleProduct: singleProductReducer,
     users: usersReducer,
-    singleUser: singleUserReducer
+    singleUser: singleUserReducer,
+    cart: cartReducer
 });
 
 const store = createStore(reducer, applyMiddleware(logger,thunkMiddleware));
