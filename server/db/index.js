@@ -1,11 +1,11 @@
 const db = require('./database');
-const Addresses = require('./models/addresses')
-const OrderItems = require('./models/orderItems')
-const Orders = require('./models/orders')
-const Products = require('./models/products')
-const Reviews = require('./models/reviews')
-const Sessions = require('./models/sessions')
-const Users = require('./models/users')
+const Addresses = require('./models/addresses');
+const OrderItems = require('./models/orderItems');
+const Orders = require('./models/orders');
+const Products = require('./models/products');
+const Reviews = require('./models/reviews');
+const Sessions = require('./models/sessions');
+const Users = require('./models/users');
 
 Users.hasMany(Sessions);
 Sessions.belongsTo(Users);
@@ -17,7 +17,7 @@ Users.hasMany(Reviews);
 Reviews.belongsTo(Users);
 
 Users.hasMany(Addresses);
-Addresses.belongsTo(Users)
+Addresses.belongsTo(Users);
 
 Addresses.hasMany(Orders);
 Orders.belongsTo(Addresses);
@@ -31,7 +31,7 @@ OrderItems.belongsTo(Orders);
 Products.hasMany(OrderItems);
 OrderItems.belongsTo(Products);
 
-module.exports= {
+module.exports = {
   db,
   Addresses,
   OrderItems,
@@ -39,5 +39,5 @@ module.exports= {
   Products,
   Reviews,
   Sessions,
-  Users
-}
+  Users,
+};

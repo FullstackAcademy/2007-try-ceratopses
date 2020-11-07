@@ -5,8 +5,8 @@ import store from './store/store';
 import App from './App';
 
 ReactDom.render(
-    <Provider store={ store }>
-        <App />
-    </Provider>,
-    document.querySelector('#root')
-)
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.querySelector('#root')
+);

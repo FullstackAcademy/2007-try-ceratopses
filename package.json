@@ -23,6 +23,8 @@
     "db-create": "^1.2.0",
     "express": "^4.17.1",
     "faker": "^5.1.0",
+    "js-cookie": "^2.2.1",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^8.3.0",
     "pg-hstore": "^2.3.3",
     "react": "^16.13.1",
