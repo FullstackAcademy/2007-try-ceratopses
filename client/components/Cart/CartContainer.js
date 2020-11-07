@@ -1,9 +1,14 @@
 import React, { useEffect } from 'react';
-// import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CartNav from './CartNav';
 import { useSelector, useDispatch } from 'react-redux';
-import { addToCart, removeFromCart } from '../../store/cartActions.js';
+import {
+  createNewItem,
+  addToCart,
+  updateCart,
+  removeFromCart,
+} from '../../store/cartActions.js';
+import { CLEAR_CART } from '../../store/cart';
 
 const CartContainer = (props) => {
   console.log(props);
@@ -14,7 +19,7 @@ const CartContainer = (props) => {
 
   const productId = props.match.params.id;
   console.log(productId);
-  // const quantity = props.location.search
+  // let quantity = props.location.search
   //   ? Number(props.location.search.split('=')[1])
   //   : 1;
   const quantity = cartItems.reduce((x, y) => x + y.quantity, 0);
@@ -30,6 +35,10 @@ const CartContainer = (props) => {
 
   const removeFromCartHandler = (productId) => {
     dispatch(removeFromCart(productId));
+  };
+
+  const updateCartHandler = (productId, quantity) => {
+    dispatch(updateCart(productId, quantity));
   };
 
   const checkoutHandler = () => {
@@ -78,19 +87,28 @@ const CartContainer = (props) => {
                               dispatch(addToCart(item.product, e.target.value))
                             }
                           >
-                            <option value="1">1</option>
+                            {/* <option value="1">1</option>
                             <option value="2">2</option>
-                            <option value="3">3</option>
-                            {/* {[...Array(item.inventory).keys()].map((el) => (
-                            <option key={el + 1} value={el + 1}>
-                              {el + 1}
-                            </option>
-                          ))} */}
+                            <option value="3">3</option> */}
+                            {[...Array(item.inventory).keys()].map((el) => (
+                              <option key={el + 1} value={el + 1}>
+                                {el + 1}
+                              </option>
+                            ))}
                           </select>
                           <div className="item-price">
                             <h4>${item.price}</h4>
                           </div>
                           {/* remove button */}
+                          <button
+                            type="button"
+                            className="update-btn"
+                            onClick={() =>
+                              updateCartHandler(item.product, item.quantity)
+                            }
+                          >
+                            Remove
+                          </button>
                           <button
                             type="button"
                             className="remove-btn"
@@ -112,7 +130,11 @@ const CartContainer = (props) => {
           <div className="cart-total">
             <h4>
               total ( {quantity}items) : ${' '}
-              {cartItems.reduce((x, y) => x + y.price * y.quantity, 0)}
+              {parseFloat(
+                cartItems
+                  .reduce((x, y) => x + y.price * y.quantity, 0)
+                  .toFixed(2)
+              )}
             </h4>
           </div>
           <button
@@ -133,18 +155,5 @@ const CartContainer = (props) => {
     );
   }
 };
-
-// const mapDispatchToProps = (dispatch, props) => {
-//   const { id, quantity } = props;
-//   console.log(props);
-//   return {
-//     remove: () => dispatch(removeFromCart(id)),
-//     increase: () => dispatch({ type: CART_ADD_ITEM, payload: { id } }),
-//     decrease: () =>
-//       dispatch({ type: CART_SUBTRACT_ITEM, payload: { id, quantity } }),
-//   };
-//};
-
-//export default connect(null, mapDispatchToProps)(CartContainer);
 
 export default CartContainer;
