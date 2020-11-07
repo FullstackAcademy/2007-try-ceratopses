@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getProduct } from '../store/singleProduct'
 import Reviews from './Reviews/index'
+import { addToCart } from '../store/cartActions'
 
 class SingleProduct extends React.Component {
     constructor() {
@@ -35,7 +36,7 @@ class SingleProduct extends React.Component {
                             <li>Inventory: {product.inventory}</li>
                         </ul>
                         {/* //need to add functionality to below */}
-                        <button>Add to Cart</button> 
+                        <button onClick={() => this.props.addToCart(this.props.match.params.productId, 1)}>Add to Cart</button> 
                     </div>
                     <Reviews />
                 </div>
@@ -49,7 +50,8 @@ const mapState = state => ( { product: state.singleProduct } )
 
 const mapDispatch = (dispatch) => {
     return {
-        getProduct: (productId) => dispatch(getProduct(productId))
+        getProduct: (productId) => dispatch(getProduct(productId)),
+        addToCart: (productId, quantity) => dispatch(addToCart(productId, quantity))
     }
 }
 
