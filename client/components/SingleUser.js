@@ -64,7 +64,7 @@ class SingleUser extends React.Component {
         <h2>Order History</h2>
         {!orders ? "No orders" : orders.map(order=>{
           const {address} = order
-          const date = new Date(order.orderedAt).toDateString()
+          const date = new Date(order.orderedAt).toDateString();
           return(
             <div key={order.id} className="card">
             <strong>Ordered at: {date}</strong>

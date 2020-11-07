@@ -18,7 +18,8 @@ router.get('/', (req,res,next) =>{
 
 
 router.use('/users', require('./adminUsers')) // api/admin/users route
-
+router.use('/orders', require('./adminOrders'))
+router.use('/products', require('./adminProducts'))
 
 router.use((req, res, next) => { //api
   const err = new Error('API route not found!')

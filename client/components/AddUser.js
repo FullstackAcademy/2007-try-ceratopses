@@ -22,9 +22,9 @@ submit(ev){
 render(){
   return (
 
-<div id="addUserPanel">
+<div id="addUserPanel" className="flexColumn">
           <h2>Add New User</h2>
-          <form>
+          <form className="flexColumn scrollable">
           <label htmlFor="email">E-Mail:</label>
             <input name="email" onChange={(ev) =>this.changeState(ev)}></input>
             <label htmlFor="password">Password:</label>

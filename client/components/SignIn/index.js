@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { HashRouter as Router, Link, Route } from 'react-router-dom'
 import { getUser } from '../../store/user'
 import {
   SignInContainer,
@@ -67,7 +66,7 @@ class SignIn extends React.Component {
                             <FormH1>Don't have an account? Register <FormLinkP to = "/register">here</FormLinkP></FormH1>
                               <FormLabel htmlFor="for">Email:</FormLabel>
                               <FormInput type="email" name="email" onChange={this.onChange} />
-                              <FormLabel htmlFor="for">Passwprd:</FormLabel>
+                              <FormLabel htmlFor="for">Password:</FormLabel>
                               <FormInput type="password" name="password" onChange={this.onChange} />
                               <FormButton type="submit" onClick={this.onSubmit}>Sign In</FormButton>
                           </Form>

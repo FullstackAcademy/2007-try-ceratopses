@@ -98,6 +98,11 @@ body{
   display: flex;
 }
 
+.flexColumn{
+  display: flex;
+  flex-direction: column;
+}
+
 .flexContainer>.rightContainer{
 display: flex;
 flex-direction: column;
@@ -108,6 +113,10 @@ flex-direction: column;
 }
 
 #usersPanel{
+  height: 70vh
+}
+
+#productsPanel{
   height: 70vh
 }
 
@@ -153,6 +162,17 @@ flex-direction: column;
   box-shadow: 2px 2px 2px black;
 }
 
+#singleOrder{
+  margin: 1rem 0;
+}
+
+#address{
+  height: fit-content;
+}
+
+#adminProduct, #editProductPanel{
+  width: 100%;
+}
 
 /* Styling Products View */
 #ProductsContainer{
