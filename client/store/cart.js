@@ -7,7 +7,7 @@ import {
 
 // initial state
 const initialState = {
-  cartItems: {},
+  cartItems: [],
   // quantity: 0,
 };
 
@@ -35,7 +35,7 @@ const cartReducer = (state = initialState, action) => {
       return { cartItems: state.cartItems.filter((el) => el.product !== item) };
 
     case CLEAR_CART:
-      return initialState;
+      return { initialState };
     // return Object.assign({}, (state.cartItems = []));
 
     default:

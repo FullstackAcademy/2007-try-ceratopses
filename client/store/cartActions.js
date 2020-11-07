@@ -30,7 +30,7 @@ const clearCart = () => {
 //add to cart
 const addToCart = (productId, quantity) => async (dispatch) => {
   try {
-    const { data } = await axios.get(`/api/products/${productId}`);
+    const { data } = await axios.get(`/api/orders/${productId}`);
     console.log(data);
     dispatch({
       type: CART_ADD_ITEM,
@@ -51,7 +51,7 @@ const addToCart = (productId, quantity) => async (dispatch) => {
 // create new Item to cart database
 const createNewItem = (productId, quantity) => async (dispatch) => {
   try {
-    const { data } = await axios.post(`/api/products/${productId}`, quantity);
+    const { data } = await axios.post(`/api/orders/${productId}`, quantity);
     console.log(data);
     dispatch(setCart(data));
   } catch (error) {
@@ -62,7 +62,7 @@ const createNewItem = (productId, quantity) => async (dispatch) => {
 //update cart
 const updateCart = (productId, quantity) => async (dispatch) => {
   try {
-    const { data } = await axios.put(`/api/products/${productId}`, quantity);
+    const { data } = await axios.put(`/api/orders/${productId}`, quantity);
     console.log(data);
     dispatch(setCart(data));
   } catch (error) {
@@ -73,7 +73,7 @@ const updateCart = (productId, quantity) => async (dispatch) => {
 //remove from cart
 const removeFromCart = (userId, productId) => async (dispatch) => {
   try {
-    await axios.delete(`/api/products/${userId}/${productId}`);
+    await axios.delete(`/api/orders/${userId}/${productId}`);
     dispatch(removeData(data));
   } catch (error) {
     console.log(error);
