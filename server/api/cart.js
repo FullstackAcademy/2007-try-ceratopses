@@ -1,11 +1,5 @@
 const router = require('express').Router();
-const {
-  Orders,
-  Users,
-  Addresses,
-  OrderItems,
-  Products,
-} = require('../db/index');
+const { Orders, OrderItems, Products } = require('../db/index');
 
 router.get('/', async (req, res, next) => {
   // api/cart
@@ -26,7 +20,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/cart/:userId', async (req, res, next) => {
+router.get('/:productId', async (req, res, next) => {
   try {
     const { userId } = req.body;
     const cart = await Orders.findOne({
@@ -44,12 +38,13 @@ router.get('/cart/:userId', async (req, res, next) => {
   }
 });
 
-router.put('/cart/:productId', async (req, res, next) => {
+router.put('/:productId', async (req, res, next) => {
   try {
     const productId = req.params.productId;
     const cart = await Orders.findOne({
       where: {
         productId,
+        quantity,
         status: 'inCart',
       },
       include: [Product],
@@ -62,7 +57,7 @@ router.put('/cart/:productId', async (req, res, next) => {
   }
 });
 
-router.post('/cart/:userId/:productId', async (req, res, next) => {
+router.post('/:userId/:productId', async (req, res, next) => {
   try {
     const orderId = req.params.orderId;
     const productId = req.params.productId;
@@ -79,7 +74,6 @@ router.post('/cart/:userId/:productId', async (req, res, next) => {
       where: {
         orderId,
         productId,
-        status: 'inCart',
       },
       include: { all: true, nested: true },
       attributes: { exclude: ['hashedPassword'] },
@@ -100,7 +94,7 @@ router.post('/cart/:userId/:productId', async (req, res, next) => {
   }
 });
 
-router.delete('/cart/:productId', async (req, res, next) => {
+router.delete('/:productId', async (req, res, next) => {
   try {
     const productId = req.params.productId;
     const cart = await Orders.findByPk(productId, {

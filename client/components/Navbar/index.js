@@ -28,7 +28,7 @@ import Dropdown from '../Dropdown';
 class Navbar extends React.Component {
   constructor() {
     super();
-    this.changeNav = this.changeNav.bind(this);
+    // this.changeNav = this.changeNav.bind(this);
     this.toggleHome = this.toggleHome.bind(this);
     this.toggleFooter = this.toggleFooter.bind(this);
     this.onClick = this.onClick.bind(this);
@@ -46,13 +46,13 @@ class Navbar extends React.Component {
 
   //const Navbar = ({ toggle }) => {
 
-  changeNav() {
-    if (window.scrollY >= 80) {
-      setScrollNav(true);
-    } else {
-      setScrollNav(false);
-    }
-  }
+  // changeNav() {
+  //   if (window.scrollY >= 80) {
+  //     setScrollNav(true);
+  //   } else {
+  //     setScrollNav(false);
+  //   }
+  // }
 
   // useEffect (() => {
   //   window.addEventListener("scroll", changeNav);
@@ -72,7 +72,7 @@ class Navbar extends React.Component {
       return (
         <>
           <IconContext.Provider value={{ color: '#fff' }}>
-            <Nav scrollNav={scrollNav}>
+            <Nav>
               <NavbarContainer>
                 <NavLogo to="/" onClick={this.toggleHome}>
                   <GiFlowerPot />

@@ -2,13 +2,13 @@ import {
   SET_CART,
   CART_ADD_ITEM,
   CART_REMOVE_ITEM,
+  CART_UPDATE_ITEM,
   CLEAR_CART,
-} from '../store/cartActions.js';
+} from '../store/cartActions';
 
 // initial state
 const initialState = {
-  cartItems: [],
-  // quantity: 0,
+  cartItems: {},
 };
 
 //Cart Reducer
@@ -30,12 +30,17 @@ const cartReducer = (state = initialState, action) => {
         };
       }
       return { cartItems: [...state.cartItems, item] };
+    //return action.cartItems;
+
+    case CART_UPDATE_ITEM,
+:
+      return { cartItems: [...state.cartItems, item] };
 
     case CART_REMOVE_ITEM:
       return { cartItems: state.cartItems.filter((el) => el.product !== item) };
 
     case CLEAR_CART:
-      return { initialState };
+      return {};
     // return Object.assign({}, (state.cartItems = []));
 
     default:
