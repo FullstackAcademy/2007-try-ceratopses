@@ -9,6 +9,7 @@ import {usersReducer} from './users'
 import {singleUserReducer} from './singleUser'
 import { ordersReducer } from './orders'
 import { singleOrderReducer } from './singleOrder'
+import { cartReducer } from './cart'
 
 
 const reducer = combineReducers({
@@ -19,7 +20,8 @@ const reducer = combineReducers({
     users: usersReducer,
     singleUser: singleUserReducer,
     orders: ordersReducer,
-    singleOrder: singleOrderReducer
+    singleOrder: singleOrderReducer,
+    cart: cartReducer
 });
 
 const store = createStore(reducer, applyMiddleware(logger,thunkMiddleware));

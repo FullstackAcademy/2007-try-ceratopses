@@ -11,6 +11,7 @@ import SingleProduct from './components/SingleProduct'
 import Admin from './components/Admin'
 import SignIn from './components/SignIn/index'
 import Profile from './components/Profile'
+import CartContainer from './components/Cart/CartContainer'
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +33,7 @@ function App() {
         <Route path="/products/:productId" component={SingleProduct} />
         <Route path="/categories/:category" component={Products} />
         <Route path="/profile" component={Profile} exact />
-        <Route path="/cart" component={Cart} exact />
+        <Route path="/cart" component={CartContainer} exact />
         <Route path='/admin' component = {Admin} />
       </Switch>
       <Footer />
