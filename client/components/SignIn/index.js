@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { HashRouter as Router, Link, Route } from 'react-router-dom';
 import { getUser } from '../../store/user';
 import {
   SignInContainer,
