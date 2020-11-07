@@ -7,6 +7,7 @@ import {
   addToCart,
   updateCart,
   removeFromCart,
+  clearCart,
 } from '../../store/cartActions.js';
 import { CLEAR_CART } from '../../store/cart';
 
@@ -137,10 +138,7 @@ const CartContainer = (props) => {
               )}
             </h4>
           </div>
-          <button
-            className="clear-btn"
-            onClick={() => dispatch({ type: CLEAR_CART })}
-          >
+          <button className="clear-btn" onClick={() => dispatch(clearCart())}>
             Clear Cart
           </button>
           <button

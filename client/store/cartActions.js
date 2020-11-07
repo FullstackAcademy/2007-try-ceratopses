@@ -5,6 +5,7 @@ export const CART_ADD_ITEM = 'SET_CART';
 export const CART_REMOVE_ITEM = 'CART_REMOVE_ITEM';
 export const CLEAR_CART = 'CLEAR_CART';
 
+//Action Creators & Thunks
 const setCart = (cartItems) => {
   return {
     type: SET_CART,
@@ -18,12 +19,18 @@ const removeData = (cartItems) => {
     cartItems,
   };
 };
-//Action Creators & Thunks
+
+const clearCart = () => {
+  return {
+    type: CLEAR_CART,
+    cartItems: [],
+  };
+};
 
 //add to cart
 const addToCart = (productId, quantity) => async (dispatch) => {
   try {
-    const { data } = await axios.get(`/api/orders/${productId}`, quantity);
+    const { data } = await axios.get(`/api/products/${productId}`);
     console.log(data);
     dispatch({
       type: CART_ADD_ITEM,
@@ -44,7 +51,7 @@ const addToCart = (productId, quantity) => async (dispatch) => {
 // create new Item to cart database
 const createNewItem = (productId, quantity) => async (dispatch) => {
   try {
-    const { data } = await axios.post(`/api/orders/${productId}`, quantity);
+    const { data } = await axios.post(`/api/products/${productId}`, quantity);
     console.log(data);
     dispatch(setCart(data));
   } catch (error) {
@@ -55,7 +62,7 @@ const createNewItem = (productId, quantity) => async (dispatch) => {
 //update cart
 const updateCart = (productId, quantity) => async (dispatch) => {
   try {
-    const { data } = await axios.put(`/api/orders/${productId}`, quantity);
+    const { data } = await axios.put(`/api/products/${productId}`, quantity);
     console.log(data);
     dispatch(setCart(data));
   } catch (error) {
@@ -66,12 +73,11 @@ const updateCart = (productId, quantity) => async (dispatch) => {
 //remove from cart
 const removeFromCart = (userId, productId) => async (dispatch) => {
   try {
-    await axios.delete(`/api/orders/${userId}/${productId}`);
+    await axios.delete(`/api/products/${userId}/${productId}`);
     dispatch(removeData(data));
   } catch (error) {
     console.log(error);
   }
 };
 
-export { createNewItem, addToCart, updateCart, removeFromCart };
-//export { addToCart, updateCart, removeFromCart};
+export { createNewItem, addToCart, updateCart, removeFromCart, clearCart };
