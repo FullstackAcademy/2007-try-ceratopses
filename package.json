@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node server/index.js",
+    "build": "webpack",
     "start-seed": "npm run seed & npm run start-server & npm run build-watch",
     "start-dev": "npm run start-server & npm run build-watch",
     "build-watch": "webpack -w",
