@@ -61,7 +61,7 @@ class Profile extends React.Component {
                 <div key={item.id}>
                   <h5>Item: {item.product.title}</h5>
                   <p>Quantity: {item.quantity}</p>
-                  <p>Subtotal: ${item.subtotal}</p>
+                  <p>Subtotal: ${item.subtotal.toFixed(2)}</p>
                 </div>
               )
             })
@@ -69,7 +69,7 @@ class Profile extends React.Component {
             <hr />
             <p>Sales tax: ${order.salesTax}</p>
             <p>Shipping: ${order.shipping}</p>
-            <p>Grand Total: ${order.grandTotal}</p>
+            <p>Grand Total: ${order.grandTotal.toFixed(2)}</p>
 
             <h5>Ship to</h5>
             <p>Building: {address.buildingNumber}</p>

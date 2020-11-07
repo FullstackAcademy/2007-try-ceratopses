@@ -81,12 +81,13 @@ class Reviews extends React.Component {
             <h3>Reviews for this product</h3>
             <p></p>
             {reviews.map(review => {
+              const date = new Date(review.createdAt).toDateString()
               return (
                 <div key={review.id}>
                   <ul>
                     <li><b>{review.reviewTitle}</b></li>
                     <li><i>{review.createdAt}</i></li>
-                    <li>Rating: {review.rating}</li>
+                    <li>Rating: {date}</li>
                     <li>{review.fullReview}</li>
                   </ul>
                 </div>
