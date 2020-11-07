@@ -21,7 +21,7 @@ class SingleOrder extends React.Component {
     }
   }
 
-   //this is needed to make the component rerender when clicking on a new user, since the component doesn't unmount first
+   //this is needed to make the component rerender when clicking on a new order, since the component doesn't unmount first
   async componentDidUpdate(prevProps) {
     if(prevProps.match.params.orderId!==this.props.match.params.orderId)
     {

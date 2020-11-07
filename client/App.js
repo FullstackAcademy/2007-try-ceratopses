@@ -30,6 +30,7 @@ function App() {
         <Route path="/signUp" component={SignUp} exact />
         <Route path="/products" component={Products} exact />
         <Route path="/products/:productId" component={SingleProduct} />
+        <Route path="/categories/:category" component={Products} />
         <Route path="/profile" component={Profile} exact />
         <Route path="/cart" component={Cart} exact />
         <Route path='/admin' component = {Admin} />
