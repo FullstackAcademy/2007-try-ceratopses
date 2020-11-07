@@ -15,7 +15,7 @@ class Checkout extends React.Component {
     async handleClick() {
         console.log(this.props)
         const stripe = await stripePromise;
-        const response = await axios.post('/api/checkout/create-checkout-session', { userId: this.props.user.id });
+        const response = await axios.post('/api/checkout/create-checkout-session', { cart: this.props.cart });
         console.log(response)
         const result = await stripe.redirectToCheckout({
             sessionId: response.data.id,
@@ -35,6 +35,6 @@ class Checkout extends React.Component {
     }
 }
 
-const mapState = state => ( { user: state.user } )
+const mapState = state => ( { cart: state.cart } )
 
 export default connect (mapState)(Checkout)
