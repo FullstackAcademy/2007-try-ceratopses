@@ -1,11 +1,11 @@
 import React from "react"
 import { connect } from "react-redux"
 import { addUser } from "../store/users"
-import AddForm from "./Add"
+import Form from "./Form"
 
 const AddUser = ({ addUser }) => {
 	return (
-		<AddForm
+		<Form
 			id="addUserPanel"
 			title="Add New User"
 			buttonLabel="Add User"
@@ -35,7 +35,7 @@ const AddUser = ({ addUser }) => {
 					</select>
 				</>
 			)}
-		</AddForm>
+		</Form>
 	)
 }
 

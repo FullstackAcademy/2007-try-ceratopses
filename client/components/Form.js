@@ -1,6 +1,6 @@
 import React from "react"
 
-export default class AddForm extends React.Component {
+export default class Form extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = this.props.state

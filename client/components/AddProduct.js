@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import { addProduct } from "../store/products"
-import AddForm from "./Add"
+import Form from "./Form"
 
 const AddProduct = ({ addProduct }) => {
 	const { lightRequirement } = this.state
@@ -14,7 +14,7 @@ const AddProduct = ({ addProduct }) => {
 	]
 
 	return (
-		<AddForm
+		<Form
 			id="addProductPanel"
 			title="Add New Product"
 			buttonLabel="Add Product"
@@ -60,7 +60,7 @@ const AddProduct = ({ addProduct }) => {
 					<input name="inventory" onChange={onChange}></input>
 				</>
 			)}
-		</AddForm>
+		</Form>
 	)
 }
 
